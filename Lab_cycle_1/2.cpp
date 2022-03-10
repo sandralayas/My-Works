@@ -15,14 +15,42 @@ double area(double side){return side*side;}
 float area(int side){return side*side*3.14159265359;}
 //triangle
 double area(double a,double b,double c){
-    double s=a+b+c*0.5;
+    double s=(a+b+c)*0.5;
     return sqrt(s*(s-a)*(s-b)*(s-c));
 }
 
-main(){
-    cout<<"\n\npralleogram :"<<area(2.1,2.1);
-    cout<<"\n\nrectangle :"<<area(2,3);
-    cout<<"\n\nsquare :"<<area(2.5);
-    cout<<"\n\ncircle :"<<area(2);
-    cout<<"\n\ntriangle :"<<area(2.0,3.0,4.0)<<"\n\n";
+int main(void){
+    string user;
+    while(user!="exit"){
+        cout<<"\na) Pralleogram";
+        cout<<"\nb) Rectangle";
+        cout<<"\nc) Square";
+        cout<<"\nd) Circle";
+        cout<<"\ne) Triangle";
+        cout<<"\n Enter 'exit' to stop the program \n\n";
+
+        cout<<"\n\n Enter your choice : ";cin>>user;
+        if(user=="a"){
+		int base,height;
+		cout<<" Enter the base and height : ";cin>>base>>height;
+		cout<<" Area of Pralleogram: "<<area(base,height)<<"\n";}
+        else if(user=="b"){
+		double base,height;
+		cout<<" Enter the base and height : ";cin>>base>>height;
+		cout<<" Area of Rectangle: "<<area(base,height)<<"\n";}
+        else if(user=="c"){
+		double base;
+		cout<<" Enter the side : ";cin>>base;
+		cout<<" Area of Square: "<<area(base)<<"\n";}
+        else if(user=="d"){
+		int base;
+		cout<<" Enter the radius : ";cin>>base;
+		cout<<" Area of Circle: "<<area(base)<<"\n";}
+        else if(user=="e"){
+		int s1,s2,s3;
+		cout<<" Enter the three sides : ";cin>>s1>>s2>>s3;
+		cout<<" Area of Triangle: "<<area(s1,s2,s3)<<"\n";}
+        else if(user!="exit"){cout<<" You have entered a wrong opt \n\n";}
+    }
+return 0;
 }

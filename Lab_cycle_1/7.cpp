@@ -8,7 +8,7 @@ class Matrix{
     int **p;
     int d1,d2;
     public:
-    Matrix(){}
+    Matrix(void){}
     Matrix(int x,int y);
     void getelement(int i,int j,int value){
         p[i][j]=value;
@@ -16,7 +16,7 @@ class Matrix{
     int putelement(int i,int j){
         return p[i][j];
     }
-    void output(){
+    void output(void){
         for(int i=0;i<d1;i++){
             for(int j=0;j<d2;j++){
                 cout<<putelement(i,j)<<" ";
@@ -24,7 +24,7 @@ class Matrix{
             cout<<endl;
         }
     }
-    void input(){
+    void input(void){
         cout<<"Enter the elements row by row : \n";
         int value;
         for(int i=0;i<d1;i++){
@@ -36,11 +36,11 @@ class Matrix{
     }
     void matrix_add(Matrix);
     void matrix_mult(Matrix);
-    void matrix_transpose();
-    void cofactor();
-    void matrix_determinant();
+    void matrix_transpose(void);
+    void cofactor(void);
+    void matrix_determinant(void);
     
-    int matrix_trace();
+    int matrix_trace(void);
 };
 
 Matrix::Matrix(int x,int y){
@@ -107,7 +107,7 @@ int Matrix::matrix_trace(){
 }
         	
 
-main(){
+int main(void){
     int m,n;
     cout<<"\nEnter the size of the first matrix : \n";
     cin>>m>>n;
@@ -145,7 +145,7 @@ main(){
 
     cout<<"\nMultiplication :\n";
     A.matrix_mult(B);
-
+return 0;
 }
 
 /*

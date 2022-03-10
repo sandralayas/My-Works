@@ -10,56 +10,61 @@ class Shopping{
     double price[50];
     int num;
     public:
-    void number(){num=0;}
+    void number(void){num=0;}
     void input(){
-        cout<<"\n\nenter the code : ";cin>>code[num];
-        cout<<"\n\nenter the price : ";cin>>price[num];
+        cout<<"\n\n Enter the code : ";cin>>code[num];
+        cout<<"\n\n Enter the price : ";cin>>price[num];
         num++;
     }
-    void output(){
+    void output(void){
+	cout<<"\n  Code    :   Price "<<"\n";
         for(int i=0;i<num;i++){
-            cout<<"\nthe code : "<<code[i]<<"\n";
-            cout<<"the price : "<<price[i]<<"\n";
+            cout<<code[i]<<"         :   "<<price[i]<<"\n";
         }
     }
-    void deletes(){
-        int a;cout<<"\n\nenter the code to delete : ";cin>>a;
-        for(int i=a;i<num;i++){
-            price[i]=price[i+1];code[i]=code[i+1];
+    void deletes(void){
+	int reqcode;
+        int a;cout<<"\n\n Enter the code to delete : ";cin>>a;
+	cout<<" You have removed an item\n\n";
+        for(int i=0;i<num;i++){
+            if(code[i]==a){reqcode=i;}
         }
-        num--;
+	for(int i=reqcode;i<num;i++){
+	    price[i]=price[i+1];code[i]=code[i+1];
+	}
+	num--;
     }
-    void total(){
+    void total(void){
         double sum=0;
         for(int i=0;i<num;i++){
             sum=sum+price[i];
         }
-        cout<<"\n\nthe total price : "<<sum<<"\n\n";
+        cout<<"\n\n The total price : "<<sum<<"\n\n";
     }
 };
 
-main(){
+int main(void){
     
     Shopping order;
     order.number();
     
     string user;
     while(user!="exit"){
-        cout<<"\na) adding new item";
-        cout<<"\nb) delete an item";
-        cout<<"\nc) total amount";
-        cout<<"\nd) bill";
-        cout<<"\nenter exit to stop the program \n\n";
+        cout<<"\n a) Adding new item";
+        cout<<"\n b) Delete an item";
+        cout<<"\n c) Total amount";
+        cout<<"\n d) Bill";
+        cout<<"\n Enter exit to stop the program \n\n";
 
-        cout<<"\n\nenter your choice : ";cin>>user;
+        cout<<"\n\n Enter your choice : ";cin>>user;
         if(user=="a"){
-            int items;cout<<"enter the number of items to buy :";cin>>items;
+            int items;cout<<" Enter the number of items to buy :";cin>>items;
             for(int i=0;i<items;i++){order.input();}
         }
         else if(user=="b"){order.deletes();}
         else if(user=="c"){order.total();}
         else if(user=="d"){order.output();}
-        else if(user!="exit"){cout<<"you have entered a wrong opt \n\n";}
+        else if(user!="exit"){cout<<" You have entered a wrong opt \n\n";}
     }
-
+return 0;
 }

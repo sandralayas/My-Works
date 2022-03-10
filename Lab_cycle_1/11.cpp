@@ -9,18 +9,18 @@ class Class2;
 class Class1{
     int var1;
     public:
-    Class1(){}
+    Class1(void){}
     void input(int a){var1=a;}
-    void output(){cout<<"the varable 1 : "<<var1<<"\n\n";}
+    void output(void){cout<<" The varable 1 : "<<var1<<"\n\n";}
     friend void swap(Class1&,Class2&);
 };
 
 class Class2{
     int var2;
     public:
-    Class2(){}
+    Class2(void){}
     void input(int a){var2=a;}
-    void output(){cout<<"the varable 2 : "<<var2<<"\n\n";}
+    void output(){cout<<" The varable 2 : "<<var2<<"\n\n";}
     friend void swap(Class1&,Class2&);
 };
 
@@ -29,15 +29,15 @@ void swap(Class1 &a,Class2 &b){
     a.var1=b.var2;b.var2=temp;
 }
 
-main(){
+int main(void){
     Class1 test1;
     Class2 test2;
 
     int a;
-    cout<<"enter the varable 1 : ";
+    cout<<" Enter the varable 1 : ";
     cin>>a;test1.input(a);cout<<"\n\n";
 
-    cout<<"enter the varable 2 : ";
+    cout<<" Enter the varable 2 : ";
     cin>>a;test2.input(a);cout<<"\n\n";
 
     test1.output();test2.output();
@@ -45,4 +45,5 @@ main(){
     swap(test1,test2);
 
     test1.output();test2.output();
+return 0;
 }

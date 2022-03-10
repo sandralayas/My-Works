@@ -11,19 +11,33 @@ class complex{
     float x;
     float y;
     public:
-    complex(){}
+    complex(void){x=0;y=0;}
     complex(float a){x=a;y=a;}
     complex(float a,float b){x=a;y=b;}
     complex operator+(complex);
-    void display(){cout<<x<<"+"<<y<<"i"<<"\n\n";}
+	
+	void input(int a,int b){x=a;y=b;}	
+	
+    void display(void){cout<<x<<"+"<<y<<"i"<<"\n\n";}
 };
 complex complex::operator+(complex c){
     return complex(x+c.x,y+c.y);
 }
-main(){
-    complex c1(1.1,2.2),c2(3.3,4.4),c3;
-    c3=c1+c2;
-    c1.display();
-    c2.display();
-    c3.display();
+
+int main(void){
+    float x,y;complex complex[2];
+
+    for(int i=0;i<2;i++){
+    cout<<"\n Enter the real part :";
+    cin>>x;
+    cout<<" Enter the imaginary part :";
+    cin>>y;
+	complex[i].input(x,y);
+    }
+
+    cout<<"\n The first complex number :";complex[0].display();
+    cout<<"\n The second complex number :";complex[1].display();
+
+    complex[2]=complex[0]+complex[1];cout<<"\n The added complex number :";complex[2].display();
+return 0;
 }

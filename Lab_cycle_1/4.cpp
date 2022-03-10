@@ -2,17 +2,22 @@
 //length on String objects.
 
 #include<iostream>
+#include<cstring>
 using namespace std;
 
 class String{
 
-    string the_string;
-    int len;
+	char *the_string;
+	int len;
+	public:
+	String(void){len=0;the_string=new char[len+1];}
+	String(const char *input){
+		len=strlen(input);
+		the_string=new char[len+1];
+		strcpy(the_string,input);
+	}
 
-    public:
-    String(){}
-
-    String(string a,int b){the_string=a;len=b;}
+	void input(void){cin>>the_string;}
     
     bool operator>=(String a){
         if(len>=a.len){return true;}
@@ -20,34 +25,38 @@ class String{
     }
     String operator+(String a);
 
-    void output(){cout<<the_string<<"\n\n";}
+    char output(void){cout<<the_string;}
 };
 
 int str_length(string a){return a.length();}
 
 String String::operator+(String a){
-    a.the_string=the_string+" "+a.the_string;
-    a.len=a.len+len;
-    return a;
+	String b;
+	b.len=a.len+len;
+	b.the_string=new char[b.len+1];
+	strcpy(b.the_string,the_string);
+	strcat(b.the_string,a.the_string);
+	return b;
 }
 
-main(){
+int main(void){
+
+	String string1;String string2;
+
     cout<<"\n\n";
     cout<<"enter the first string :";
-    string a,b;
-    cin>>a;
+    string1.input();
     cout<<"\n\n";
     cout<<"enter the second string :";
-    cin>>b;
+    string2.input(); 
     cout<<"\n\n";
-    String string1(a,str_length(a));String string2(b,str_length(b));
+    
 
-    if(string2>=string1){cout<<b<<" has greater length than "<<a<<"\n\n";}
-    else{cout<<a<<" has greater length than "<<b<<"\n\n";}
-    cout<<"concatinated product :";
+    if(string2>=string1){string1.output();cout<<" has greater length than ";cout<<string2.output()<<"\n\n";}
+    else{string2.output();cout<<" has greater length than ";cout<<string1.output()<<"\n\n";}
+    cout<<"concatinated product : ";
 
-    String temp=string1+string2;
-
-    cout<<a<<" + "<<b<<" = ";
-    temp.output();
+    string1.output();cout<<" + ";string2.output();cout<<" = ";(string1+string2).output();cout<<"\n\n";
+return 0;
 }
+

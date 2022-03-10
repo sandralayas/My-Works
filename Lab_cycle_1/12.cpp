@@ -16,7 +16,7 @@ class Complex{
         imaginary=b;
     }
     friend Complex sum(Complex,Complex);
-    void output();
+    void output(void);
 };
 void Complex::output(){
         cout<<"\n"<<real<<"+"<<imaginary<<" j\n\n";
@@ -27,11 +27,21 @@ Complex sum(Complex complex1,Complex complex2){
     complex3.imaginary=complex1.imaginary+complex2.imaginary;
     return complex3;
 }
-main(){
-    Complex complex1,complex2;
-    complex1.input(1.1,2.2);
-    complex2.input(1.1,2.2);
-    complex1.output();
-    complex2.output();
-    sum(complex1,complex2).output();
+
+int main(void){
+    double x,y;Complex complex[2];
+
+    for(int i=0;i<2;i++){
+    cout<<"\nenter the real part :";
+    cin>>x;
+    cout<<"enter the imaginary part :";
+    cin>>y;
+	complex[i].input(x,y);
+    }
+
+    cout<<"\n the first complex number :";complex[0].output();
+    cout<<"\n the second complex number :";complex[1].output();
+
+    cout<<"\n the added complex number :";sum(complex[0],complex[1]).output();
+return 0;
 }

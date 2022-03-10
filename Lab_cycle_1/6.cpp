@@ -5,34 +5,46 @@ two time objects by passing objects to function and display result.*/
 using namespace std;
 
 class Time{
-    int mins;
-    int hours;
+    int hours,mins,secs;
     public:
-    void input(int a,int b){mins=a;hours=b;}
-    void output(){cout<<"\n\n"<<hours<<" hours and "<<mins<<" minutes"<<"\n\n";}
+    void input(int a,int b,int c){hours=a;mins=b;secs=c;}
+    void output(void){cout<<hours<<" hours and "<<mins<<\
+				" minutes and "<<secs<<" seconds\n";}
     void adding(Time a,Time b){
-        mins=a.mins+b.mins;
+
+	secs=a.secs+b.secs;
+	mins=secs/60;
+	secs=secs%60;
+	mins=mins+a.mins+b.mins;
         hours=mins/60;
         mins=mins%60;
         hours=hours+a.hours+b.hours;
     }
 };
 
-main(){
-    int x,y;Time t1,t2,sum;
-    cout<<"enter the minutes :";
+int main(void){
+    int x,y,z;Time t1,t2,sum;
+    
+    cout<<" Enter the hours :";
     cin>>x;
-    cout<<"enter the hours :";
+    cout<<" Enter the minutes :";
     cin>>y;
-    t1.input(x,y);
-
-    cout<<"enter the minutes :";
+    cout<<" Enter the seconds :";
+    cin>>z;
+    t1.input(x,y,z);
+    cout<<"\n\n";
+    cout<<" Enter the hours :";
     cin>>x;
-    cout<<"enter the hours :";
+    cout<<" Enter the minutes :";
     cin>>y;
-    t2.input(x,y);
+    cout<<" Enter the seconds :";
+    cin>>z;
+    t2.input(x,y,z);
 
-    t1.output();t2.output();
+    cout<<"\n The first time :";t1.output();
+    cout<<"\n The second time :";t2.output();
 
-    sum.adding(t1,t2);sum.output();
+    sum.adding(t1,t2);cout<<"\n The added time :";sum.output();
+return 0;
 }
+

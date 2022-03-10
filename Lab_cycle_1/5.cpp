@@ -15,15 +15,15 @@ class Matrix{
     int putelement(int i,int j){
         return p[i][j];
     }
-    ~Matrix();
+    ~Matrix(void);
 };
 
-Matrix::~Matrix(){
+Matrix::~Matrix(void){
     for(int i=0;i<d1;i++){
         delete p[i];
     }
     delete p;
-    cout<<"Memory relesed !!\n";
+    cout<<"\nMemory relesed !!\n";
 }
 
 Matrix::Matrix(int x,int y){
@@ -33,9 +33,10 @@ Matrix::Matrix(int x,int y){
     for(int i=0;i<d1;i++){
         p[i]=new int [d2];
     }
+    cout<<"\nMemory created !!\n";
 }
 
-main(){
+int main(void){
     int m,n;
     cout<<"Enter the size of matrix : \n";
     cin>>m>>n;
@@ -55,4 +56,12 @@ main(){
         }
         cout<<endl;
     }
+    cout<<"Transpose matrix :\n";
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            cout<<A.putelement(j,i)<<" ";
+        }
+        cout<<endl;
+    }
+return 0;
 }
