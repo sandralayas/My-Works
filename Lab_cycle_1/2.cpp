@@ -22,7 +22,7 @@ double area(double a,double b,double c){
 int main(void){
     string user;
     while(user!="exit"){
-        cout<<"\na) Pralleogram";
+        cout<<"\n\na) Pralleogram";
         cout<<"\nb) Rectangle";
         cout<<"\nc) Square";
         cout<<"\nd) Circle";

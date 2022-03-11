@@ -23,6 +23,8 @@ class Time{
 };
 
 int main(void){
+int user;
+do{
     int x,y,z;Time t1,t2,sum;
     
     cout<<" Enter the hours :";
@@ -45,6 +47,9 @@ int main(void){
     cout<<"\n The second time :";t2.output();
 
     sum.adding(t1,t2);cout<<"\n The added time :";sum.output();
+
+	cout<<" \nEnter '0' to exit the programe : ";cin>>user;
+}while(user!=0);
 return 0;
 }
 

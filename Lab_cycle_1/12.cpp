@@ -19,7 +19,9 @@ class Complex{
     void output(void);
 };
 void Complex::output(){
-        cout<<"\n"<<real<<"+"<<imaginary<<" j\n\n";
+	char opera=' ';
+	if(imaginary>=0)opera='+';
+        cout<<"\n"<<real<<opera<<imaginary<<" j\n\n";
     }
 Complex sum(Complex complex1,Complex complex2){
     Complex complex3;
@@ -29,19 +31,25 @@ Complex sum(Complex complex1,Complex complex2){
 }
 
 int main(void){
+int user;
+do{
     double x,y;Complex complex[2];
 
     for(int i=0;i<2;i++){
-    cout<<"\nenter the real part :";
+    cout<<"\n Enter the real part :";
     cin>>x;
-    cout<<"enter the imaginary part :";
+    cout<<" Enter the imaginary part :";
     cin>>y;
 	complex[i].input(x,y);
     }
 
-    cout<<"\n the first complex number :";complex[0].output();
-    cout<<"\n the second complex number :";complex[1].output();
+    cout<<"\n The first complex number :";complex[0].output();
+    cout<<"\n The second complex number :";complex[1].output();
 
-    cout<<"\n the added complex number :";sum(complex[0],complex[1]).output();
+    cout<<"\n The added complex number :";sum(complex[0],complex[1]).output();
+
+cout<<" Enter '0' to exit the program : ";cin>>user;
+}while(user!=0);
 return 0;
 }
+

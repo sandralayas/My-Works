@@ -12,14 +12,14 @@ class Shopping{
     public:
     void number(void){num=0;}
     void input(){
-        cout<<"\n\n Enter the code : ";cin>>code[num];
+        cout<<"\n\n Enter the 3-digit code : ";cin>>code[num];
         cout<<"\n\n Enter the price : ";cin>>price[num];
         num++;
     }
     void output(void){
-	cout<<"\n  Code    :   Price "<<"\n";
+	cout<<"\n  Code    :   Price \n\n";
         for(int i=0;i<num;i++){
-            cout<<code[i]<<"         :   "<<price[i]<<"\n";
+            cout<<code[i]<<"       :   "<<price[i]<<"\n";
         }
     }
     void deletes(void){
@@ -44,7 +44,8 @@ class Shopping{
 };
 
 int main(void){
-    
+int exit;
+do{    
     Shopping order;
     order.number();
     
@@ -53,12 +54,12 @@ int main(void){
         cout<<"\n a) Adding new item";
         cout<<"\n b) Delete an item";
         cout<<"\n c) Total amount";
-        cout<<"\n d) Bill";
+        cout<<"\n d) Stock";
         cout<<"\n Enter exit to stop the program \n\n";
 
         cout<<"\n\n Enter your choice : ";cin>>user;
         if(user=="a"){
-            int items;cout<<" Enter the number of items to buy :";cin>>items;
+            int items;cout<<"\n Enter the number of items to buy : ";cin>>items;
             for(int i=0;i<items;i++){order.input();}
         }
         else if(user=="b"){order.deletes();}
@@ -66,5 +67,7 @@ int main(void){
         else if(user=="d"){order.output();}
         else if(user!="exit"){cout<<" You have entered a wrong opt \n\n";}
     }
+cout<<"\n Enter '0' to exit the program : ";cin>>exit;
+}while(exit!=0);
 return 0;
 }

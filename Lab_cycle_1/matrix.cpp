@@ -35,9 +35,9 @@ class Matrix{
             }
         }
     }
-    void matrix_add(Matrix&);
-    void matrix_mult(Matrix&);
-    void matrix_transpose(Matrix&);
+    void matrix_add(Matrix*);
+    void matrix_mult(Matrix*);
+    void matrix_transpose(void);
     void cofactor(void);
     void matrix_determinant(void);
     
@@ -61,21 +61,21 @@ Matrix::Matrix(int x,int y){
     }
 }
 
-void Matrix::matrix_add(Matrix &a){
+void Matrix::matrix_add(Matrix *a){
     for(int i=0;i<d1;i++){
         for(int j=0;j<d2;j++){
-            cout<<putelement(i,j)+a.putelement(i,j)<<" ";
+            cout<<putelement(i,j)+a->putelement(i,j)<<" ";
         }
         cout<<endl;
     }
 }
 
-void Matrix::matrix_mult(Matrix &a){
+void Matrix::matrix_mult(Matrix *a){
     for(int i=0;i<d1;i++){
-        for(int j=0;j<a.d2;j++){
+        for(int j=0;j<a->d2;j++){
             int ans=0;
             for(int k=0;k<d1;k++){
-                ans=ans+(putelement(i,k)*a.putelement(k,j));
+                ans=ans+(putelement(i,k)*a->putelement(k,j));
             }
             cout<<ans<<" ";
         }
@@ -83,8 +83,8 @@ void Matrix::matrix_mult(Matrix &a){
     }
 }
 
-void Matrix::matrix_transpose(Matrix &transpose){
-
+void Matrix::matrix_transpose(){
+Matrix transpose(d2,d1);
     for(int i=0;i<d1;i++){
         for(int j=0;j<d2;j++)
             transpose.getelement(j,i,putelement(i,j));
@@ -106,37 +106,33 @@ int Matrix::matrix_trace(){
         	
 int main(void){
 int exit,user;
-//Matrix *A,*B;
+Matrix *A,*B;
 do{
     int m1,n1,m2,n2;
-
-    cout<<"\nEnter the size of the first matrix : \n";
-    cin>>m1>>n1;
-    Matrix A(m1,n1);
-    A.input();
-    cout<<"\nEntered first matrix :\n";
-    A.output();
-
-    cout<<"\nEnter the size of the second matrix : \n";
-    cin>>m2>>n2;
-    Matrix B(m2,n2);
-    B.input();
-    cout<<"\nEntered second matrix :\n";
-    B.output();
-
-//initilizing transpose
-    Matrix transpose1(n1,m1);
-    Matrix transpose2(n2,m2);
-
-
-int repeat=1;
-while(repeat==1){
 
     cout<<"\n 1. Trace";
     cout<<"\n 2. Transpose";
     cout<<"\n 3. Addition";
     cout<<"\n 4. Multiplication";
     cout<<"\n\n Enter your choice : ";cin>>user;
+
+
+    cout<<"\nEnter the size of the first matrix : \n";
+    cin>>m1>>n1;
+    A=new Matrix(m1,n1);
+    A->input();
+    cout<<"\nEntered first matrix :\n";
+    A->output();
+
+if(user==3 or user==4){
+
+    cout<<"\nEnter the size of the second matrix : \n";
+    cin>>m2>>n2;
+    B=new Matrix(m2,n2);
+    B->input();
+    cout<<"\nEntered second matrix :\n";
+    B->output();
+}
 
 switch(user){
 
@@ -145,13 +141,7 @@ switch(user){
     
     if(m1==n1){
     cout<<"\nTrace of first:\n";
-    cout<<A.matrix_trace()<<"\n";
-    }
-    else{cout<<"\nTrace not possible\n";}
-
-    if(m2==n2){
-    cout<<"\nTrace of second:\n";
-    cout<<B.matrix_trace()<<"\n";
+    cout<<A->matrix_trace()<<"\n";
     }
     else{cout<<"\nTrace not possible\n";}
 
@@ -161,10 +151,7 @@ switch(user){
 //transpose
     
     cout<<"\nTranspose of first:\n";
-    A.matrix_transpose(transpose1);
-
-    cout<<"\nTranspose of second:\n";
-    B.matrix_transpose(transpose2);
+    A->matrix_transpose();
 
 	break;
 
@@ -173,7 +160,7 @@ switch(user){
 
     if(m1==m2 && n1==n2){
     cout<<"\nAddition :\n";
-    A.matrix_add(B);
+    A->matrix_add(B);
     }
     else{cout<<"\nAddition not possible\n";}
 
@@ -182,19 +169,16 @@ switch(user){
 	case 4:
 //Mutiplication
 
-    if(n2==m1){
+    if(n1!=m2){cout<<"\nMultiplication not possible\n";}
+    else{
     cout<<"\nMultiplication :\n";
-    A.matrix_mult(B);
+    A->matrix_mult(B);
     }
-    else{cout<<"\nMultiplication not possible\n";}
 
 	break;
 
 	default:break;
 }
-cout<<"\n Enter '1' to continue with the same input : ";cin>>repeat;
-}
-
 cout<<"\n Enter '0' to stop the program : ";cin>>exit;
 }while(exit!=0);
 

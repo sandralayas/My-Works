@@ -10,6 +10,7 @@ class Grades{
     int rollno;
     double mark1,mark2,mark3;
     public:
+
     void input(string a,int b,double c,double d,double e){
         name=a;
         rollno=b;
@@ -36,22 +37,45 @@ class Grades{
     }
     void display(void){
         
-        cout<<name<<"   "<<rollno<<"   "<<calcGrade((mark1+mark2+mark3)/3)<<"\n";
+        cout<<name<<"       "<<rollno<<"         "<<calcGrade((mark1+mark2+mark3)/3)<<"         "<<(mark1+mark2+mark3)/3<<"\n";
     }
 };
 
 int main(void){
-	int count,rollno;string name;double mark1,mark2,mark3; 
-	cout<<"\n Enter the number of students : ";cin>>count;
-	Grades student[count];
-	cout<<"\n Slno    Name    Rollno    Mark1   Mark2   Mark3\n";
-	for(int i=0;i<count;i++){
-		cout<<" "<<i+1<<".  "; 
-		cin>>name>>rollno>>mark1>>mark2>>mark3;
-		student[i].input(name,rollno,mark1,mark2,mark3);
-	}
-	cout<<"\n Name    Rollno    Grade\n";
+
+int user,num,count=0;
+string name;
+
+Grades student[20];
+
+do{
+	cout<<"\n1) Add students";
+        cout<<"\n2) Calculate grades";
+        cout<<"\n Enter '0' to stop the program \n\n";
+
+        
+	cout<<"\n\n Enter your choice : ";
+	cin>>user;
+
+switch(user){
+    case 0:break;
+    case 1:
+	int rollno;
+	double mark1,mark2,mark3; 
+	cout<<"\n Name    Rollno    Mark1   Mark2   Mark3\n"; 
+	cin>>name>>rollno>>mark1>>mark2>>mark3;
+	student[count].input(name,rollno,mark1,mark2,mark3);
+	count++;
+    	break;
+    case 2:
+	cout<<"\n Name    Rollno    Grade    Average\n";
 	for(int i=0;i<count;i++){student[i].display();}
-return 0;
+    	break;
+
+    default:
+	cout<<"\n Wrong choice\n";
+	break;
+}}while(user!=0);
+      return 0;
 }
 

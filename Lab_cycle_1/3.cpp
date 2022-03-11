@@ -18,36 +18,40 @@ class BankAccount{
 void accounts(void){num=0;}
 
 void deposit(void){
-    float x;cout<<"\n\n Enter the depositing amount : ";cin>>x;
-
-    int reqcode;
+    int reqcode=51;
     int a;cout<<"\n Enter the account number : ";cin>>a;
     for(int i=0;i<num;i++){
         if(acc[i]==a){reqcode=i;break;}
     }
-
-    balance[reqcode]=balance[reqcode]+x;
+    if(reqcode!=51){
+    	float x;cout<<"\n\n Enter the depositing amount : ";cin>>x;
+    	balance[reqcode]=balance[reqcode]+x;
+	cout<<"\n Your balance :"<<balance[reqcode]<<"\n";
+    }
+    else cout<<" This account doesn't exit";
 }
 
 void withdraw(void){
-    float x;cout<<"\n\n Enter the withdrawing amount : ";cin>>x;
-    
-    int reqcode;
+    int reqcode=51;
     int a;cout<<"\n Enter the account number : ";cin>>a;
     for(int i=0;i<num;i++){
         if(acc[i]==a){reqcode=i;break;}
     }
-
-    if(balance[reqcode]>=x){
-        balance[reqcode]=balance[reqcode]-a;
+    if(reqcode!=51){
+	float x;cout<<"\n\n Enter the withdrawing amount : ";cin>>x;
+    	if(balance[reqcode]>=x){
+        	balance[reqcode]=balance[reqcode]-x;
+		cout<<"\n Your balance :"<<balance[reqcode]<<"\n";
+    	}
+    	else{cout<<"\n Your balance :"<<balance[reqcode]<<"\n You can't withdraw that amount\n\n";}
     }
-    else{cout<<"\n Your balance :"<<balance[reqcode]<<"\n You can't withdraw that amount\n\n";}
+    else cout<<" This account doesn't exit";
 }
 
 void display(int number){
     cout<<"\n\n Name  |  Account no.  |  Account type  |  Balance amount\n";
-    cout<<name[number]<<"     "<<acc[number]<<"     "<<type[number]<<\
-    "     "<<balance[number]<<"     ";
+    cout<<name[number]<<"             "<<acc[number]<<"             "<<type[number]<<\
+    "     "<<balance[number]<<"               ";
 }
 
 void input(){
@@ -61,7 +65,7 @@ void input(){
     cin>>b;acc[num]=b;
     cout<<"\n\n";
     cout<<" Enter your balance amount : ";
-    cin>>d;balance[num]=d+500.00;;
+    cin>>d;balance[num]=d+500.00;
     cout<<"\n\n";
     num++;
 }
@@ -76,10 +80,15 @@ void display_balance(void){
 }
 
 void account_statement(void){
-	int reqcode;
-    int a;cout<<"\n\n Enter the account number : ";cin>>a;
+    int reqcode=51;
+    int a;cout<<"\n Enter the account number : ";cin>>a;
     for(int i=0;i<num;i++){
-        if(acc[i]==a){display(i);break;}
+        if(acc[i]==a){reqcode=i;break;}
+    }
+    if(reqcode!=51){
+    	for(int i=0;i<num;i++){
+        	if(acc[i]==a){display(i);break;}
+    	}
     }
 }
 
@@ -91,7 +100,7 @@ int main(void){
     account.accounts();
     string user;
     while(user!="exit"){
-        cout<<"\na) Adding new account";
+        cout<<"\n\na) Adding new account";
         cout<<"\nb) Withdraw";
         cout<<"\nc) Deposit";
         cout<<"\nd) Balance enquiry";
@@ -104,7 +113,7 @@ int main(void){
         else if(user=="c"){account.deposit();}
         else if(user=="d"){account.display_balance();}
         else if(user=="e"){account.account_statement();}
-        else if(user!="exit"){cout<<"you have entered a wrong opt \n\n";}
+        else if(user!="exit"){cout<<" You have entered a wrong opt \n\n";}
     }
 return 0;
 }
