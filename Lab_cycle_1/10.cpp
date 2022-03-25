@@ -55,7 +55,7 @@ do{
         cout<<"\n b) Delete an item";
         cout<<"\n c) Total amount";
         cout<<"\n d) Stock";
-        cout<<"\n Enter exit to stop the program \n\n";
+        cout<<"\n Enter 'exit' to stop the program \n\n";
 
         cout<<"\n\n Enter your choice : ";cin>>user;
         if(user=="a"){

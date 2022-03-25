@@ -71,10 +71,12 @@ void Matrix::matrix_add(Matrix *a){
 }
 
 void Matrix::matrix_mult(Matrix *a){
+	int sq;
+    if(d1<=d2)sq=d1;else sq=d2;
     for(int i=0;i<d1;i++){
         for(int j=0;j<a->d2;j++){
             int ans=0;
-            for(int k=0;k<d1;k++){
+            for(int k=0;k<sq;k++){
                 ans=ans+(putelement(i,k)*a->putelement(k,j));
             }
             cout<<ans<<" ";

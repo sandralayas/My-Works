@@ -2,6 +2,7 @@
 //length on String objects.
 
 #include<iostream>
+#include<string.h>
 #include<cstring>
 using namespace std;
 
@@ -16,20 +17,21 @@ class String{
 		the_string=new char[len+1];
 		strcpy(the_string,input);
 	}
-
-	void input(void){cin>>the_string;}
-    
-    	bool operator>=(String &a){
-        	if(len>=a.len){return true;}
-        	else{return false;}
-    	}
-    	String operator+(String &a);
-
-    	char output(void){cout<<the_string;}
+	//void input(string a){String(a);}
+    bool operator>(String &a){
+        if(len>a.len){return true;}
+        else{return false;}
+    }
+	bool operator<(String &a){
+        if(len<a.len){return true;}
+        else{return false;}
+    }
+    String operator+(String &a);
+    char output(void){cout<<the_string;}
 	~String(void){delete the_string;}
-};
+	void length(void){cout<<len;}
 
-int str_length(string a){return a.length();}
+};
 
 String String::operator+(String &a){
 	String b;
@@ -43,24 +45,51 @@ String String::operator+(String &a){
 int main(void){
 int user;
 do{
-	String string1;String string2;
-
-    cout<<"\n\n";
+	
+	string input1,input2;
+	//string *char1,*char2;
+	
+    cout<<"\n";
     cout<<" Enter the first string :";
-    string1.input();
-    cout<<"\n\n";
+    cin>>input1;
+	const char *char1=input1.c_str();
+	String string1(char1);
+    cout<<"\n";
+
     cout<<" Enter the second string :";
-    string2.input(); 
-    cout<<"\n\n";
-    
+    cin>>input2;
+	const char *char2=input2.c_str();
+	String string2(char2);
+  
+	cout<<"\n\n The length of first string : ";string1.length();
+	cout<<"\n The length of second string : ";string2.length();cout<<"\n\n";
 
-    if(string2>=string1){string1.output();cout<<" has greater length than ";cout<<string2.output()<<"\n\n";}
-    else{string2.output();cout<<" has greater length than ";cout<<string1.output()<<"\n\n";}
-    cout<<" Concatinated product : ";
+    if(string1>string2){
+		cout<<"\n '";
+		string1.output();
+		cout<<"' has greater length than '";
+		cout<<string2.output()<<"'\n\n";
+	}
+    else if(string1<string2){
+		cout<<"\n '";
+		string2.output();
+		cout<<"' has greater length than '";
+		cout<<string1.output()<<"'\n\n";
+	}
+	else{
+		cout<<"\n '";
+		string2.output();
+		cout<<"' and '";
+		cout<<string1.output()<<"' has equal length\n\n";
+	}
 
-    string1.output();cout<<" + ";string2.output();cout<<" = ";(string1+string2).output();cout<<"\n\n";
+    cout<<" Concatinated product : '";string1.output();
+	cout<<"' + '";string2.output();cout<<"' = '";
+	(string1+string2).output();cout<<"'\n\n";
 
-	cout<<" \n Enter '0' to exit the programe : ";cin>>user;
+	cout<<"\n The length of concatinated string : ";(string1+string2).length();	
+	
+	cout<<"\n\n Enter '0' to exit the programe : ";cin>>user;
 }while(user!=0);
 return 0;
 }
