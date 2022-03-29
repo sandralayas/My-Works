@@ -18,6 +18,7 @@ class Student{
 
     void show(){
         cout<<"\n The roll number of the student is : "<<roll;
+        cout<<"\n";
     }
 };
 
@@ -31,6 +32,7 @@ class Test:public Student{
 
     void show(){
         cout<<"\n The score for test of the student is : "<<marks;
+        cout<<"\n";
     }
 };
 
@@ -44,6 +46,7 @@ class Sport:public Student{
 
     void show(){
         cout<<"\n The score for sports of the student is : "<<marks;
+        cout<<"\n";
     }
 };
 
@@ -59,6 +62,7 @@ class Result:public  Test,virtual public Sport /*,public Student*/{
 
     void show(){
         cout<<"\n The result of the student "<<roll<<" is : "<<total;
+        cout<<"\n";
     }
 };
 
@@ -85,16 +89,16 @@ double test,sport;
     }
     else if(choice=="2"){
         cout<<"\n Enter the score for the test : ";cin>>test;
-        Result student(test);
+        Test student(roll,test);
         student.show();
     }
     else if(choice=="3"){
         cout<<"\n Enter the score for the sport : ";cin>>sport;
-        Result student(sport);
+        Sport student(roll,sport);
         student.show();
     }
     else if(choice=="4"){
-        Result student(test,sport);
+        Result student(roll,test,sport);
         student.show();
     }
     else cout<<"\n Invalid choice\n";
