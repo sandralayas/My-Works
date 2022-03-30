@@ -107,6 +107,7 @@ int main(){
 
 	string choice;
 	double side1,side2;
+	Shape *_shape;
 
 	do{
 		cout<<"\n\n Enter '0' to exit \
@@ -123,38 +124,38 @@ int main(){
 		cout<<"\n Enter the base : ";cin>>side1;
 		cout<<" Enter the height : ";cin>>side2;
 		Triangle _triangle(side1,side2);
-        Triangle *triangle=&_triangle;
-		triangle->show();
+        _shape=&_triangle;
+		_shape->show();
 		}
 
 		else if(choice=="2"){
 		cout<<"\n Enter the first side : ";cin>>side1;
 		cout<<" Enter the second side : ";cin>>side2;
 		Rectangle _rectangle(side1,side2);
-        Rectangle *rectangle=&_rectangle;
-		rectangle->show();
+        _shape=&_rectangle;
+		_shape->show();
 		}
 
 		else if(choice=="3"){
 		cout<<"\n Enter the side : ";cin>>side1;
 		Square _square(side1,side2);
-        Square *square=&_square;
-		square->show();
+        _shape=&_square;
+		_shape->show();
 		}
 
         else if(choice=="4"){
 		cout<<"\n Enter the radius : ";cin>>side1;
 		Circle _circle(side1,side2);
-        Circle *circle=&_circle;
-		circle->show();
+        _shape=&_circle;
+		_shape->show();
 		}
 
         else if(choice=="5"){
 		cout<<"\n Enter the major axis : ";cin>>side1;
         cout<<" Enter the minor axis : ";cin>>side2;
 		Ellipse _ellipse(side1,side2);
-        Ellipse *ellipse=&_ellipse;
-		ellipse->show();
+        _shape=&_ellipse;
+		_shape->show();
 		}
 
 		else{

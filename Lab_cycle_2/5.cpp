@@ -1,175 +1,150 @@
 /*Write a C++ program to demonstrate the concept of Multiple and Multilevel
 inheritance including constructors with parameters.*/
 
-#include <iomanip>
-#include <ios>
 #include<iostream>
 using namespace std;
 
 class Student{
 	private:
-	string s_name;
 	int roll;
-	double marks;
 
 	public:
 	Student(){}
-	Student(string n,int r,double m){
-		s_name=n;roll=r;marks=m;
-	}
-
-	void show(){
-		cout<<s_name<<setw(15)<<setfill(' ')<<roll<<setw(15)<<setfill(' ')<<marks;
-	}
-	int giveroll(){return roll;}
+	Student(int r){roll=r;}
+	
+    bool check_roll(int r){
+        if(roll==r) return true;
+        return false;
+    }
+    void show_student(){
+        cout<<"\n The roll number of the student is : "<<roll;
+        cout<<"\n";
+    }
 };
 
-class Teacher{
-	private:
-	string t_name;
-	int id;
-	double age;
+class Test:virtual public Student{
+    private:
+    double test;
 
-	public:
-	Teacher(){}
-	Teacher(string n,int i,int a){
-		t_name=n;id=i;age=a;
-	}
+    public:
+    Test(){}
+    Test(int r,double m):Student(r){test=m;}
 
-	void show(){
-		cout<<t_name<<setw(15)<<setfill(' ')<<id<<setw(15)<<setfill(' ')<<age;
-	}
-	int giveid(){return id;}
+    void show_test(){
+        cout<<"\n The score for test of the student is : "<<test;
+        cout<<"\n";
+    }
 };
 
-class Class:public Student,public Teacher{
-	private:
-	int rolls;
-	Teacher teacher;
-	Student student[30];
+class Sport{
+    private:
+	int roll;
+    double sport;
 
-	public:
-	Class(){}
-	Class(string x1,string y1,int x2,int  y2,double x3,\
-	double y3):Student(x1,x2,x3),Teacher(y1,y2,y3){}
-	Class(Student s[100],Teacher t[100]){
+    public:
+    Sport(){}
+    Sport(int r,double m){roll=r;sport=m;}
 
-		//input  the students
-		int s_count=0;
-		cout<<"\n Enter the number of students in a class : ";cin>>rolls;
-		int count[rolls];
-		cout<<"\n Enter the roll numbers of the students :\n";
-		for(int i=0;i<rolls;i++){
-			cout<<"\n  "<<i+1<<". ";cin>>count[i];
-		}
+    void show_sport(){
+        cout<<"\n The score for sports of the student is : "<<sport;
+        cout<<"\n";
+    }
+};
 
-		//input the teacher
-		int the_id;
-		cout<<"\n Enter the ID of the teacher in the class : ";cin>>the_id;
+class Result:public  Test, public Sport{
+    private:
+    int roll;
+    double total;
 
-		//serching the students
-		for(int i=0;i<100;i++){
-			//from the list
-			for(int j=0;j<rolls;j++){
-				if(s[i].giveroll()==count[j]){
-					student[s_count]=s[i];
-					s_count++;
-				}
-			}
-		}
+    public:
+    Result(){}
+    Result(int r,double a,double b):Student(r),Test(r,a),Sport(r,b){total=a+b;roll=r;}
 
-		//serching the teacher
-		for(int i=0;i<100;i++){
-			if(t[i].giveid()==the_id){
-				teacher=t[i];
-			}
-		}
-	}
-	void show(){
-		cout<<"\n Name "<<setw(15)<<setfill(' ')<<" Roll_number "\
-		<<setw(15)<<setfill(' ')<<" Marks ";
-		for(int i=0;i<rolls;i++){
-			cout<<"\n  "<<i+1<<". ";student[i].show();
-		}
-		cout<<"\n\n Name "<<setw(15)<<setfill(' ')<<" ID_number "\
-		<<setw(15)<<setfill(' ')<<" Age ";
-		teacher.show();
-	}
+    void show(){
+        cout<<"\n The result of the student "<<roll<<" is : "<<total;
+        cout<<"\n";
+    }
 };
 
 int main(){
 
-	string choice;
-	string name;int id_roll;double age_marks;
-	int std=0,tec=0,cls=0;
+string choice;
 
-	do{
-
-		Student student[100];
-		Teacher teacher[100];
-		Class classes[100];
-
-		Student *sptr=&student[100];
-		Teacher *tprt=&teacher[100];
-
-		cout<<"\n\n Enter '0' to exit \
-		\n 1. Add a student \
-		\n 2. Add a teacher \
-		\n 3. Assign a class \
-		\n 4. List of students and teachers \
-		\n 5. Display a class \
-		\n\n Enter your choice : ";cin>>choice;
-		
-		if(choice=="0")break;
-
-		else if(choice=="1"){
-		cout<<"\n Enter the student's name : ";cin>>name;
-		cout<<" Enter the student's roll number : ";cin>>id_roll;
-		cout<<" Enter the student's marks : ";cin>>age_marks;
-		student[std]=Student(name,id_roll,age_marks);
-		student[std].show();
-		std++;
-		}
-
-		else if(choice=="2"){
-		cout<<"\n Enter the teacher's name : ";cin>>name;
-		cout<<" Enter the teacher's ID number : ";cin>>id_roll;
-		cout<<" Enter the teacher's age : ";cin>>age_marks;
-		teacher[tec]=Teacher(name,id_roll,age_marks);
-		teacher[tec].show();
-		tec++;
-		}
-
-		else if(choice=="3"){
-			cout<<"\n This is class "<<cls+1<<"\n";
-			classes[cls]=Class(sptr,tprt);
-			cls++;
-		}
-		
-		else if(choice=="4"){
-			cout<<"\n Name "<<setw(15)<<setfill(' ')<<" Roll_number "\
-			<<setw(15)<<setfill(' ')<<" Marks ";
-			for(int i=0;i<std;i++){
-				cout<<"\n  "<<i+1<<". ";student[i].show();
-			}
-			cout<<"\n\n Name "<<setw(15)<<setfill(' ')<<" ID_number "\
-			<<setw(15)<<setfill(' ')<<" Age ";
-			for(int i=0;i<tec;i++){
-				cout<<"\n  "<<i+1<<". ";teacher[i].show();
-			}
-		}
-
-		else if(choice=="5"){
-			int num;
-			cout<<"\n Enter the class you want : ";cin>>num;
-			classes[num].show();
-		}
-		else{
-		cout<<"\n Your choice is not given above \n\n";
-		}
-		
-	}while(choice!="0");
+int roll,num=0,count=0,std;double test,sport;
 
 
-return 0;
+Result students[100];
+Result student(0,0,0);
+
+cout<<"\n Enter the number of students : ";cin>>std;
+while(count!=std){
+    cout<<"\n Enter the roll number of student "<<count+1<<" : ";cin>>roll;
+    cout<<" Enter the score for the test : ";cin>>test;
+    cout<<" Enter the score for the sport : ";cin>>sport;cout<<"\n";
+
+    Result temp(roll,test,sport);
+    students[count]=temp;count++;
 }
+
+cout<<"\n All the details of students saved\
+\n Enter the roll number of the student to check : ";cin>>roll;
+
+    do{
+	
+	if(choice!="5"){
+    	while(true){
+        	num=count;
+        	while(num>=0){
+        	    if(students[num].check_roll(roll)){
+        	        student=students[num];break;
+        	    }
+        	    num--;
+        	}
+        	if(num==-1){
+        	    cout<<"\n Invalid Roll number\
+        	    \n Enter the roll number again : ";cin>>roll;
+        	}
+        	else break;
+    	}
+	}
+	else choice=="4";
+
+    cout<<" \n 0. Exit the program\
+            \n 1. Display the scores for test\
+            \n 2. Display the scores for sport\
+            \n 3. Display the final result\
+            \n 4. Check another student\
+			\n 5. Enter the details of new students\
+            \n\n  Enter your choice : ";cin>>choice;
+
+    if(choice=="0")break;
+    else if(choice=="1"){
+        student.show_student();student.show_test();
+    }
+    else if(choice=="2"){
+        student.show_student();student.show_sport();
+    }
+    else if(choice=="3"){
+        student.show_student();student.show();
+    }
+    else if(choice=="4"){
+        cout<<"\n Enter the roll number of the student to check : ";cin>>roll;
+    }
+	else if(choice=="5"){
+		int num=1;
+    	cout<<"\n Enter the number of students : ";cin>>std;
+		while(num<=std){
+    		cout<<"\n Enter the roll number of student "<<count+1<<" : ";cin>>roll;
+    		cout<<" Enter the score for the test : ";cin>>test;
+    		cout<<" Enter the score for the sport : ";cin>>sport;cout<<"\n";
+
+    		Result temp(roll,test,sport);
+    		students[count]=temp;count++;num++;
+		}
+	}
+    else cout<<"\n Invalid choice !!\n";
+
+    }while(choice!="0");
+return 0;    
+}
+

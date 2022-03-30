@@ -47,28 +47,55 @@ void operator>>(Vector &vector1,Vector &vector2){
 
 
 int main(void){
-int exit;
+
+int x1,y1,z1, x2,y2,z2;
+string exit;
+
+
+    
+cout<<" \n Enter the first vector : ";
+cin>>x1>>y1>>z1;
+cout<<" Enter the second vector : ";
+cin>>x2>>y2>>z2;
+    
 do{
-    int x1,y1,z1, x2,y2,z2;
-    cout<<" \n\n Enter the first vector : ";
+
+cout<<"\n-----------------------------------------------------------------------------\n";
+Vector vector1(x1,y1,z1),vector2(x2,y2,z2);
+vector1.output();cout<<" : first\n";vector2.output();cout<<" : second";
+cout<<"\n-----------------------------------------------------------------------------\n";
+
+
+cout<<"\n Enter '0' to exit the program\
+\n Enter '1' to copy 1st to 2nd\
+\n Enter '2' to copy 2nd to 1st\
+\n Enter '3' to enter 1st to 2nd vectors\
+\n Enter '4' for the product\
+\n\n Enter your choice : ";cin>>exit;
+
+if(exit=="1"){
+    cout<<"\n first vector >> second vector"<<"\n\n";
+    vector1>>vector2;
+    vector1.output();cout<<" : first\n";vector2.output();cout<<" : second\n";
+}
+else if(exit=="2"){
+    cout<<" first vector << second vector"<<"\n\n";
+    vector1<<vector2;
+    vector1.output();cout<<" : first\n";vector2.output();cout<<" : second\n";
+}
+
+else if(exit=="3"){
+    cout<<" \n Enter the first vector : ";
     cin>>x1>>y1>>z1;
-    cout<<" \n\n Enter the second vector : ";
+    cout<<" Enter the second vector : ";
     cin>>x2>>y2>>z2;
     Vector vector1(x1,y1,z1),vector2(x2,y2,z2);
     vector1.output();cout<<" : first\n";vector2.output();cout<<" : second\n\n";
+}
+else if(exit=="4")cout<<" Product : "<<(vector1*vector2)<<"\n\n";
+else if(exit=="0")break;
+else cout<<"\n Invalid choice\n";
 
-    cout<<" Product : "<<(vector1*vector2)<<"\n\n";
-
-    cout<<" first vector << second vector"<<"\n";
-    vector1<<vector2;
-    vector1.output();cout<<" : first\n";vector2.output();cout<<" : second\n";
-
-    cout<<" first vector >> second vector"<<"\n\n";
-    vector1>>vector2;
-    vector1.output();cout<<" : first\n";vector2.output();cout<<" : second\n";
-
-    cout<<"\n\n";
-cout<<"\n Enter '0' to exit the program : ";cin>>exit;
-}while(exit);
+}while(exit!="0");
 return 0;
 }

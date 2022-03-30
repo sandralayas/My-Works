@@ -60,24 +60,63 @@ bool Vector::operator>=(Vector vector){
 }
 
 int main(void){
-int exit;
+string choice;
+int a=0;
+
+Vector vector1,vector2;
+int x1,y1,z1, x2,y2,z2;
+
 do{
-    int x1,y1,z1, x2,y2,z2;
+if(a==0){
+    
     cout<<" \n Enter the first vector : ";
     cin>>x1>>y1>>z1;
     cout<<" \n Enter the second vector : ";
     cin>>x2>>y2>>z2;
     Vector vector1(x1,y1,z1),vector2(x2,y2,z2);
     vector1.output();cout<<endl;vector2.output();cout<<endl;
+a=2;
+}
 
+Vector vector1(x1,y1,z1),vector2(x2,y2,z2);
+
+cout<<"\n\n Enter '0' to exit \
+		\n 1. Check if they are equal \
+		\n 2. Check if they are not equal \
+		\n 3. Check if first vector is greater than second \
+        \n 4. Check if second vector is greater than first \
+        \n 5. Check if first vector is greater than or equal second \
+        \n 6. Check if second vector is greater than or equal first \
+		\n\n Enter your choice : ";cin>>choice;
+
+if(choice=="0")break;
+
+else if(choice=="1"){
     if(vector1==vector2){cout<<"\n They are equal\n\n";}
+	else{cout<<"\n They are not equal\n\n";}
+}
+else if(choice=="2"){
     if(vector1!=vector2){cout<<"\n They are not equal\n\n";}
+	else{cout<<"\n They are equal\n\n";}
+}
+else if(choice=="3"){
     if(vector1>vector2){vector1.output();cout<<" > ";vector2.output();cout<<endl;}
+	else{cout<<"\n No\n\n";}
+}
+else if(choice=="4"){
     if(vector1<vector2){vector1.output();cout<<" < ";vector2.output();cout<<endl;}
+	else{cout<<"\n No\n\n";}
+}
+else if(choice=="5"){
     if(vector1>=vector2){vector1.output();cout<<" >= ";vector2.output();cout<<endl;}
+	else{cout<<"\n No\n\n";}
+}
+else if(choice=="6"){
     if(vector1<=vector2){vector1.output();cout<<" <= ";vector2.output();cout<<endl;}
-    cout<<"\n\n";
-cout<<"\n Enter '0' to exit the program : ";cin>>exit;
-}while(exit);
+	else{cout<<"\n No\n\n";}
+}
+else cout<<"\n Invalid choice !!\n\n";
+
+}while(choice!="0");
 return 0;
 }
