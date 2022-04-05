@@ -12,7 +12,8 @@ class Alpha{
 
     public:
     Alpha(){}
-    Alpha(double a,double b){alpha1=a;alpha2=b;cout<<"\n Alpha object created\n";}
+    Alpha(double a,double b){
+		alpha1=a;alpha2=b;cout<<"\n Alpha object created\n";}
 
     void show(){
         cout<<"\n The first alpha class variable : "<<alpha1\

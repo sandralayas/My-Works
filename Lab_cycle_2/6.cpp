@@ -61,7 +61,8 @@ class Result:public  Test, public Sport{
 
     public:
     Result(){}
-    Result(int r,double a,double b):Student(r),Test(r,a),Sport(r,b){total=a+b;roll=r;}
+    Result(int r,double a,double b):Student(r),Test(r,a),Sport(r,b)\
+	{total=a+b;roll=r;}
 
     void show(){
         cout<<"\n The result of the student "<<roll<<" is : "<<total;

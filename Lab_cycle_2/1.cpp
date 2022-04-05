@@ -100,19 +100,23 @@ else if(choice=="2"){
 	else{cout<<"\n They are equal\n\n";}
 }
 else if(choice=="3"){
-    if(vector1>vector2){vector1.output();cout<<" > ";vector2.output();cout<<endl;}
+    if(vector1>vector2){vector1.output();cout<<" > ";vector2.output();
+	cout<<endl;}
 	else{cout<<"\n No\n\n";}
 }
 else if(choice=="4"){
-    if(vector1<vector2){vector1.output();cout<<" < ";vector2.output();cout<<endl;}
+    if(vector1<vector2){vector1.output();cout<<" < ";vector2.output();
+	cout<<endl;}
 	else{cout<<"\n No\n\n";}
 }
 else if(choice=="5"){
-    if(vector1>=vector2){vector1.output();cout<<" >= ";vector2.output();cout<<endl;}
+    if(vector1>=vector2){vector1.output();cout<<" >= ";vector2.output();
+	cout<<endl;}
 	else{cout<<"\n No\n\n";}
 }
 else if(choice=="6"){
-    if(vector1<=vector2){vector1.output();cout<<" <= ";vector2.output();cout<<endl;}
+    if(vector1<=vector2){vector1.output();cout<<" <= ";vector2.output();
+	cout<<endl;}
 	else{cout<<"\n No\n\n";}
 }
 else cout<<"\n Invalid choice !!\n\n";

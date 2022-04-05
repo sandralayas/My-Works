@@ -4,64 +4,71 @@ inheritance including constructors with parameters.*/
 #include<iostream>
 using namespace std;
 
-class Student{
+class Person{
 	private:
-	int roll;
+	int adhar;
 
 	public:
-	Student(){}
-	Student(int r){roll=r;}
+	Person(){}
+	Person(int a){adhar=a;}
 	
-    bool check_roll(int r){
-        if(roll==r) return true;
+    bool check_adhar(int a){
+        if(adhar==a) return true;
         return false;
     }
-    void show_student(){
-        cout<<"\n The roll number of the student is : "<<roll;
+    void show_person(){
+        cout<<"\n The Adhar card number of the person is : "<<adhar;
         cout<<"\n";
     }
 };
 
-class Test:virtual public Student{
+class Health:virtual public Person{
     private:
-    double test;
+    bool vaccination;
 
     public:
-    Test(){}
-    Test(int r,double m):Student(r){test=m;}
+    Health(){}
+    Health(int a,bool v):Person(a){vaccination=v;}
 
-    void show_test(){
-        cout<<"\n The score for test of the student is : "<<test;
+    void show_health(){
+        if(vaccination)cout<<"\n The person is vaccinated";
+        else cout<<"\n The person is not vaccinated";
         cout<<"\n";
     }
 };
 
-class Sport{
+class Academics{
     private:
-	int roll;
-    double sport;
+    double marks;
 
     public:
-    Sport(){}
-    Sport(int r,double m){roll=r;sport=m;}
+    Academics(){}
+    Academics(double m){marks=m;}
 
-    void show_sport(){
-        cout<<"\n The score for sports of the student is : "<<sport;
+    void show_academics(){
+        cout<<"\n The score for academics the person is : "<<marks;
         cout<<"\n";
     }
 };
 
-class Result:public  Test, public Sport{
+class Details:public  Academics, public Health{
     private:
-    int roll;
-    double total;
+    int adhar;
+    double marks;
+    bool vaccination;
 
     public:
-    Result(){}
-    Result(int r,double a,double b):Student(r),Test(r,a),Sport(r,b){total=a+b;roll=r;}
+    Details(){}
+    Details(int r,double a,bool b):Person(r),Academics(a),Health(r,b){
+        adhar=r;
+        marks=a;
+        vaccination=b;
+    }
 
     void show(){
-        cout<<"\n The result of the student "<<roll<<" is : "<<total;
+        cout<<"\n The vaccination status of '"<<adhar<<"' is : ";
+        if(vaccination)cout<<"Vaccinated";else cout<<"Not vaccinated";
+        cout<<"\n The academics status of '"<<adhar<<"' is : "<<marks;
         cout<<"\n";
     }
 };
@@ -70,24 +77,30 @@ int main(){
 
 string choice;
 
-int roll,num=0,count=0,std;double test,sport;
+int adhar,num=0,count=0,pep;double marks;bool vaccination;
 
 
-Result students[100];
-Result student(0,0,0);
+Details people[100];
+Details person(0,0,false);
 
-cout<<"\n Enter the number of students : ";cin>>std;
-while(count!=std){
-    cout<<"\n Enter the roll number of student "<<count+1<<" : ";cin>>roll;
-    cout<<" Enter the score for the test : ";cin>>test;
-    cout<<" Enter the score for the sport : ";cin>>sport;cout<<"\n";
+cout<<"\n Enter the number of people : ";cin>>pep;
+while(count!=pep){
+    cout<<"\n Enter the Adhar number of person "<<count+1<<" : ";cin>>adhar;
+    cout<<" Enter the score for academics : ";cin>>marks;
+    int choice;
+    cout<<" Enter whether the person is vacinated of not\
+    \n 1. Vaccinated\
+    \n 2. Not vaccinated\
+    \n\n Enter the option : ";cin>>choice;
+    if(choice==1)vaccination=true;
+    else vaccination=false;
 
-    Result temp(roll,test,sport);
-    students[count]=temp;count++;
+    Details temp(adhar,marks,vaccination);
+    people[count]=temp;count++;
 }
 
-cout<<"\n All the details of students saved\
-\n Enter the roll number of the student to check : ";cin>>roll;
+cout<<"\n All the details of people saved\
+\n Enter the Adhar number of the person to check : ";cin>>adhar;
 
     do{
 	
@@ -95,14 +108,14 @@ cout<<"\n All the details of students saved\
     	while(true){
         	num=count;
         	while(num>=0){
-        	    if(students[num].check_roll(roll)){
-        	        student=students[num];break;
+        	    if(people[num].check_adhar(adhar)){
+        	        person=people[num];break;
         	    }
         	    num--;
         	}
         	if(num==-1){
-        	    cout<<"\n Invalid Roll number\
-        	    \n Enter the roll number again : ";cin>>roll;
+        	    cout<<"\n Invalid Adhar number\
+        	    \n Enter the roll number again : ";cin>>adhar;
         	}
         	else break;
     	}
@@ -110,37 +123,46 @@ cout<<"\n All the details of students saved\
 	else choice=="4";
 
     cout<<" \n 0. Exit the program\
-            \n 1. Display the scores for test\
-            \n 2. Display the scores for sport\
-            \n 3. Display the final result\
-            \n 4. Check another student\
-			\n 5. Enter the details of new students\
+            \n 1. Display the marks for academics\
+            \n 2. Display the vaccination status\
+            \n 3. Display the details\
+            \n 4. Check another person\
+			\n 5. Enter the details of new person\
             \n\n  Enter your choice : ";cin>>choice;
 
     if(choice=="0")break;
     else if(choice=="1"){
-        student.show_student();student.show_test();
+        person.show_person();person.show_academics();
     }
     else if(choice=="2"){
-        student.show_student();student.show_sport();
+        person.show_person();person.show_health();
     }
     else if(choice=="3"){
-        student.show_student();student.show();
+        person.show_person();person.show();
     }
     else if(choice=="4"){
-        cout<<"\n Enter the roll number of the student to check : ";cin>>roll;
+        cout<<"\n Enter the Adhar number of the person to check : ";cin>>adhar;
     }
 	else if(choice=="5"){
 		int num=1;
-    	cout<<"\n Enter the number of students : ";cin>>std;
-		while(num<=std){
-    		cout<<"\n Enter the roll number of student "<<count+1<<" : ";cin>>roll;
-    		cout<<" Enter the score for the test : ";cin>>test;
-    		cout<<" Enter the score for the sport : ";cin>>sport;cout<<"\n";
+    	cout<<"\n Enter the number of people : ";cin>>pep;
+		while(num<=pep){
+            cout<<"\n Enter the Adhar number of person "<<count+1<<" : ";
+			cin>>adhar;
+            cout<<" Enter the score for academics : ";cin>>marks;
+            int choice;
+            cout<<" Enter whether the person is vacinated of not\
+            \n 1. Vaccinated\
+            \n 2. Not vaccinated\
+            \n\n Enter the option : ";cin>>choice;
+            if(choice==1)vaccination=true;
+            else vaccination=false;
 
-    		Result temp(roll,test,sport);
-    		students[count]=temp;count++;num++;
-		}
+            Details temp(adhar,marks,vaccination);
+            people[count]=temp;count++;
+
+			num++;
+        }
 	}
     else cout<<"\n Invalid choice !!\n";
 

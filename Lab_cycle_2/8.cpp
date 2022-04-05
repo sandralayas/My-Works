@@ -82,7 +82,8 @@ class Circle:public Shape{
 
 	void show(){
 		cout<<"\n The radius : "<<radius;
-		cout<<"\n The area of the circle : "<<3.14159265359*radius*radius<<"\n\n";
+		cout<<"\n The area of the circle : "<<3.14159265359*radius*radius\
+		<<"\n\n";
 	}
 };
 
@@ -99,7 +100,8 @@ class Ellipse:public Shape{
 	void show(){
 		cout<<"\n The major axis : "<<side1;
 		cout<<"\n The minor axis : "<<side2;
-		cout<<"\n The area of the rectangle : "<<3.14159265359*side1*side2<<"\n\n";
+		cout<<"\n The area of the rectangle : "<<3.14159265359*side1*side2\
+		<<"\n\n";
 	}
 };
 
