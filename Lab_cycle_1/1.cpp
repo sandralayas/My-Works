@@ -1,6 +1,6 @@
-/*Write a C++ program to calculate the grades of a list of students with attributes
-(Name, Roll_no, Marks of 3 subjects) using class with member functions
-input(), calcGrade(), display().*/
+/*Write a C++ program to calculate the grades of a list of students with 
+attributes (Name, Roll_no, Marks of 3 subjects) using class with member
+ functions input(), calcGrade(), display().*/
 
 #include <iostream>
 using namespace std;
@@ -37,7 +37,8 @@ class Grades{
     }
     void display(void){
         
-        cout<<name<<"       "<<rollno<<"         "<<calcGrade((mark1+mark2+mark3)/3)<<"         "<<(mark1+mark2+mark3)/3<<"\n";
+        cout<<name<<"       "<<rollno<<"         "\
+<<calcGrade((mark1+mark2+mark3)/3)<<"         "<<(mark1+mark2+mark3)/3<<"\n";
     }
 };
 

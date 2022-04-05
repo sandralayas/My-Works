@@ -23,7 +23,8 @@ class Book{
     void output(void){
 	cout<<"\n\n "<<name<<"  "<<year<<"  "<<author<<"  "<<pages<<"\n\n";
 	}
-    static void showcount(void){cout<<"\n\n The number of objects : "<<number<<"\n";}
+    static void showcount(void){cout<<"\n\n The number of objects : "\
+<<number<<"\n";}
 };
 
 

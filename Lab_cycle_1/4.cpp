@@ -27,7 +27,7 @@ class String{
         else{return false;}
     }
     String operator+(String &a);
-    char output(void){cout<<the_string;}
+    void output(void){cout<<the_string;}
 	~String(void){delete the_string;}
 	void length(void){cout<<len;}
 
@@ -68,19 +68,19 @@ do{
 		cout<<"\n '";
 		string1.output();
 		cout<<"' has greater length than '";
-		cout<<string2.output()<<"'\n\n";
+		string2.output();cout<<"'\n\n";
 	}
     else if(string1<string2){
 		cout<<"\n '";
 		string2.output();
 		cout<<"' has greater length than '";
-		cout<<string1.output()<<"'\n\n";
+		string1.output();cout<<"'\n\n";
 	}
 	else{
 		cout<<"\n '";
 		string2.output();
 		cout<<"' and '";
-		cout<<string1.output()<<"' has equal length\n\n";
+		string1.output();cout<<"' has equal length\n\n";
 	}
 
     cout<<" Concatinated product : '";string1.output();

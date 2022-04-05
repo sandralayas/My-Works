@@ -8,12 +8,13 @@ using namespace std;
 class Shopping{
     int code[50];
     double price[50];
-    int num;
+    int num,cost;
     public:
     void number(void){num=0;}
+    void item(void){cost=0;}
     void input(){
         cout<<"\n\n Enter the 3-digit code : ";cin>>code[num];
-        cout<<"\n\n Enter the price : ";cin>>price[num];
+        cout<<" Enter the price : ";cin>>price[num];
         num++;
     }
     void output(void){
@@ -23,48 +24,66 @@ class Shopping{
         }
     }
     void deletes(void){
-	int reqcode;
-        int a;cout<<"\n\n Enter the code to delete : ";cin>>a;
-	cout<<" You have removed an item\n\n";
+	int reqcode=0;
+    int a;cout<<"\n\n Enter the code to delete : ";cin>>a;
+	
         for(int i=0;i<num;i++){
-            if(code[i]==a){reqcode=i;}
-        }
-	for(int i=reqcode;i<num;i++){
-	    price[i]=price[i+1];code[i]=code[i+1];
-	}
-	num--;
+            if(code[i]==a){
+                reqcode=i;
+                for(int i=reqcode;i<num;i++){
+	                price[i]=price[i+1];code[i]=code[i+1];
+                    num--;
+                    cout<<" You have removed the item from stock\n\n";
+                }
+                break;
+            }
+	    }
+        if(reqcode==0)cout<<" This item does not exit\n";
     }
-    void total(void){
-        double sum=0;
+    void summing(int customer){
         for(int i=0;i<num;i++){
-            sum=sum+price[i];
+            if(code[i]==customer){cost+=price[i];}
         }
-        cout<<"\n\n The total price : "<<sum<<"\n\n";
     }
+    void bill(void){cout<<"\n\n The total price : "<<cost<<"\n\n";}
 };
+
+// Main Program
 
 int main(void){
 int exit;
 do{    
     Shopping order;
     order.number();
+    order.item();
     
     string user;
     while(user!="exit"){
-        cout<<"\n a) Adding new item";
-        cout<<"\n b) Delete an item";
-        cout<<"\n c) Total amount";
-        cout<<"\n d) Stock";
+        cout<<"\n a) Adding an item to shop";
+        cout<<"\n b) Delete an item from shop";
+        cout<<"\n c) Stock available";
+		cout<<"\n d) Buy an item from the stock";
         cout<<"\n Enter 'exit' to stop the program \n\n";
 
         cout<<"\n\n Enter your choice : ";cin>>user;
         if(user=="a"){
-            int items;cout<<"\n Enter the number of items to buy : ";cin>>items;
+            int items;cout<<"\n Enter the number of items to stock : ";
+			cin>>items;
             for(int i=0;i<items;i++){order.input();}
         }
         else if(user=="b"){order.deletes();}
-        else if(user=="c"){order.total();}
-        else if(user=="d"){order.output();}
+        else if(user=="c"){order.output();}
+        else if(user=="d"){
+            int items;cout<<"\n Enter the number of items to buy : ";
+			cin>>items;
+            int list[items];
+            for(int i=0;i<items;i++){
+                cout<<"\n Enter the 3-digit code of item "<<i+1<<" : ";
+				cin>>list[i];
+                order.summing(list[i]);
+            }
+            order.bill();
+        }
         else if(user!="exit"){cout<<" You have entered a wrong opt \n\n";}
     }
 cout<<"\n Enter '0' to exit the program : ";cin>>exit;

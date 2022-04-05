@@ -39,18 +39,20 @@ void withdraw(void){
     }
     if(reqcode!=51){
 	float x;cout<<"\n\n Enter the withdrawing amount : ";cin>>x;
-    	if(balance[reqcode]>=x){
+    	if(balance[reqcode]>=x+500){
         	balance[reqcode]=balance[reqcode]-x;
 		cout<<"\n Your balance :"<<balance[reqcode]<<"\n";
     	}
-    	else{cout<<"\n Your balance :"<<balance[reqcode]<<"\n You can't withdraw that amount\n\n";}
+    	else{cout<<"\n Your balance :"<<balance[reqcode]<<\
+"\n You can't withdraw that amount\n\n";}
     }
     else cout<<" This account doesn't exit";
 }
 
 void display(int number){
     cout<<"\n\n Name  |  Account no.  |  Account type  |  Balance amount\n";
-    cout<<name[number]<<"             "<<acc[number]<<"             "<<type[number]<<\
+    cout<<name[number]<<"             "<<acc[number]<<"             "\
+<<type[number]<<\
     "     "<<balance[number]<<"               ";
 }
 

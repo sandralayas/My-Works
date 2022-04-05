@@ -57,10 +57,17 @@ int main(void){
         cout<<endl;
     }
     cout<<"Transpose matrix :\n";
+    
+    Matrix transpose(n,m);
     for(int i=0;i<m;i++){
-        for(int j=0;j<n;j++){
-            cout<<A.putelement(j,i)<<" ";
-        }
+        for(int j=0;j<n;j++)
+            transpose.getelement(j,i,A.putelement(i,j));
+    }
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++)
+            cout<<transpose.putelement(i,j)<<" ";
+
         cout<<endl;
     }
 return 0;

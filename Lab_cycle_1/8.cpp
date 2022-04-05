@@ -38,7 +38,8 @@ while(num!=2){
     cout<<"\n\n Complex number "<<num+1<<endl;
     cout<<"\n 1. Non initialized complex number\n";
     cout<<" 2. Equal imaginary and real part\n";
-    cout<<" 3. Unequal imaginary and real part\n\n Enter your choice : ";cin>>user;
+    cout<<" 3. Unequal imaginary and real part\n\n Enter your choice : ";
+	cin>>user;
 
     switch(user){
 
@@ -61,7 +62,8 @@ while(num!=2){
 }
     cout<<"\n The first complex number :";complex[0].display();
     cout<<"\n The second complex number :";complex[1].display();
-    complex[2]=complex[0]+complex[1];cout<<"\n The added complex number :";complex[2].display();
+    complex[2]=complex[0]+complex[1];cout<<"\n The added complex number :";
+	complex[2].display();
 
     num=0;
 cout<<"\n Enter '0' to exit the program : ";cin>>exit;
