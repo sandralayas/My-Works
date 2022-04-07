@@ -50,13 +50,13 @@ class Student:virtual public Person{
 
 class Classes:public Student,public Teacher{
     private:
-    int code,id,age1,roll;
+    int code,id,age1,age2,roll;
 
     public:
     Classes(){}
-    Classes(int a1,int a2,int i,int r,int c):Person(a1),Teacher(a1,i),Student(a1,r){
+    Classes(int a1,int a2,int i,int r,int c):Person(a1),Teacher(a1,i),Student(a2,r){
 		code=c;
-		id=i;age1=a1;roll=r;
+		id=i;age1=a1;roll=r;age2=a2;
 		}
 	bool check(int c){
 		if(code==c) return true;
@@ -67,6 +67,7 @@ class Classes:public Student,public Teacher{
 		cout<<"\n\n The ID of the class teacher : "<<id;
 		cout<<"\n The age of the teacher : "<<age1;
 		cout<<"\n The roll number of the student in the class : "<<roll;
+		cout<<"\n The age of the student : "<<age2;
 	}
 };
 
