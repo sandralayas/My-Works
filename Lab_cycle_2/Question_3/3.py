@@ -60,8 +60,11 @@ def find_setosa():
     for flower in listing_file():
         if flower[0]=='"setosa"':
             setosa_list.append(flower)
-    print('\n Species  Petal area   Sepal area\n')
-    for flower in setosa_list:print(flower)
+    print('\n Species\t\tPetal area\tSepal area\n')
+    for flower in setosa_list:
+        for entities in flower:
+            print('',entities,end='\t\t')
+        print('\n')
 
 def min_petal():
     temp=listing_file()
@@ -127,7 +130,7 @@ while(True):
     choice=input('\n Enter your choice : ')
     if choice=='0':break
     elif choice=='1':read_file()
-    elif choice=='2':print('\n The list of contents in file " iris.json "\n',listing_file())
+    elif choice=='2':print('\n The list of contents in file " iris.json "\n');[print(x) for x in listing_file()]
     elif choice=='3':print('\n The dictionaries : \n');[print(x) for x in dictionary_file(listing_file())]
     elif choice=='4':find_setosa()
     elif choice=='5':min_petal()
