@@ -1,9 +1,12 @@
 # Question 3 ; payslip
 
 def read_details():# Reads the details of the employees
-  a=(input('Enter the employee name : '))
-  b=int(input('Enter the code : '))
-  c=float(input('Enter the basic pay : '))
+  a=(input('\
+Enter the employee name : '))
+  b=int(input('\
+Enter the code          : '))
+  c=float(input('\
+Enter the basic pay     : '))
   return a,b,c
 
 def gross_salary(salary):
@@ -19,6 +22,6 @@ def deduction(salary):
   else:return salary*(0.12+0.2)+60 # Others
 
 name,code,salary=read_details()
-print('\nGross_salary : ',gross_salary(salary))
-print('\nDeduction : ',deduction(salary))
-print('\nNet salary :',gross_salary(salary)-deduction(salary))
+print('\nGross_salary  : ',gross_salary(salary))
+print('\nDeduction     : ',deduction(salary))
+print('\nNet salary    : ',gross_salary(salary)-deduction(salary))
