@@ -15,25 +15,30 @@ def isHappy(num):# Function that checks if the number is happy or not
   else:return False
 
 def happy_or_sad():
-  num=int(input('Enter the number : '))# Prints happy or sad
-  if isHappy(num):print(num,' is a happy number')
-  else:print(num,' is a sad number')
+  print('\n Checks whether a number is happy or not\n')
+  num=int(input(' Enter the number : '))# Prints happy or sad
+  if isHappy(num):print('',num,' is a happy number')
+  else:print('',num,' is a sad number')
 
 def happy_range():# Prints all the happy numbers between the given range
-  lower=int(input('\nEnter the lower limit : '))
-  upper=int(input('Enter the upper limit : '))
+  print('\n Prints all the happy numbers between the range\n')
+  lower=int(input(' Enter the lower limit : '))
+  upper=int(input(' Enter the upper limit : '))
   for i in range(lower,upper+1):
-    if isHappy(i):print(i,end=' ')
+    if isHappy(i):print('',i,end=' ')
 
 def many_happy():# Prints "count" number of happy numbers
-  count=int(input('\n\nEnter how many numbers needed : '))
+  print('\n\n Prints these many happy numbers\n')
+  count=int(input(' Enter how many numbers needed : '))
   num=1
   while count!=0:
     if isHappy(num):
       count-=1
-      print(num,end=' ')
+      print('',num,end=' ')
     num+=1
+  print('\n')
 
 happy_or_sad()
 happy_range()
 many_happy()
+
