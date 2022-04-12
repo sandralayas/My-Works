@@ -3,8 +3,11 @@ breadth, height, area, and volume. Provider constructor that enables
 initialization with one parameter (for cube), two parameters (for
 square prism) three parameters (rectangular prism). Also, provide
 functions to calculate area and volume.
+
 Create a list of N boxes with random measurements and print the
 details of the box with maximum volume: area ratio.'''
+
+import random
 
 class Box:
     
@@ -38,55 +41,43 @@ class Box:
         elif box.side1!=None:return box.side1*box.side1*box.side1
 
 def area_vol(box,the_list):
+	side1=the_list[0]
+	if len(the_list)==2:side2=the_list[1]
+	if len(the_list)==3:height=the_list[2]
+	return box.area(),box.volume()
+   
 
-   while(True):
-       what=len(the_list)
-       if what==1:
-           side1=the_list[0]
-       elif what==2:
-           side1=the_list[0]
-           height=the_list[1]
-       elif what==3:
-           side1=the_list[0]
-           side2=the_list[1]
-           height=the_list[2]
-       print('''
-    0. Return to program
-    1. Area
-    2. Volume
-    ''')
-       choice=input('\n Enter your choice : ')
-       if choice=='0':break
-       elif choice=='1':print('\n The area is : ',box.area())
-       elif choice=='2':print('\n The volume is : ',box.volume())
-       else:print('\n Wrong opt \n')
-        
+num=int(input('\n Enter the number of trials needed : '))
+count=0
+x=50  
+ratios=[]
 
-while(True):
+print('\n Length\t Breadth Height\t Area / Volume')
+while(count!=num):
+	count+=1
+	
+	length=random.randrange(1,x,1)
+	breadth=random.randrange(1,x,1)
+	height=random.randrange(1,x,1)	
+	rec_prism=Box(length,breadth,height)
+	area,vol=area_vol(rec_prism,[length,breadth,height])
+	ratio=area/vol
+	ratios.append([[length,breadth,height],ratio])
+	print('\n',length,'\t',breadth,'\t',height,'\t',ratio)
 
-    print('''
-    0. Exit program
-    1. Cube
-    2. Square prism
-    3. Rectangular prism
-    ''')
-    choice=input('\n Enter your choice : ')
-    if choice=='0':break
-    elif choice=='1':
-        side=float(input('\n Enter the side length of the cube : '))
-        cube=Box(side,None,None)
-        area_vol(cube,[side])
+def call_area(ratios):return ratios[1]
+ratios.sort(key=call_area)
 
-    elif choice=='2':
-        side=float(input('\n Enter the side of square prism : '))
-        height=float(input('\n Enter the height of the prism : '))
-        sq_prism=Box(side,None,height)
-        area_vol(sq_prism,[side,height])
-        
-    elif choice=='3':
-        length=float(input('\n Enter the length of rectangle prism : '))
-        breadth=float(input('\n Enter the breadth of the prism : '))
-        height=float(input('\n Enter the height of the prism : '))
-        rec_prism=Box(length,breadth,height)
-        area_vol(rec_prism,[length,breadth,height])
-    else:print('\n Wrong opt \n')
+maximum=ratios.pop()
+length=maximum[0][0]
+breadth=maximum[0][1]
+height=maximum[0][2]
+
+ratio=maximum[1]
+	
+print('\n The box with the maximum ratio\n\n Length\t Breadth Height\t Area / Volume')
+print('\n',length,'\t',breadth,'\t',height,'\t',ratio)
+
+
+
+
