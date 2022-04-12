@@ -10,29 +10,33 @@ def get_substring(word):
 
 def print_palindrome(word):
   for i in get_substring(word):  # Takes each substring
-    if i==i[::-1]:print(i,end=' ')   # Checks if its palindrome
+    if i==i[::-1]:print('',i,end=' ')   # Checks if its palindrome
+  print('\n')
 
 def word_length(word,length):
   for i in get_substring(word):  # Takes each substring
-    if len(i)==length:print(i,end=' ')   # Checks if its of the given length
+    if len(i)==length:print('',i,end=' ')   # Checks if its of the given length
 
 def print_length_distinct(word,length):
+  found=False
   for i in get_substring(word):  # Takes each substring
     if len(i)==length:   # Checks if its of the given length
-      if len(set(i))==len(i):print(i,end=' ')   # Checks if its distinct
+      if len(set(i))==len(i):
+        found=True
+        print('',i,end=' ')   # Checks if its distinct
+  if not found:print('\n There is none with distinct characters')
 
-
-word=input( 'Enter the string :')
+word=input(' Enter the string : ')
 
 print('\n All the sub strings')
 
-for i in get_substring(word):print(i,end=' ')
+for i in get_substring(word):print('',i,end=' ')
 
-length=int(input('\n\nEnter the length : '))
+length=int(input('\n\n Enter the length : '))
 
 print('\n Substrings of length',length) 
 word_length(word,length)
-print('\n\n Substrings of length',length,'which only have distinct character') 
+print('\n\n Substrings of length',length,', which only have distinct character') 
 print_length_distinct(word,length)
-print('\n\n Palindromes :')
+print('\n\n Palindromes')
 print_palindrome(word)
