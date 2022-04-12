@@ -1,122 +1,102 @@
 '''Read the file 'iris.json' as a text file :
 1. Create a list having each line of the file as an element
 2. Convert it into a list of dictionary objects.
-3. Show the details of all flowers whose species is
-"setosa".
-4. Print the minimum petal area and max sepal area in
-each species
-5. Sort the list of dictionaries according to the total area
-are sepal and petal.'''
+3. Show the details of all flowers whose species is "setosa".
+4. Print the minimum petal area and max sepal area in each species
+5. Sort the list of dictionaries according to the total area are sepal and petal.
+'''
 
-
-def create_file():
-    num=int(input('\n Enter the number of lines : '))
-    lines=''
-    print('                              Species  Petal area   Sepal area')
-    for i in range(num):
-        lines+=input('\n Enter details '+str(i+1)+' : ')+'\n'
-    with open('iris.json','w') as file:
-        file.write(lines)
-    print('\n File created')
-
-
+import json
 
 def read_file():
-    print('\n The current contents in file " iris.json "\n')
-    with open('iris.json','r') as file:
-        the_file=file.read()
-        print(the_file)
+	print('\n The current contents in file " iris.json "\n')
+	with open('_iris.json','r') as file:
+		the_file=file.read()
+		print(the_file)
 
 def listing_file():
-    with open('iris.json','r') as file:
-        the_file=file.read()
-        the_list=the_file.split('\n')
-        the_list.pop()
-        temp=[]
-        flowers=[]
-        i=0
-        for j in the_list:
-            temp.append(j.split(','))
-            flowers.append(list((temp[i][4],\
-                                 round(float(temp[i][2])*float(temp[i][3]),3),\
-                                 round(float(temp[i][0])*float(temp[i][1]),3)\
-                                 )))
-            i+=1
-    return flowers
+	list_list=[]
+	the_file=dictionary_file()
+	for dictionary in the_file:
+		list_list.append([\
+dictionary['species'],\
+dictionary['petalLength'],\
+dictionary['petalWidth'],\
+dictionary['sepalLength'],\
+dictionary['sepalWidth'],\
+])
+	return list_list
 
-def dictionary_file(list_list):
-    flowers_list=[]
-    for the_list in list_list:
-        the_dict=dict(\
-                      Species=the_list[0],\
-                      Petals=the_list[1],\
-                      Sepals=the_list[2])
-        flowers_list.append(the_dict)
-    return flowers_list
+def dictionary_file():
+  with open('_iris.json','r') as file:
+    the_file=json.load(file)
+  return the_file
 
 def find_setosa():
-    print('\n The flowers of setosa species')
-    setosa_list=[]
-    for flower in listing_file():
-        if flower[0]=='"setosa"':
-            setosa_list.append(flower)
-    print('\n Species\t\tPetal area\tSepal area\n')
-    for flower in setosa_list:
-        for entities in flower:
-            print('',entities,end='\t\t')
-        print('\n')
+	print('\n The flowers of setosa species\n')
+	print('\n Species \t\t Petal length \t Petal width \t Sepal length \t Sepal width\n')
+	for flower in dictionary_file():
+		if flower['species']=='setosa':
+			print('',end=' ')
+			dictionary(flower)
+
+def petal_sepal_list():
+	petal_areas=[[flower['species'],flower['petalLength']*flower['petalWidth']]\
+  for flower in dictionary_file()]
+	sepal_areas=[[flower['species'],flower['sepalLength']*flower['sepalWidth']]\
+  for flower in dictionary_file()]
+	return petal_areas,sepal_areas
 
 def min_petal():
-    temp=listing_file()
-    species=[temp[0][0],temp[1][0]]
-    for flower in listing_file():
-        species.append(flower[0])
-    the_set=set(species)
-    for i in the_set:
-        print('\n Species : ',i)
-        petal_list=[]
-        sepal_list=[]
-        for flower in listing_file():
-            if flower[0]==i:
-                petal_list.append(float(flower[1]))
-                sepal_list.append(float(flower[2]))
-        print('\n The minimum petal area : ',min(petal_list))
-        print(' The maximum sepal area : ',max(sepal_list))
+	petal_areas,sepal_areas=petal_sepal_list()
+	mini=min([area for species,area in petal_areas if species=='setosa'])
+	maxi=max([area for species,area in petal_areas if species=='setosa'])
+	print('\n Setosa')
+	print('\n The minimum petal area : ',mini)
+	print(' The maximum sepal area : ',maxi)
+
+	mini = min([area for species,area in petal_areas if species=='versicolor'])
+	maxi=max([area for species,area in petal_areas if species=='versicolor'])
+	print('\n Versicolor')
+	print('\n The minimum petal area : ',mini)
+	print(' The maximum sepal area : ',maxi)
+
+	mini = min([area for species,area in petal_areas if species=='virginica'])
+	maxi=max([area for species,area in petal_areas if species=='virginica'])
+	print('\n Virginica')
+	print('\n The minimum petal area : ',mini)
+	print(' The maximum sepal area : ',maxi)
+
+def call_area(total_area):return total_area[1]
 
 def sorting_area():
-    check_list1=[]
-    check_list2=[]
-    area_list=[]
-    
-    for flower in listing_file():
-        area_list.append([flower[0],float(flower[1])+float(flower[2])])
-    
-    for flower in area_list:
-        check_list1.append(flower[1])
-    check_list1.sort()
-    
-    for i in check_list1:
-        for flower in area_list:
-            if i==flower[1]:
-                for flowers in listing_file():
-                    if flowers[0]==flower[0]: 
-                        check_list2.append([flowers[0],flowers[1],flowers[2]])
-                        area_list.remove(flower);break
-    '''
-    flowers=[]
-    for i in check_list2:
-        for flower in listing_file():
-            if i==flower[0]:
-                flowers.append(flower)
-                del flower;break'''
-    print('\n The dictionaries : \n');[print(x) for x in dictionary_file(check_list2)]
+	petal_areas,sepal_areas=petal_sepal_list()
+	total_area=[]
+	for i in range(len(petal_areas)):
+		total_area.append([petal_areas[i][0],petal_areas[i][1]+sepal_areas[i][1]])
+	
+	total_area.sort(key=call_area) 
 
-############################################################################
+	check_list=dictionary_file()
+	print('\n Total area \tSpecies \t Petal length \t Petal width \t Sepal length \t Sepal width\n')
+	for details in total_area:
+		for flower in check_list:
+			if flower['species']==details[0]:
+				print('',round(details[1],2),'\t\t',end='')
+				dictionary(flower)
+				check_list.remove(flower)
 
-count=0
+def dictionary(flower):
+	if len(flower['species'])>6:tab='\t'
+	else:tab='\t\t'
+	print(\
+flower['species'],tab,\
+flower['petalLength'],'\t\t',\
+flower['petalWidth'],'\t\t',\
+flower['sepalLength'],'\t\t',\
+flower['sepalWidth'])
+
 while(True):
-    count+=1
-    #if count==1:create_file()
     print('''
 
     0. Exit the program
@@ -126,13 +106,22 @@ while(True):
     4. Setosa species
     5. Minimum petal area and max sepal area in each species
     6. Sorted list of dictionaries
-    ''')
+   ''')
     choice=input('\n Enter your choice : ')
     if choice=='0':break
     elif choice=='1':read_file()
-    elif choice=='2':print('\n The list of contents in file " iris.json "\n');[print(x) for x in listing_file()]
-    elif choice=='3':print('\n The dictionaries : \n');[print(x) for x in dictionary_file(listing_file())]
+    elif choice=='2':print('\n The list of contents in file " iris.json "\n');\
+																							[print(x) for x in listing_file()]
+    elif choice=='3':print('\n The dictionaries : \n');\
+																							[dictionary(x) for x in dictionary_file()]
     elif choice=='4':find_setosa()
     elif choice=='5':min_petal()
     elif choice=='6':sorting_area()
     else:print('\n Wrong opt \n')
+
+'''
+def listing_file():
+  with open('_iris.json','r') as file:
+    the_file=file.readlines()
+  return the_file
+'''
