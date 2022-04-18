@@ -5,7 +5,12 @@ number=input(' Enter the four digit number : ')
 not_four=True
 
 while not_four:
-	if len(number)==4:not_four=False
+	if len(number)==4:
+		if number.isalpha():
+			print('\n Error\n')
+			number=input(' Enter the four digit number : ')
+		else:not_four=False
+			
 	else:
 		print('\n Error\n')
 		number=input(' Enter the four digit number : ')
