@@ -1,0 +1,50 @@
+\begin{table}[!h]
+\renewcommand{\arraystretch}{2}
+\resizebox{\columnwidth}{!}{
+%\small\addtolength{\tabcolsep}{-1pt}
+\begin{tabular}{lll} &
+  \multicolumn{1}{c}{\textbf{Table of Contents}} &
+   \\ \hline
+ 
+\rowcolor[HTML]{FFFFFF} 
+{\color[HTML]{000000} \textbf{Sl.No.}} &
+  \multicolumn{1}{c}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} \textbf{Program}}} &
+  {\color[HTML]{000000} \textbf{Pg.No.}} \\
+
+  \hline
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{|l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} 1}} &
+  \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000}  Operations on numbers}} &
+  \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} pg 1 }} \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{|l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} 2}} &
+  \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000}  Calculation of area }} &
+  \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} pg 3 }} \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{|l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} 3}} &
+  \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000}  Paycheck of an employee}} &
+  \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}{\color[HTML]{000000} pg 5 }} \\ \hline
+\multicolumn{1}{|l|}{4} &
+  \multicolumn{1}{l|}{Happy numbers} &
+  \multicolumn{1}{l|}{pg 8 } \\ \hline
+\multicolumn{1}{|l|}{5} &
+  \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}} Strings operations \end{tabular}} &
+  \multicolumn{1}{l|}{pg 11 } \\ \hline
+\multicolumn{1}{|l|}{6} &
+  \multicolumn{1}{l|}{Rabbit pairs} &
+  \multicolumn{1}{l|}{pg 15} \\ \hline
+\multicolumn{1}{|l|}{7} &
+  \multicolumn{1}{l|}{List of integers} &
+  \multicolumn{1}{l|}{pg 17} \\ \hline
+\multicolumn{1}{|l|}{8} &
+  \multicolumn{1}{l|}{JSON file} &
+  \multicolumn{1}{l|}{pg 19} \\ \hline
+\multicolumn{1}{|l|}{9} &
+  \multicolumn{1}{l|}{List of N boxes } &
+  \multicolumn{1}{l|}{pg 23} \\ \hline
+\multicolumn{1}{|l|}{10} &
+  \multicolumn{1}{l|}{Calculate area and volume of 3D shapes} &
+  \multicolumn{1}{l|}{pg 26} \\ \hline
+
+\end{tabular}}
+\end{table}
