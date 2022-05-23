@@ -1,0 +1,26 @@
+%Gauss Elimination to find the solution to System of Linear Eqquations
+clc
+close all
+clear all
+A= input("\nEnter the coefficient Matrix : ")
+B= (input("Enter the solution in the Matrix form : "))'
+Aug = [A B]
+[D,N]=size(B);
+for i=1:N-1
+for j=i+1:N
+K = Aug(j,i)/Aug(i,i);
+Aug(j,:) = Aug(j,:)-K*Aug(i,:);
+end
+end
+UpperTriangularMatrix = Aug
+[M,n]=size(Aug);
+b = Aug(:,n);
+X=zeros([M,1]);
+for i=M:-1:1
+K = 0;
+for j=M:-1:i+1
+K=K+X(j)*Aug(i,j);
+end
+X(i,1)=(b(i,1)-K)/Aug(i,i);
+end
+Values_of_X_after_Back_Substitution=X
