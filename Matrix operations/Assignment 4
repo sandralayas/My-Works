@@ -1,0 +1,47 @@
+%Given three points in a 2D plane find a quadratic curve that fits these points. Use Gauss method to find
+the solution. Extend the method to fit any arbitrary number of points.
+
+clc
+
+close all
+
+clear all
+
+X=input("Enter the values of 'X'");
+Y=input("Enter the values of 'Y'");
+n=length(X);
+for i=1:n
+
+A(i,1)=X(i,:)^2 ;
+
+A(i,2)=X(i,:) ;
+
+A(i,3) = 1;
+end
+A
+B=Y
+scatter(X,Y)
+Aug = [A B];
+[N,m] = size(Aug);
+for i=1:N
+
+Aug(i,:) = Aug(i,:)/Aug(i,i);
+
+for j=1:N
+
+if j~=i
+
+Key = Aug(j,i);
+
+Aug(j,:) = Aug(j,:)-Key*Aug(i,:);
+
+end
+end
+end
+r=(length(Aug)/2);
+XW = Aug(:,r+2:end);
+X=-5:0.2:5;
+Y=XW(1,1)*X.^2+XW(2,1)*X+XW(3,1);
+hold on;
+plot(X,Y);
+grid()
