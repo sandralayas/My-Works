@@ -1,0 +1,22 @@
+%Gauss-Jordan Method to find the Inverse of a Square Matrix
+clc
+close all
+clear all
+format short g
+A = input("Enter the Matrix in the Matrix form")
+I = eye(length(A))
+Aug = [A I]
+N = length(A)
+for i=1:N
+Aug(i,:) = Aug(i,:)/Aug(i,i);
+for j=1:N
+if j~=i
+Key = Aug(j,i);
+Aug(j,:) = Aug(j,:)-Key*Aug(i,:);
+end
+end
+end
+Aug
+r=(length(Aug)/2+1);
+Inverse =
+Aug(:,r:end)
