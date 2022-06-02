@@ -1,3 +1,5 @@
+// INCOMPLETE
+
 /* Execution of Fibonacci search in an array */
 
 #include<iostream>
