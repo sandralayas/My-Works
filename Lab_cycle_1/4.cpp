@@ -1,4 +1,4 @@
-/* Execution of ternary search in an array */
+/* Execution of Ternary search in an array */
 
 #include<iostream>
 using namespace std;
