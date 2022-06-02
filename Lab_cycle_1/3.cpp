@@ -1,4 +1,4 @@
-/* Execution of linear search in an array */
+/* Execution of Binary search in an array */
 
 #include<iostream>
 using namespace std;
