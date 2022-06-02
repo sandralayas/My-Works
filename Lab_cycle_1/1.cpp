@@ -1,4 +1,4 @@
-/* Inserting and deleting and element from an array */
+/* Inserting and deleting an element from an array */
 
 #include<iostream>
 using namespace std;
