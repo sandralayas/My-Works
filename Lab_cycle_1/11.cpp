@@ -1,14 +1,16 @@
-/* Extraction of substring from a string */
+/* Extraction of substring from a string*/
 
-// it should dynamically allot the char array
+#include<iostream>
+using namespace std;
 
-void Substring(string STR,int POS,int L,string SUB){
-	int i=0;
-	while(POS!=L+POS-1){
-		SUB[i]=SUB[i]+STR[POS];
-		POS++;i++;
+string Substring(string STR,int POS,int L){
+	string SUB;
+	for(int i=0;i<L;i++){
+		SUB=SUB+STR[POS];
+		POS++;
 	}
-	SUB=SUB+'\0';
+	SUB=SUB+"\0";
+	return SUB;
 }
 
 int main(void){
@@ -27,7 +29,7 @@ int main(void){
 		else if(choice=='2'){
 			cout<<"\n Enter the position of the substring : ";cin>>The_position;
 			cout<<"\n Enter the length of the substring : ";cin>>The_length;
-			Substring(The_string,The_position,The_length,The_substring);
+			The_substring=Substring(The_string,The_position,The_length);
 			cout<<"\n The substring found is : "<<The_substring<<endl;
 		}
 	}while(choice!='0');
@@ -35,5 +37,5 @@ int main(void){
 return 0;
 }
 
-#include<iostream>
-using namespace std;
+
+

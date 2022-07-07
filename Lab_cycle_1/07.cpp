@@ -4,10 +4,10 @@
 using namespace std;
 
 void Bubble_sort(int DATA[], int N){
-	int k,j,temp;
+	int temp;
 	
-	for(k=0;k<N;k++){
-		for(j=0;j<N-k;j++){
+	for(int k=0;k<N;k++){
+		for(int j=0;j<N-k;j++){
 			if(DATA[j]>DATA[j+1]){
 				temp=DATA[j];
 				DATA[j]=DATA[j+1];

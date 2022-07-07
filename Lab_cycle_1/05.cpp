@@ -8,7 +8,6 @@ void Interpolation_search(int DATA[], int N, int ITEM, int LOC){
 
 	LOC=-1;
 	while(START<=STOP and ITEM>=DATA[START] and ITEM<=DATA[STOP]){
-		
 		POS=START+((ITEM-DATA[START])*(STOP-START)/(DATA[STOP]-DATA[START]));
 		
 		if(DATA[POS]==ITEM){

@@ -1,5 +1,3 @@
-// INCOMPLETE
-
 /* Execution of Fibonacci search in an array */
 
 #include<iostream>
@@ -20,16 +18,17 @@ void Fibonacci_search(int DATA[], int N, int ITEM, int LOC){
 		int i=offset+fib2;
 		
 		if(ITEM>DATA[i]){
-			fib=fib1;
-			fib1=fib2;
-			fib2=fib-fib1;
+			int temp=fib,temp1=fib1,temp2=fib2;
+			fib=temp1;
+			fib1=temp2;
+			fib2=temp-temp1;
 			offset=i;
 		}
 		else if(ITEM<DATA[i]){
-			fib=fib2;
-			fib1=fib-fib2;
-			fib2=fib-fib1;
-			//offset=i;
+			int temp=fib,temp1=fib1,temp2=fib2;
+			fib=temp2;
+			fib1=temp-temp2;
+			fib2=temp-temp1;
 		}
 		else{
 			LOC=1;
@@ -39,7 +38,6 @@ void Fibonacci_search(int DATA[], int N, int ITEM, int LOC){
 	if(fib1==1 and DATA[offset+1]==ITEM){
 		LOC=offset+1;
 		cout<<"\n The item found at position : "<<LOC<<endl;
-		//break;
 	}
 	else cout<<"\n The item not found !!\n";
 }
