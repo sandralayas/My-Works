@@ -1,6 +1,8 @@
 
 # The Sudoku solver by backtracking
 
+# THIS IS NOT IN SYNC WITH THE ALGORITHM
+
 board=[\
 [0,0,8,0,0,7,1,0,0],\
 [0,0,0,8,0,0,0,4,0],\
