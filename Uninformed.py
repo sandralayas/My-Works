@@ -75,7 +75,7 @@ while procced:
 	elif choice=='1':
 		graph=input_graph()
 	else:
-		print('\n Worng option !!')
+		print('\n Wrong option !!')
 
 print()
 
