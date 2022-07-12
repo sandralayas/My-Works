@@ -6,18 +6,30 @@
 using namespace std;
 
 void Insertion_sort(int DATA[], int N){
-	int k,j=0,temp;
+	/*int k,j=0,temp;
 	
 	
-	int A[0]=-99999;
-	for(k=1;k<N;k++){
+	temp=-99999;
+	for(k=0;k<N;k++){
 		j=0;
-		temp=DATA[k];
-		while(DATA[j]>temp){
+		while(DATA[j]>temp and j<N-1){
 			DATA[j+1]=DATA[j];
-			j=j--;
-			DATA[j+1]=temp;
+			j=j++;
+			//DATA[j+1]=temp;
 		}
+		DATA[k]=;
+	}*/
+	int temp,k,ptr;
+	for(k=1;k<N;k++)
+	{
+		temp=DATA[k];
+		ptr=k-1;
+		while(temp<DATA[ptr])
+		{
+			DATA[ptr+1]=DATA[ptr];
+			ptr=ptr-1;
+		}
+		DATA[ptr+1]=temp;
 	}
 }
 
@@ -104,4 +116,5 @@ int main(void){
 cout<<"\n";
 return 0;
 }
+
 
