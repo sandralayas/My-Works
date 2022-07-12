@@ -1,4 +1,4 @@
-/* Execution of Bubble sort in an array */
+/* Execution of Selection sort in an array */
 
 #include<iostream>
 using namespace std;
