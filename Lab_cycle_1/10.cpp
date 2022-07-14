@@ -1,7 +1,5 @@
 /* Execution of Merge sort in an array */
 
-// dont know how to call the function
-
 #include<iostream>
 using namespace std;
 
@@ -19,14 +17,14 @@ int C[],int lc){
 			NB++;PTR++;
 		}
 	}
-	if(NA>la+r-1){
+	if(NA>lb+s-1){
 		for(int i=0;i<lb+s-1-NB;i++){
 			C[PTR+i]=B[NB+i];
 		}
 	}
 	else{
 		for(int i=0;i<la+r-1-NA;i++){
-			C[PTR+i]=B[NA+i];
+			C[PTR+i]=A[NA+i];
 		}
 	}
 }
@@ -98,14 +96,9 @@ void Print(int DATA[], int N){
 int main(void){
 	
 	int N1;
-	cout<<"\n Enter the number of elements in the first array : ";cin>>N1;
+	cout<<"\n Enter the number of elements in the array : ";cin>>N1;
 	int DATA1[N1];
 	Input(DATA1,N1);
-	
-	int N2;
-	cout<<"\n Enter the number of elements in the second array : ";cin>>N2;
-	int DATA2[N2];
-	Input(DATA2,N2);
 
 	char choice;
 	do{
@@ -118,74 +111,32 @@ int main(void){
 
 	if(choice=='0')break;
 	else if(choice=='1'){
-		char opt;
-		do{
-		cout<<"\n\n Enter 1 to insert into the first array\
-\n Enter 2 to insert into the second array\
-\n\n Enter your choice : ";cin>>opt;
-		if(opt=='1'){
-			Print(DATA1,N1);
-		}
-		else if(opt=='2'){
-			Print(DATA2,N2);
-		}
-		}while(opt!='1' and opt!='2');
-		
+		Print(DATA1,N1);
 	}
 	else if(choice=='2'){
-		char opt;
 		int K,ITEM;
-		do{
-		cout<<"\n\n Enter 1 to insert into the first array\
-\n Enter 2 to insert into the second array\
-\n\n Enter your choice : ";cin>>opt;
-		if(opt=='1'){
-			cout<<"\n Enter the item for insertion : ";cin>>ITEM;
-			cout<<"\n Enter the position for insertion : ";cin>>K;
-			Insert(DATA1,N1,K,ITEM);
-			N1++;
-		}
-		else if(opt=='2'){
-			cout<<"\n Enter the item for insertion : ";cin>>ITEM;
-			cout<<"\n Enter the position for insertion : ";cin>>K;
-			Insert(DATA2,N2,K,ITEM);
-			N2++;
-		}
-		}while(opt!='1' and opt!='2');
-		
+		cout<<"\n Enter the item for insertion : ";cin>>ITEM;
+		cout<<"\n Enter the position for insertion : ";cin>>K;
+		Insert(DATA1,N1,K,ITEM);
+		N1++;
 	}
 	else if(choice=='3'){
-		char opt;
 		int K,ITEM;
-		do{
-		cout<<"\n\n Enter 1 to insert into the first array\
-\n Enter 2 to insert into the second array\
-\n\n Enter your choice : ";cin>>opt;
-		if(opt=='1'){
-			cout<<"\n\n Enter the position for deletion : ";cin>>K;
-			ITEM=Delete(DATA1,N1,K,ITEM);
-			N1--;
-			cout<<"\n\n The item deleted : "<<ITEM<<endl;
-		}
-		else if(opt=='2'){
-			cout<<"\n\n Enter the position for deletion : ";cin>>K;
-			ITEM=Delete(DATA2,N2,K,ITEM);
-			N2--;
-			cout<<"\n\n The item deleted : "<<ITEM<<endl;
-		}
-		}while(opt!='1' and opt!='2');
-		
+		cout<<"\n\n Enter the position for deletion : ";cin>>K;
+		ITEM=Delete(DATA1,N1,K,ITEM);
+		N1--;
+		cout<<"\n\n The item deleted : "<<ITEM<<endl;
 	}
-	/*else if(choice=='4'){
-		int DATA[N1+N2];
-		Merge_array(DATA1,N1,DATA2,N2,DATA);
+	else if(choice=='4'){
+		Merge_sort(DATA1,N1);
 		cout<<"\n The merged data is\n";
-		Print(DATA,N1+N2);
-	}*/
+		Print(DATA1,N1);
+	}
 	else cout<<"\n Wrong Choice!!\n";
 	}while(choice!='0');
 
 cout<<"\n";
 return 0;
 }
+
 
