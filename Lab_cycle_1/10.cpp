@@ -106,7 +106,7 @@ int main(void){
 \n 1. Display\
 \n 2. Insertion\
 \n 3. Deletion\
-\n 4. Merge\
+\n 4. Merge sort\
 \n\n Enter your choice : ";cin>>choice;
 
 	if(choice=='0')break;
@@ -129,8 +129,7 @@ int main(void){
 	}
 	else if(choice=='4'){
 		Merge_sort(DATA1,N1);
-		cout<<"\n The merged data is\n";
-		Print(DATA1,N1);
+		cout<<"\n The data is sorted\n";
 	}
 	else cout<<"\n Wrong Choice!!\n";
 	}while(choice!='0');
@@ -138,5 +137,3 @@ int main(void){
 cout<<"\n";
 return 0;
 }
-
-
