@@ -1,24 +1,9 @@
 /* Execution of Insertion sort in an array */
 
-// INCOMPLETE
-
 #include<iostream>
 using namespace std;
 
 void Insertion_sort(int DATA[], int N){
-	/*int k,j=0,temp;
-	
-	
-	temp=-99999;
-	for(k=0;k<N;k++){
-		j=0;
-		while(DATA[j]>temp and j<N-1){
-			DATA[j+1]=DATA[j];
-			j=j++;
-			//DATA[j+1]=temp;
-		}
-		DATA[k]=;
-	}*/
 	int temp,k,ptr;
 	for(k=1;k<N;k++)
 	{
@@ -116,5 +101,4 @@ int main(void){
 cout<<"\n";
 return 0;
 }
-
 
