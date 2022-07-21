@@ -31,20 +31,21 @@ int C[],int lc){
 
 void Merge_pass(int A[],int n,int l,int B[]){
 	int q=n/(2*l),s=2*l*q,r=n-s;
-	for(int j=0;j<q;j++){
+	for(int j=1;j<q;j++){
 		int lb=(2*j-2)*(l);
 		Merge(A,l,lb,A,l,lb+l,B,lb);
 	}
 	if(r<=l){
 		for(int j=0;j<r;j++){
 			B[s+j]=A[s+j];
-			Merge(A,l,s,A,r-l,l+s,B,s);
+			Merge(A,l,s+1,A,r-l,l+s+1,B,s+1);
 		}
 	}
+	else Merge(A,l,s+1,A,r-l,l+s+1,B,s+1);
 }
 
-void Merge_sort(int DATA[],int N){
-	int l=1,B[N];
+void Merge_sort(int DATA[],int N,int B[]){
+	int l=1;
 	while(l<N){
 		Merge_pass(DATA,N,l,B);
 		Merge_pass(B,N,2*l,DATA);
@@ -97,7 +98,7 @@ int main(void){
 	
 	int N1;
 	cout<<"\n Enter the number of elements in the array : ";cin>>N1;
-	int DATA1[N1];
+	int DATA1[N1],B[N1];
 	Input(DATA1,N1);
 
 	char choice;
@@ -128,7 +129,7 @@ int main(void){
 		cout<<"\n\n The item deleted : "<<ITEM<<endl;
 	}
 	else if(choice=='4'){
-		Merge_sort(DATA1,N1);
+		Merge_sort(DATA1,N1,B);
 		cout<<"\n The data is sorted\n";
 	}
 	else cout<<"\n Wrong Choice!!\n";
