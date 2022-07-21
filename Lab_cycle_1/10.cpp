@@ -30,15 +30,15 @@ int C[],int lc){
 }
 
 void Merge_pass(int A[],int n,int l,int B[]){
-	int q=n/2*l,s=2*l*q,r=n-s;
+	int q=n/(2*l),s=2*l*q,r=n-s;
 	for(int j=0;j<q;j++){
-		int lb=(2*j-2)*(l+1);
+		int lb=(2*j-2)*(l);
 		Merge(A,l,lb,A,l,lb+l,B,lb);
 	}
 	if(r<=l){
 		for(int j=0;j<r;j++){
 			B[s+j]=A[s+j];
-			Merge(A,l,s+1,A,r-l,l+s+1,B,s+1);
+			Merge(A,l,s,A,r-l,l+s,B,s);
 		}
 	}
 }
