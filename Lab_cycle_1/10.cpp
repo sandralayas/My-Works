@@ -6,6 +6,8 @@ using namespace std;
 void Merge(int A[],int r,int la,\
 int B[],int s,int lb,\
 int C[],int lc){
+	
+
 	int NA=la,NB=lb,PTR=0;
 	while(NA<=la+r-1 and NB<=lb+s-1){
 		if(A[NA]<B[NB]){
@@ -27,6 +29,9 @@ int C[],int lc){
 			C[PTR+i]=A[NA+i];
 		}
 	}
+	
+	if(r<s)C[r+s-1]=A[r-1];
+	else C[r+s-1]=B[s-1];
 }
 
 void Merge_pass(int A[],int n,int l,int B[]){
@@ -95,6 +100,18 @@ void Print(int DATA[], int N){
 }
 
 int main(void){
+	int DATA[6]={4,2,5,1,3,0};
+	int C[6];
+	
+	Print(DATA,6);
+	Merge_sort(DATA,6,C);
+	Print(DATA,6);
+
+return 0;
+}
+
+/*
+int main(void){
 	
 	int N1;
 	cout<<"\n Enter the number of elements in the array : ";cin>>N1;
@@ -138,3 +155,4 @@ int main(void){
 cout<<"\n";
 return 0;
 }
+*/
