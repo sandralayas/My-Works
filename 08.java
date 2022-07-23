@@ -20,21 +20,24 @@ class Main{
 		int count=0,prime=2;
 		int isprime=1;
 		
-		while(count!=number){
-			if(prime==2){
-				System.out.println(prime);prime++;count++;
-			}else if(prime==3){
-				System.out.println(prime);prime++;count++;
-			}else{				
-				for(int i=2;i<(prime/2);i++){
-					
-					if(prime%i==0)isprime=0;break;
+		while(count!=2*number){
+			int end=(prime/2),i=2;
+			while(i<=end){					
+				if(prime%i==0){
+					isprime=0;break;
+				}else{
+					i=i+1;
 				}
-				if(isprime==1){
+			}
+			if(isprime==1){
+				if(count%2==0){
+					System.out.print(' ');
 					System.out.println(prime);prime++;count++;
-				}else if(isprime==0){
-					isprime=1;prime++;
+				}else{
+					prime++;count++;
 				}
+			}else if(isprime==0){
+				isprime=1;prime++;
 			}
 		}
 	}
@@ -55,8 +58,9 @@ class Main{
 			
 			if(choice==0)break;
 			else if(choice==1){
-				System.out.print(" Enter the number of primes needed : ");
+				System.out.print("\n Enter the number of primes needed : ");
 				count=get.nextInt();
+				System.out.print("\n The altrenate prime numbers \n\n");
 				Prime_numbers(count);
 			}
 			
