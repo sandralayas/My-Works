@@ -32,19 +32,19 @@ int Index(string P,int R,string T,int S){
 }
 
 string Cut(string sub,int l_sub,string main,int l_main){
-	string left="***";
-	int l_left=l_main-l_sub,index;
 	
-	index=Index(sub,l_sub,main,l_main);
-	left=Substring(main,index-l_left,l_left);
+	string LEFT,RIGHT;
+	int index=Index(sub,l_sub,main,l_main);	
+	LEFT=Substring(main,0,index);
+	RIGHT=Substring(main,index+l_sub,l_main-index);
 	
-	if(left!="***")l_main=l_main-l_left;
-	
-	return left;
+	return LEFT+RIGHT+"\0";
 }
+
 /*
 int main(void){
-	cout<<Cut("laya",4,"Sandralaya",10);
+	cout<<Cut("e",1,"ae",2)<<endl;
+	//cout<<Index("laya",4,"Sandralaya",10)<<endl;
 
 return 0;
 }
@@ -77,12 +77,12 @@ int main(void){
 			
 			post_substring=Substring(The_string,The_position,The_length-The_position);
 			
-			if(The_position!=The_length-1){
-				pre_substring=Cut(post_substring,The_sublength,The_string,The_length);
-			}
-			else pre_substring=The_string;
+			pre_substring=Cut(post_substring,\
+			The_length-The_position,The_string,The_length);
+			
 			
 			The_string=pre_substring+The_insertion+post_substring+"\0";
+			The_length=The_length+The_sublength;
 			cout<<"\n The substring inserted";
 			
 		}
@@ -92,12 +92,14 @@ int main(void){
 			cout<<"\n Enter the substring : ";cin>>The_deletion;
 			cout<<" Enter the length of substring : ";cin>>The_sublength;
 			
-			if(Cut(The_deletion,The_sublength,The_string,The_length)=="***"){
+			int index=Index(The_deletion,The_sublength,The_string,The_length);
+			if(index==-1){
 				cout<<"\n The substring not found";
 			}
 			else{
 				The_string=Cut(The_deletion,The_sublength,The_string,The_length);
 				cout<<"\n The substring deleted";
+				The_length=The_length-The_sublength;
 			}
 		}
 		else if(choice=='4'){
@@ -107,19 +109,24 @@ int main(void){
 			cout<<" Enter the length of substring : ";cin>>The_sublength;
 			
 			int index=Index(The_deletion,The_sublength,The_string,The_length);
-			if(Cut(The_deletion,The_sublength,The_string,The_length)=="***"){
+			if(index==-1){
 				cout<<"\n The substring not found";
 			}
-			else{
-				The_string=Cut(The_deletion,The_sublength,The_string,The_length);
-			
-				string post_substring,pre_substring,The_insertion;
+			else{			
+				string post_substring,pre_substring,The_insertion,remaining;
+				int remaining_l;
+
+				remaining=Cut(The_deletion,The_sublength,The_string,The_length);
+				remaining_l=The_length-The_sublength+1;
 		
 				cout<<"\n Enter the new substring : ";cin>>The_insertion;
 				The_position=index;
 			
-				post_substring=Substring(The_string,The_position,The_length-The_position);
-				pre_substring=Cut(post_substring,The_sublength,The_string,The_length);
+				post_substring=Substring(remaining,The_position,\
+				The_length-The_sublength-index+1);
+			
+				pre_substring=Cut(post_substring,The_length-The_sublength-index+1\
+				,remaining,remaining_l);
 			
 				The_string=pre_substring+The_insertion+post_substring+"\0";
 				cout<<"\n The substring replaced";
@@ -132,4 +139,5 @@ int main(void){
 	
 return 0;
 }
+
 
