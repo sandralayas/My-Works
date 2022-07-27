@@ -22,19 +22,13 @@ class Main{
 		
 		while(index!=count){
 			if(list[index]>=greatest){
-				int temp1=greatest;
+				great=greater;
+				greater=greatest;
 				greatest=list[index];
-				
-				int temp2=greater;
-				greater=temp1;
-				
-				great=temp2;
 				index++;
 			}else if(list[index]>=greater){
-				int temp2=greater;
+				great=greater;
 				greater=list[index];
-				
-				great=temp2;
 				index++;
 			}else if(list[index]>=great){
 				great=list[index];
