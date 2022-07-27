@@ -1,4 +1,4 @@
-/* Operations on a Sparce matrix*/
+/* Deletion from a Linked List*/
 
 #include<iostream>
 using namespace std;
