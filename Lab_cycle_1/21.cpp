@@ -28,23 +28,22 @@ class Node{
 };
 
 Node Linked_list(int length){
-	int count=1;
+	int count=0;
 	int value;
 	
 	Node Start;
 	Node *ptr;
-	
-	cout<<"\n Enter the value no."<<count<<" : ";cin>>value;
-	Start.set_value(value);
+
 	Start.next_node();
 	ptr=Start.give_next();
 	
+	cout<<"\n Enter the values : ";
 	while(count!=length){
-		count++;
-		cout<<"\n Enter the value no."<<count<<" : ";cin>>value;
+		cin>>value;
 		ptr->set_value(value);
 		ptr->next_node();
 		ptr=ptr->give_next();
+		count++;
 	}
 	return Start;
 }
@@ -53,48 +52,63 @@ void Display(Node Start,int length){
 	Node *ptr;
 	
 	cout<<"\n The linked list : ";
-	cout<<Start.give_value()<<' ';
 	ptr=Start.give_next();
 	
-	while(length>1){
+	while(length>0){
 		cout<<ptr->give_value()<<' ';
 		ptr=ptr->give_next();
 		length--;
 	}
 }
 
-bool Search(Node START,int ITEM,Node *LOC){
-	Node *PTR=&START;
+Node* Search(Node START,int ITEM,Node *LOC){
+	Node *PTR=START.give_next();
 	while(PTR!=NULL){
 		if(ITEM==PTR->give_value()){
 			LOC=PTR;
-			return true;
+			return LOC;
 		}
 		else PTR=PTR->give_next();
 	}
-	return false;
+	return NULL;
 }
 
 
-bool Delete(Node START,int ITEM,Node *LOC){
+Node* Delete(Node START,int ITEM,Node *LOC){
 	
-	if(Search(START,ITEM,LOC)){
-		if(START.give_next()==NULL)return false;
-		Node *PTR=&START;
-		Node *ptr;
-		while(PTR->give_value()!=ITEM){
-			ptr=PTR;
-			PTR=PTR->give_next();
-		}
-	
-		ptr->set_address(PTR->give_next());
-		LOC=PTR;
-		delete PTR;
-		return true;
+	if(START.give_next()==NULL){
+		cout<<"\n Underflow\n";
+		return NULL;
 	}
 	else{
-		cout<<"\n Item not found";
-		return true;
+		
+		if(Search(START,ITEM,LOC)!=NULL){
+			LOC=Search(START,ITEM,LOC);
+		
+		
+			Node *PTR=START.give_next();
+		
+			if(PTR==LOC){
+				START.set_address(LOC->give_next());
+				//delete START.give_next();
+				return LOC;
+			}
+		
+			while(PTR!=NULL){
+				if(LOC==PTR->give_next()){
+					break;
+				}
+				else PTR=PTR->give_next();
+			}
+			PTR->set_address(LOC->give_next());
+			LOC=PTR->give_next();
+			delete PTR->give_next();
+			return LOC;
+		}
+		else{
+			cout<<"\n Item not found";
+			return NULL;
+		}
 	}
 }
 
@@ -118,11 +132,11 @@ int main(void){
 	}
 	else if(choice=='2'){
 		cout<<"\n Enter the item to delete : ";cin>>ITEM;
-		if(Delete(START,ITEM,LOC)){
+		LOC=Delete(START,ITEM,LOC);
+		if(LOC!=NULL){
 			cout<<"\n The item deleted at : "<<LOC<<endl;
 			length--;
 		}
-		else cout<<"\n Underflow\n";
 	}
 	else if(choice=='3'){
 		Display(START,length);
@@ -131,3 +145,4 @@ int main(void){
 
 return 0;
 }
+
