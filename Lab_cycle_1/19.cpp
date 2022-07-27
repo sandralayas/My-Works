@@ -1,4 +1,4 @@
-/* Operations on a Sparce matrix*/
+/* Deletion from a Linked List*/
 
 #include<iostream>
 using namespace std;
@@ -22,26 +22,28 @@ class Node{
 	void next_node(void){
 		the_address=new Node;
 	}
+	void set_address(Node *ptr){
+		the_address=ptr;
+	}
 };
 
 Node Linked_list(int length){
-	int count=1;
+	int count=0;
 	int value;
 	
 	Node Start;
 	Node *ptr;
-	
-	cout<<"\n Enter the value no."<<count<<" : ";cin>>value;
-	Start.set_value(value);
+
 	Start.next_node();
 	ptr=Start.give_next();
 	
+	cout<<"\n Enter the values : ";
 	while(count!=length){
-		count++;
-		cout<<"\n Enter the value no."<<count<<" : ";cin>>value;
+		cin>>value;
 		ptr->set_value(value);
 		ptr->next_node();
 		ptr=ptr->give_next();
+		count++;
 	}
 	return Start;
 }
@@ -50,10 +52,9 @@ void Display(Node Start,int length){
 	Node *ptr;
 	
 	cout<<"\n The linked list : ";
-	cout<<Start.give_value()<<' ';
 	ptr=Start.give_next();
 	
-	while(length>1){
+	while(length>0){
 		cout<<ptr->give_value()<<' ';
 		ptr=ptr->give_next();
 		length--;
@@ -62,7 +63,7 @@ void Display(Node Start,int length){
 
 bool Insert(Node START,int ITEM){
 	if(START.give_next()==NULL)return false;
-	Node *PTR=&START;
+	Node *PTR=START.give_next();
 	Node *ptr;
 	while(PTR!=NULL){
 		ptr=PTR;
