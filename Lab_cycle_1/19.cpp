@@ -1,4 +1,4 @@
-/* Deletion from a Linked List*/
+/* Insertion from a Linked List*/
 
 #include<iostream>
 using namespace std;
