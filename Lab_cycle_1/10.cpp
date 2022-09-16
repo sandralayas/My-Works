@@ -103,19 +103,7 @@ void MERGE_SORT(int *A,int *B,int N){
     }
 
 }
-/*
-int main(){
-    int A[14]={66,33,40,22,55,88,60,11,80,20,50,44,77,30},B[14];
-    int n=14,l=1;
 
-    
-    
-    for(int i=0;i<n;i++){
-        cout<<A[i]<<" ";
-    }
-return 0;
-}
-*/
 int main(void){
 	
 	int N1;
