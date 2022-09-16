@@ -1,7 +1,7 @@
 # include <iostream>
 using namespace std;
 
-void MERGING(int *A,int R,int LBA,int* B,int S,int LBB,int *C,int LBC){
+void MERGING(int *A,int R,int LBA,int *B,int S,int LBB,int *C,int LBC){
     int NA=LBA,NB=LBB,PTR=LBC;
     int UBA=LBA+R-1,UBB=LBB+S-1;
 
@@ -37,7 +37,7 @@ void MERGE_PASS(int *A,int N,int L,int *B){
     int R=N-S;
     int LB;
 
-    for(int j= 1;j<=Q;j++)// may be j==0{
+    for(int j= 1;j<=Q;j++)
         LB=(2*j-2)*L;
         MERGING(A,L,LB,A,L,LB+L,B,LB);
     }
