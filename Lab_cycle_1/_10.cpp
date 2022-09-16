@@ -78,26 +78,14 @@ void MERGE_SORT(float *A,float *B,int N)
 
 }
 
-int main()
-{
-    //float C[11]={6,8,2,3,16,5,1,33,24,55,23};
-    float A[14]={66,33,40,22,55,88,60,11,80,20,50,44,77,30};
-    float B[14];
+int main(){
+    float A[14]={66,33,40,22,55,88,60,11,80,20,50,44,77,30},B[14];
     int n=14,l=1;
 
     MERGE_SORT(A,B,n);
     
-
-    for(int i=0;i<n;i++)
-    {
-        cout<<A[i]<<", ";
+    for(int i=0;i<n;i++){
+        cout<<A[i]<<" ";
     }
-//     cout<<" "<<endl;
-
-//      for(int i=0;i<n;i++)
-//     {
-//         cout<<B[i]<<", ";
-//     }
-
-    return 0;
+return 0;
 }
