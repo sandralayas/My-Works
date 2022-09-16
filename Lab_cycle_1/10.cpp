@@ -1,62 +1,5 @@
-/* Execution of Merge sort in an array */
-
-#include<iostream>
+# include <iostream>
 using namespace std;
-
-void Merge(int A[],int r,int la,\
-int B[],int s,int lb,\
-int C[],int lc){
-	
-
-	int NA=la,NB=lb,PTR=0;
-	while(NA<=la+r-1 and NB<=lb+s-1){
-		if(A[NA]<B[NB]){
-			C[PTR]=A[NA];
-			NA++;PTR++;
-		}
-		else{
-			C[PTR]=B[NB];
-			NB++;PTR++;
-		}
-	}
-	if(NA>lb+s-1){
-		for(int i=0;i<lb+s-1-NB;i++){
-			C[PTR+i]=B[NB+i];
-		}
-	}
-	else{
-		for(int i=0;i<la+r-1-NA;i++){
-			C[PTR+i]=A[NA+i];
-		}
-	}
-	
-	if(r<s)C[r+s-1]=A[r-1];
-	else C[r+s-1]=B[s-1];
-}
-
-void Merge_pass(int A[],int n,int l,int B[]){
-	int q=n/(2*l),s=2*l*q,r=n-s;
-	for(int j=1;j<q;j++){
-		int lb=(2*j-2)*(l);
-		Merge(A,l,lb,A,l,lb+l,B,lb);
-	}
-	if(r<=l){
-		for(int j=0;j<r;j++){
-			B[s+j]=A[s+j];
-			Merge(A,l,s+1,A,r-l,l+s+1,B,s+1);
-		}
-	}
-	else Merge(A,l,s+1,A,r-l,l+s+1,B,s+1);
-}
-
-void Merge_sort(int DATA[],int N,int B[]){
-	int l=1;
-	while(l<N){
-		Merge_pass(DATA,N,l,B);
-		Merge_pass(B,N,2*l,DATA);
-		l=4*l;
-	}
-}
 
 void Insert(int DATA[], int N, int K, int ITEM){
 	int temp=N;
@@ -98,24 +41,86 @@ void Print(int DATA[], int N){
 	}
 	cout<<endl;
 }
-/*
-int main(void){
-	int DATA[6]={4,2,5,1,3,0};
-	int C[6];
-	
-	Print(DATA,6);
-	Merge_sort(DATA,6,C);
-	Print(DATA,6);
 
+void MERGING(int *A,int R,int LBA,int *B,int S,int LBB,int *C,int LBC){
+    int NA=LBA,NB=LBB,PTR=LBC;
+    int UBA=LBA+R-1,UBB=LBB+S-1;
+
+    while(NA<=UBA && NB<=UBB){
+        if(A[NA]<B[NB]){
+            C[PTR]=A[NA];
+            NA=NA+1;
+            PTR=PTR+1;
+        }
+        else{
+            C[PTR]=B[NB];
+            NB=NB+1;
+            PTR=PTR+1;
+        }
+    }
+
+    if(NA>UBA){
+        for(int i=0;i<=UBB-NB;i++){
+            C[PTR+i]=B[NB+i];
+        }
+    }
+    else{
+        for(int i=0;i<=UBA-NA;i++){
+            C[PTR+i]=A[NA+i];
+        }
+
+    }
+}
+
+void MERGE_PASS(int *A,int N,int L,int *B){
+    int Q=N/(2*L);
+    int S=2*L*Q;
+    int R=N-S;
+    int LB;
+
+    for(int j= 1;j<=Q;j++){
+        LB=(2*j-2)*L;
+        MERGING(A,L,LB,A,L,LB+L,B,LB);
+    }
+
+    if(R<=L){
+        for(int k=0;k<R;k++){
+            B[S+k]=A[S+k];
+        }
+    }
+    else{
+        MERGING(A,L,S,A,R-L,L+S,B,S);
+    }
+}
+
+void MERGE_SORT(int *A,int *B,int N){
+    int L=1;
+    
+    while(L<N){
+        MERGE_PASS(A,N,L,B);
+        MERGE_PASS(B,N,2*L,A);
+        L=4*L;
+    }
+
+}
+/*
+int main(){
+    int A[14]={66,33,40,22,55,88,60,11,80,20,50,44,77,30},B[14];
+    int n=14,l=1;
+
+    
+    
+    for(int i=0;i<n;i++){
+        cout<<A[i]<<" ";
+    }
 return 0;
 }
 */
-
 int main(void){
 	
 	int N1;
 	cout<<"\n Enter the number of elements in the array : ";cin>>N1;
-	int DATA1[N1],B[N1];
+	int DATA1[N1],DATA2[N1];
 	Input(DATA1,N1);
 
 	char choice;
@@ -146,7 +151,7 @@ int main(void){
 		cout<<"\n\n The item deleted : "<<ITEM<<endl;
 	}
 	else if(choice=='4'){
-		Merge_sort(DATA1,N1,B);
+		MERGE_SORT(DATA1,DATA2,N1);
 		cout<<"\n The data is sorted\n";
 	}
 	else cout<<"\n Wrong Choice!!\n";
@@ -155,4 +160,3 @@ int main(void){
 cout<<"\n";
 return 0;
 }
-
