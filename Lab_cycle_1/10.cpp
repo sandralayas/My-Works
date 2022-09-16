@@ -98,7 +98,7 @@ void Print(int DATA[], int N){
 	}
 	cout<<endl;
 }
-
+/*
 int main(void){
 	int DATA[6]={4,2,5,1,3,0};
 	int C[6];
@@ -109,8 +109,8 @@ int main(void){
 
 return 0;
 }
+*/
 
-/*
 int main(void){
 	
 	int N1;
@@ -155,4 +155,4 @@ int main(void){
 cout<<"\n";
 return 0;
 }
-*/
+
