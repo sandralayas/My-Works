@@ -4,7 +4,9 @@ from sys import exit
 import pygame
 import time
 import random
+from button_main import menu
 pygame.init()
+
 def generate():
     '''Randomly generates a Sudoku grid/board'''
     while True:  #return will interrupt the loop
@@ -196,6 +198,10 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit() #so that it doesnt go to the outer run loop
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    print("esc")
+                    menu(screen)       
 
             elif event.type == pygame.MOUSEBUTTONUP: #allow clicks only while the board hasn't been solved
                 mousePos = pygame.mouse.get_pos()
@@ -233,6 +239,8 @@ def main():
 
                     if event.key == pygame.K_9:
                         keyDict[selected] = 9
+
+                                     
 
                     elif event.key == pygame.K_BACKSPACE or event.key == pygame.K_DELETE:  # clears tile out
                         if selected in keyDict:
