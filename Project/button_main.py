@@ -32,6 +32,7 @@ def menu(screen):
   TEXT_COL = (255, 255, 255)
 
   #load button images
+  save_game_img=pygame.image.load("images/save_game.png").convert_alpha()
   new_game_img=pygame.image.load("images/new_game.png").convert_alpha()
   load_game_img=pygame.image.load("images/load_game.png").convert_alpha()
   resume_img = pygame.image.load("images/button_resume.png").convert_alpha()
@@ -41,17 +42,21 @@ def menu(screen):
   audio_img = pygame.image.load('images/button_audio.png').convert_alpha()
   keys_img = pygame.image.load('images/button_keys.png').convert_alpha()
   back_img = pygame.image.load('images/button_back.png').convert_alpha()
-
+  dark_mode_img = pygame.image.load('images/dark_mode.png').convert_alpha()
+  credits_img=pygame.image.load('images/credits.png').convert_alpha()
   #create button instances
-  new_game_button=button.Button(274,15, new_game_img,0.6)
-  load_game_button=button.Button(255, 120, load_game_img,0.6)
-  resume_button = button.Button(304, 225, resume_img,1)
-  options_button = button.Button(297, 350, options_img, 1)
-  quit_button = button.Button(340, 460, quit_img, 1)
-  video_button = button.Button(226, 75, video_img, 1)
-  audio_button = button.Button(225, 200, audio_img, 1)
-  keys_button = button.Button(246, 325, keys_img, 1)
-  back_button = button.Button(332, 400, back_img, 1)
+  resume_button = button.Button(190, 15, resume_img,1)
+  new_game_button=button.Button(165,120, new_game_img,0.6)
+  load_game_button=button.Button(130, 210, load_game_img,0.7)
+  save_game_button=button.Button(165, 300, save_game_img,0.6)
+  options_button = button.Button(175, 380, options_img, 1)
+  quit_button = button.Button(200, 490, quit_img, 1)
+  credits_button=button.Button(50, 50, credits_img, 0.5)
+  dark_mode_button = button.Button(126, 75, video_img, 1)
+  # video_button = button.Button(126, 75, video_img, 1)
+  # audio_button = button.Button(125, 200, audio_img, 1)
+  # keys_button = button.Button(146, 325, keys_img, 1)
+  back_button = button.Button(100, 50, back_img, 0.5)
   run = True
   while True:
 
@@ -63,26 +68,30 @@ def menu(screen):
       if menu_state == "main":
 
         if new_game_button.draw(screen):
-          print("new_game")
+          return 'new'
         
+        if save_game_button.draw(screen):
+            return 'save'
         #draw pause screen buttons
         if resume_button.draw(screen):
           game_paused = False
         if load_game_button.draw(screen):
-          print("load game")
+          return 'load'
         if options_button.draw(screen):
           menu_state = "options"
         if quit_button.draw(screen):
-          return
+          return 'quit'
       #check if the options menu is open
       if menu_state == "options":
+        if credits_button.draw(screen):
+          print(credits)
         #draw the different options buttons
-        if video_button.draw(screen):
-          print("Video Settings")
-        if audio_button.draw(screen):
-          print("Audio Settings")
-        if keys_button.draw(screen):
-          print("Change Key Bindings")
+        # if video_button.draw(screen):
+        #   print("Video Settings")
+        # if audio_button.draw(screen):
+        #   print("Audio Settings")
+        # if keys_button.draw(screen):
+        #   print("Change Key Bindings")
         if back_button.draw(screen):
           menu_state = "main"
         
@@ -99,6 +108,6 @@ def menu(screen):
 
     pygame.display.update()
 
-Screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+# Screen = pygame.display.set_mode((540, 590))
 
 # menu(Screen)
