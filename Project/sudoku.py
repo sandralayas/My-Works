@@ -101,13 +101,14 @@ class Board:
         empty = find_empty(self.board)
         if not empty:
             return True
-
+        delay=60
+        start_time=int(round(time.now()))
         for nums in range(9):
             if valid(self.board, (empty[0],empty[1]), nums+1):
                 self.board[empty[0]][empty[1]] = nums+1
                 self.tiles[empty[0]][empty[1]].value = nums+1
                 self.tiles[empty[0]][empty[1]].correct = True
-                pygame.time.delay(63) #show tiles at a slower rate
+                pygame.time.delay(delay) #show tiles at a slower rate
                 self.redraw({}, wrong, time)
 
                 if self.visualSolve(wrong, time):
@@ -117,8 +118,11 @@ class Board:
                 self.tiles[empty[0]][empty[1]].value = 0
                 self.tiles[empty[0]][empty[1]].incorrect = True
                 self.tiles[empty[0]][empty[1]].correct = False
-                pygame.time.delay(63)
+                pygame.time.delay(delay)
                 self.redraw({}, wrong, time)
+                current_time=int(round(time.time()))
+                if((current_time-start_time%4==0)):
+                    delay=delay//2
 
     def hint(self, keys):
         '''Shows a random empty tile's solved value as a hint'''
