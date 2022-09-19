@@ -1,3 +1,4 @@
+from json import load
 import pygame
 import button
 
@@ -31,6 +32,8 @@ def menu(screen):
   TEXT_COL = (255, 255, 255)
 
   #load button images
+  new_game_img=pygame.image.load("images/new_game.png").convert_alpha()
+  load_game_img=pygame.image.load("images/load_game.png").convert_alpha()
   resume_img = pygame.image.load("images/button_resume.png").convert_alpha()
   options_img = pygame.image.load("images/button_options.png").convert_alpha()
   quit_img = pygame.image.load("images/button_quit.png").convert_alpha()
@@ -40,13 +43,15 @@ def menu(screen):
   back_img = pygame.image.load('images/button_back.png').convert_alpha()
 
   #create button instances
-  resume_button = button.Button(304, 125, resume_img, 1)
-  options_button = button.Button(297, 250, options_img, 1)
-  quit_button = button.Button(336, 375, quit_img, 1)
+  new_game_button=button.Button(274,15, new_game_img,0.6)
+  load_game_button=button.Button(255, 120, load_game_img,0.6)
+  resume_button = button.Button(304, 225, resume_img,1)
+  options_button = button.Button(297, 350, options_img, 1)
+  quit_button = button.Button(340, 460, quit_img, 1)
   video_button = button.Button(226, 75, video_img, 1)
   audio_button = button.Button(225, 200, audio_img, 1)
   keys_button = button.Button(246, 325, keys_img, 1)
-  back_button = button.Button(332, 450, back_img, 1)
+  back_button = button.Button(332, 400, back_img, 1)
   run = True
   while True:
 
@@ -56,9 +61,15 @@ def menu(screen):
     if game_paused == True:
       #check menu state
       if menu_state == "main":
+
+        if new_game_button.draw(screen):
+          print("new_game")
+        
         #draw pause screen buttons
         if resume_button.draw(screen):
           game_paused = False
+        if load_game_button.draw(screen):
+          print("load game")
         if options_button.draw(screen):
           menu_state = "options"
         if quit_button.draw(screen):
@@ -74,6 +85,7 @@ def menu(screen):
           print("Change Key Bindings")
         if back_button.draw(screen):
           menu_state = "main"
+        
     else:
       return
 

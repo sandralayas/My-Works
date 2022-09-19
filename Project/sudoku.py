@@ -198,10 +198,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit() #so that it doesnt go to the outer run loop
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    print("esc")
-                    menu(screen)       
+             
 
             elif event.type == pygame.MOUSEBUTTONUP: #allow clicks only while the board hasn't been solved
                 mousePos = pygame.mouse.get_pos()
@@ -240,6 +237,8 @@ def main():
                     if event.key == pygame.K_9:
                         keyDict[selected] = 9
 
+                        
+
                                      
 
                     elif event.key == pygame.K_BACKSPACE or event.key == pygame.K_DELETE:  # clears tile out
@@ -258,6 +257,11 @@ def main():
                             board.tiles[selected[1]][selected[0]].value = keyDict[selected] #assigns current grid value
                             board.board[selected[1]][selected[0]] = keyDict[selected] #assigns to actual board so that the correct value can't be modified
                             del keyDict[selected]
+
+
+                if event.key == pygame.K_ESCAPE:
+                    print("esc")
+                    menu(screen)   
 
                 if event.key == pygame.K_h:
                     board.hint(keyDict)
