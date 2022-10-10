@@ -1,22 +1,9 @@
-mysql> create database school;
-Query OK, 1 row affected (0.19 sec)
-
-mysql> use database school
-ERROR 1049 (42000): Unknown database 'database'
-mysql> use school
-Database changed
-mysql> drop school;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'school' at line 1
-mysql> drop database school;
-Query OK, 0 rows affected (0.18 sec)
-
 mysql> create database EMP;
 Query OK, 1 row affected (0.21 sec)
 
-mysql> use emp;
-ERROR 1049 (42000): Unknown database 'emp'
 mysql> use EMP;
 Database changed
+
 mysql> create table EMPLOYEE(Emp_No varchar(10),E_Name varchar(20),Job varchar(20),Dept_No integer(3));
 Query OK, 0 rows affected, 1 warning (0.87 sec)
 
@@ -46,5 +33,101 @@ mysql> describe EMPLOYEE;
 | Phone_No | int         | YES  |     | NULL    |       |
 +----------+-------------+------+-----+---------+-------+
 5 rows in set (0.00 sec)
+
+mysql> alter table EMPLOYEE add(Salary int,Age int);
+Query OK, 0 rows affected (0.70 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Emp_No   | varchar(10) | YES  |     | NULL    |       |
+| E_Name   | varchar(20) | YES  |     | NULL    |       |
+| Job      | varchar(20) | YES  |     | NULL    |       |
+| Dept_No  | int         | YES  |     | NULL    |       |
+| Phone_No | int         | YES  |     | NULL    |       |
+| Salary   | int         | YES  |     | NULL    |       |
+| Age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+mysql> alter table EMPLOYEE modify Salary double;
+Query OK, 0 rows affected (2.59 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table EMPLOYEE rename column E_Name to Emp_Name;
+Query OK, 0 rows affected (0.49 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Emp_No   | varchar(10) | YES  |     | NULL    |       |
+| Emp_Name | varchar(20) | YES  |     | NULL    |       |
+| Dept_No  | int         | YES  |     | NULL    |       |
+| Phone_No | int         | YES  |     | NULL    |       |
+| Salary   | double      | YES  |     | NULL    |       |
+| Age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> rename table EMPLOYEE to EMPLOYEE_LIST;
+Query OK, 0 rows affected (0.55 sec)
+
+mysql> desc EMPLOYEE_LIST;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Emp_No   | varchar(10) | YES  |     | NULL    |       |
+| Emp_Name | varchar(20) | YES  |     | NULL    |       |
+| Dept_No  | int         | YES  |     | NULL    |       |
+| Phone_No | int         | YES  |     | NULL    |       |
+| Salary   | double      | YES  |     | NULL    |       |
+| Age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> insert into EMPLOYEE_LIST values("CS-101","Danny Mathews",301,98765,20000.0,32);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into EMPLOYEE_LIST values("EE-101","Anny Thomas",201,43210,15000.75,27);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into EMPLOYEE_LIST values("MS-101","Manny Vargees",401,23456,30000.50,37);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into EMPLOYEE_LIST values("CE-101","Sunny Joseph",101,34756,25000.50,25);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select * from EMPLOYEE_LIST;
++--------+---------------+---------+----------+----------+------+
+| Emp_No | Emp_Name      | Dept_No | Phone_No | Salary   | Age  |
++--------+---------------+---------+----------+----------+------+
+| CS-101 | Danny Mathews |     301 |    98765 |    20000 |   32 |
+| EE-101 | Anny Thomas   |     201 |    43210 | 15000.75 |   27 |
+| MS-101 | Manny Vargees |     401 |    23456 |  30000.5 |   37 |
+| CE-101 | Sunny Joseph  |     101 |    34756 |  25000.5 |   25 |
++--------+---------------+---------+----------+----------+------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table EMPLOYEE_LIST;
+Query OK, 0 rows affected (1.53 sec)
+
+mysql> select * from EMPLOYEE_LIST;
+Empty set (0.00 sec)
+
+mysql> desc EMPLOYEE_LIST;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Emp_No   | varchar(10) | YES  |     | NULL    |       |
+| Emp_Name | varchar(20) | YES  |     | NULL    |       |
+| Dept_No  | int         | YES  |     | NULL    |       |
+| Phone_No | int         | YES  |     | NULL    |       |
+| Salary   | double      | YES  |     | NULL    |       |
+| Age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
 
 mysql> 
