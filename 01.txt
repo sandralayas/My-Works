@@ -1,0 +1,50 @@
+mysql> create database school;
+Query OK, 1 row affected (0.19 sec)
+
+mysql> use database school
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use school
+Database changed
+mysql> drop school;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'school' at line 1
+mysql> drop database school;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> create database EMP;
+Query OK, 1 row affected (0.21 sec)
+
+mysql> use emp;
+ERROR 1049 (42000): Unknown database 'emp'
+mysql> use EMP;
+Database changed
+mysql> create table EMPLOYEE(Emp_No varchar(10),E_Name varchar(20),Job varchar(20),Dept_No integer(3));
+Query OK, 0 rows affected, 1 warning (0.87 sec)
+
+mysql> describe EMPLOYEE;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Emp_No  | varchar(10) | YES  |     | NULL    |       |
+| E_Name  | varchar(20) | YES  |     | NULL    |       |
+| Job     | varchar(20) | YES  |     | NULL    |       |
+| Dept_No | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table EMPLOYEE add(Phone_No integer);
+Query OK, 0 rows affected (0.52 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Emp_No   | varchar(10) | YES  |     | NULL    |       |
+| E_Name   | varchar(20) | YES  |     | NULL    |       |
+| Job      | varchar(20) | YES  |     | NULL    |       |
+| Dept_No  | int         | YES  |     | NULL    |       |
+| Phone_No | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> 
