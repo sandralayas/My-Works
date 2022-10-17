@@ -115,6 +115,7 @@ mysql> select City,count(City) from Client_master group by City order by City de
     -> find the names of all the clients 
     -> list the various products available from the table product master
     -> change the city of a salesman to banglore
+    -> delete from Client master where state is maharashtra
 
 mysql> select City,State from Client_master;
 +--------+-------------+
