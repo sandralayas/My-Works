@@ -1,1 +1,74 @@
+mysql> use SANDRA
+Database changed
+mysql> \! clear
 
+mysql> create table Product_master(
+    -> Product_no varchar(10),
+    -> Description varchar(50),
+    -> Profit_percent varchar(5),
+    -> Unit_measure integer,
+    -> Quantity_on_hand integer,
+    -> Reorder_LVL integer,
+    -> Sell_price integer,
+    -> Cost_price integer);
+Query OK, 0 rows affected (0.23 sec)
+
+mysql> desc Product_master;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| Product_no       | varchar(10) | YES  |     | NULL    |       |
+| Description      | varchar(50) | YES  |     | NULL    |       |
+| Profit_percent   | varchar(5)  | YES  |     | NULL    |       |
+| Unit_measure     | int(11)     | YES  |     | NULL    |       |
+| Quantity_on_hand | int(11)     | YES  |     | NULL    |       |
+| Reorder_LVL      | int(11)     | YES  |     | NULL    |       |
+| Sell_price       | int(11)     | YES  |     | NULL    |       |
+| Cost_price       | int(11)     | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> create table Client_master(
+    -> Salesman_no varchar(10) primary key check(Salesman_no like "S0%"),
+    -> Salesman_name varchar(20) not null,
+    -> Address1 varchar(50) not null,
+    -> Address2 varchar(50),
+    -> City varchar(20),
+    -> Pincode integer,
+    -> State varchar(20));
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> desc Client_master;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Salesman_no   | varchar(10) | NO   | PRI | NULL    |       |
+| Salesman_name | varchar(20) | NO   |     | NULL    |       |
+| Address1      | varchar(50) | NO   |     | NULL    |       |
+| Address2      | varchar(50) | YES  |     | NULL    |       |
+| City          | varchar(20) | YES  |     | NULL    |       |
+| Pincode       | int(11)     | YES  |     | NULL    |       |
+| State         | varchar(20) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> insert into Product_master values("P01","Paint","50%",1,1200,15,3000,1500);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Product_master values("P02","Paper","75%",10,5000,5,200,150);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into Product_master values("P03","Ink","75%",1,500,3,20,15);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from Product_master;
++------------+-------------+----------------+--------------+------------------+-------------+------------+------------+
+| Product_no | Description | Profit_percent | Unit_measure | Quantity_on_hand | Reorder_LVL | Sell_price | Cost_price |
++------------+-------------+----------------+--------------+------------------+-------------+------------+------------+
+| P01        | Paint       | 50%            |            1 |             1200 |          15 |       3000 |       1500 |
+| P02        | Paper       | 75%            |           10 |             5000 |           5 |        200 |        150 |
+| P03        | Ink         | 75%            |            1 |              500 |           3 |         20 |         15 |
++------------+-------------+----------------+--------------+------------------+-------------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> 
