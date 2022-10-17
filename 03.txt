@@ -71,4 +71,94 @@ mysql> select * from Product_master;
 +------------+-------------+----------------+--------------+------------------+-------------+------------+------------+
 3 rows in set (0.00 sec)
 
+mysql> insert into Client_master values("S03","Fabric Castle","607 MG Street","327 NH 54","Mumbai",235032,"Maharashtra");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from Client_master;
++-------------+---------------+------------------+--------------+--------+---------+-------------+
+| Salesman_no | Salesman_name | Address1         | Address2     | City   | Pincode | State       |
++-------------+---------------+------------------+--------------+--------+---------+-------------+
+| S01         | Paper weight  | 123 Gandhi Nagar | 407 JLN Road | Delhi  |  110001 | New Delhi   |
+| S02         | Camlin        | 607 Nehru Street | 327 NH 67    | Mumbai |  235032 | Maharashtra |
+| S03         | Fabric Castle | 607 MG Street    | 327 NH 54    | Mumbai |  235032 | Maharashtra |
++-------------+---------------+------------------+--------------+--------+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select count(City) from Client_master group by City;
++-------------+
+| count(City) |
++-------------+
+|           1 |
+|           2 |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> select City,count(City) from Client_master group by City;
++--------+-------------+
+| City   | count(City) |
++--------+-------------+
+| Delhi  |           1 |
+| Mumbai |           2 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select City,count(City) from Client_master group by City order by City desc;
++--------+-------------+
+| City   | count(City) |
++--------+-------------+
+| Mumbai |           2 |
+| Delhi  |           1 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+    -> retrive the list of name city and state of all the clients
+    -> find the names of all the clients 
+    -> list the various products available from the table product master
+    -> change the city of a salesman to banglore
+
+mysql> select City,State from Client_master;
++--------+-------------+
+| City   | State       |
++--------+-------------+
+| Delhi  | New Delhi   |
+| Mumbai | Maharashtra |
+| Mumbai | Maharashtra |
++--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select Salesman_name from Client_master;
++---------------+
+| Salesman_name |
++---------------+
+| Paper weight  |
+| Camlin        |
+| Fabric Castle |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> select Description from Product_master;
++-------------+
+| Description |
++-------------+
+| Paint       |
+| Paper       |
+| Ink         |
++-------------+
+3 rows in set (0.00 sec)
+
+mysql> update Client_master set City="Bangalore",Pincode=530068,State="Karnataka" where Salesman_no="S03";
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Client_master;
++-------------+---------------+------------------+--------------+-----------+---------+-------------+
+| Salesman_no | Salesman_name | Address1         | Address2     | City      | Pincode | State       |
++-------------+---------------+------------------+--------------+-----------+---------+-------------+
+| S01         | Paper weight  | 123 Gandhi Nagar | 407 JLN Road | Delhi     |  110001 | New Delhi   |
+| S02         | Camlin        | 607 Nehru Street | 327 NH 67    | Mumbai    |  235032 | Maharashtra |
+| S03         | Fabric Castle | 607 MG Street    | 327 NH 54    | Bangalore |  530068 | Karnataka   |
++-------------+---------------+------------------+--------------+-----------+---------+-------------+
+3 rows in set (0.00 sec)
+
 mysql> 
+ 
