@@ -1,0 +1,48 @@
+username system
+password root
+
+connect
+
+username system
+password root
+
+connected
+
+set serveroutput on
+edit fatorial.sql
+
+exit from the sql+ window and notepad
+
+username system
+password root
+
+connect
+
+username system
+password root
+
+connected
+
+set serveroutput on
+@factorial.sql
+
+funtion created
+
+GET_FACTORIAL(5) // already hard coded value
+---------------------------------------------
+factorial is 120
+
+// factorial.sql
+
+create or replace funtion get_factorial(No int) // there exist a data type number too
+return varchar
+is
+fact int :=1
+begin
+for i in 1..No loop
+fact := fact * i
+end loop
+return ' Factorial is ' || fact
+end
+/
+select get_factorial(5) from dual
