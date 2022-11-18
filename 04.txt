@@ -1,0 +1,119 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> create database DV2;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use DV2
+Database changed
+
+mysql> create table Country(country_code varchar(10),
+    -> country_name varchar(100),
+    -> primary key(country_code));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into Country values('IN','India'),('SL','Sri Lanka'),('PK','Pakistan'),('BN','Bangladesh'),('NP','Nepal');
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> create table Capital(capital_id varchar(10),
+    -> country_code varchar(10),
+    -> capital_name varchar(100),
+    -> primary key(capital_id),
+    -> foreign key(country_code) references country(country_code));
+Query OK, 0 rows affected (0.27 sec)
+
+mysql> insert into Capital values('C1','IN','New Delhi'),('C2','PK','Islamabad'),('C3','NP','Kathmandu');
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from Country;
++--------------+--------------+
+| country_code | country_name |
++--------------+--------------+
+| BN           | Bangladesh   |
+| IN           | India        |
+| NP           | Nepal        |
+| PK           | Pakistan     |
+| SL           | Sri Lanka    |
++--------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Capital;
++------------+--------------+--------------+
+| capital_id | country_code | capital_name |
++------------+--------------+--------------+
+| C1         | IN           | New Delhi    |
+| C2         | PK           | Islamabad    |
+| C3         | NP           | Kathmandu    |
++------------+--------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from country inner join capital on country.country_code=capital.country_code;
++--------------+--------------+------------+--------------+--------------+
+| country_code | country_name | capital_id | country_code | capital_name |
++--------------+--------------+------------+--------------+--------------+
+| IN           | India        | C1         | IN           | New Delhi    |
+| PK           | Pakistan     | C2         | PK           | Islamabad    |
+| NP           | Nepal        | C3         | NP           | Kathmandu    |
++--------------+--------------+------------+--------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from country left join capital on country.country_code=capital.country_code;
++--------------+--------------+------------+--------------+--------------+
+| country_code | country_name | capital_id | country_code | capital_name |
++--------------+--------------+------------+--------------+--------------+
+| BN           | Bangladesh   | NULL       | NULL         | NULL         |
+| IN           | India        | C1         | IN           | New Delhi    |
+| NP           | Nepal        | C3         | NP           | Kathmandu    |
+| PK           | Pakistan     | C2         | PK           | Islamabad    |
+| SL           | Sri Lanka    | NULL       | NULL         | NULL         |
++--------------+--------------+------------+--------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from country right join capital on country.country_code=capital.country_code;
++--------------+--------------+------------+--------------+--------------+
+| country_code | country_name | capital_id | country_code | capital_name |
++--------------+--------------+------------+--------------+--------------+
+| IN           | India        | C1         | IN           | New Delhi    |
+| PK           | Pakistan     | C2         | PK           | Islamabad    |
+| NP           | Nepal        | C3         | NP           | Kathmandu    |
++--------------+--------------+------------+--------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from country right join capital on country.country_code=capital.country_code union select * from country left join capital on country.country_code=capital.country_code;
++--------------+--------------+------------+--------------+--------------+
+| country_code | country_name | capital_id | country_code | capital_name |
++--------------+--------------+------------+--------------+--------------+
+| IN           | India        | C1         | IN           | New Delhi    |
+| PK           | Pakistan     | C2         | PK           | Islamabad    |
+| NP           | Nepal        | C3         | NP           | Kathmandu    |
+| BN           | Bangladesh   | NULL       | NULL         | NULL         |
+| SL           | Sri Lanka    | NULL       | NULL         | NULL         |
++--------------+--------------+------------+--------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql>
