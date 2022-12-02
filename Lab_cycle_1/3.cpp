@@ -5,10 +5,11 @@ Question 3
 #include <bits/stdc++.h>
 using namespace std;
 
-class Graph {
+class Graph
+{
 public:
 	map<int, bool> visited;
-	map<int, list<int> > adj;
+	map<int, list<int>> adj;
 
 	void addEdge(int v, int w);
 
@@ -33,17 +34,17 @@ void Graph::DFS(int v)
 
 int main()
 {
-	Graph g;
+	Graph g(6);
 	g.addEdge(0, 1);
 	g.addEdge(0, 2);
-	g.addEdge(1, 2);
-	g.addEdge(2, 0);
-	g.addEdge(2, 3);
-	g.addEdge(3, 3);
+	g.addEdge(0, 3);
+	g.addEdge(1, 4);
+	g.addEdge(2, 5);
+	g.addEdge(2, 6);
+	g.addEdge(3, 7);
 
 	cout << "Following is Depth First Traversal"
 			" (starting from vertex 2) \n";
-
 
 	g.DFS(2);
 
