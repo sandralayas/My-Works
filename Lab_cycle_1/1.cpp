@@ -62,7 +62,7 @@ int main(void)
 
     lower = 0;
     upper = n;
-    // cout << "\n Enter the initial array of numbers : ";
+
     for (int i = 0; i < n; i++)
     {
         A[i] = rand();
