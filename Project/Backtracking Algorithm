@@ -1,0 +1,43 @@
+BACKTRACKING FOR SUDOKU
+
+ISVALID(BOARD,ROW,COL,NUM)
+
+  1. Repeat the following for x=0 to x=8
+    a. Do if BOARD[x][COL] is NUM
+      i. Return false
+
+  2. Repeat the following for x=0 to x=8
+    a. Do if BOARD[ROW][x] is NUM
+      i. Return false
+
+  3. Set ROW as ROW-ROW modulus 3 and 
+      Set COL as COL-COL modulus 3
+
+  4. Repeat the following for i=0 to i<3
+    b. Repeat the following for j=0 to j<3
+      i. Return false if BOARD[i+ROW][j+COL] is NUM
+
+  5. Return true
+  
+  
+SOLVER(BOARD,ROW,COL)
+
+  1.Set length of the BOARD as N
+
+  2. Do if ROW is N and COL is N
+    a. Return true
+
+  3. Do if COL is N
+    a. COL=0
+    b. ROW=ROW+1
+
+  4. Do if BOARD[ROW][COL]>0
+    a. Return SOLVER(BOARD,ROW,COL+1)
+
+  5. Repeat the following for NUM=1 to NUM=N
+    a. Do if ISVALID(BOARD,ROW,COL+1)
+      i.    BOARD[ROW][COL]=NUM
+      ii.   Return true if SOLVER(BOARD,ROW,COL+1) is true
+      iii.  BOARD[ROW][COL]=0
+
+  6. Return true
