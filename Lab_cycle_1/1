@@ -101,4 +101,140 @@ mysql> desc WORKS_ON;
 +-------+-------------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
 
+mysql> alter table EMPLOYEE add foreign key (DNo) references DEPARTMENT(DNo);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table DEPARTMENT add foreign key (MgrSSN) references EMPLOYEE(SSN);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table DLOCATION add foreign key (DNo) references DEPARTMENT(DNo);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table PROJECT add foreign key (DNo) references DEPARTMENT(DNo);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table WORKS_ON add foreign key (PNo) references EMPLOYEE(SSN);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table WORKS_ON add foreign key (PNo) references PROJECT(PNo);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| DEPARTMENT        |
+| DLOCATION         |
+| EMPLOYEE          |
+| PROJECT           |
+| WORKS_ON          |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | varchar(30) | NO   | PRI | NULL    |       |
+| Name     | varchar(30) | YES  |     | NULL    |       |
+| Address  | varchar(30) | YES  |     | NULL    |       |
+| Sex      | varchar(30) | YES  |     | NULL    |       |
+| Salary   | int(11)     | YES  |     | NULL    |       |
+| SuperSSN | varchar(30) | YES  |     | NULL    |       |
+| DNo      | varchar(30) | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> desc DEPARTMENT;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| DNo          | varchar(30) | NO   | PRI | NULL    |       |
+| DName        | varchar(30) | YES  |     | NULL    |       |
+| MgrSSN       | varchar(30) | YES  | MUL | NULL    |       |
+| MgrStartDate | date        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc DLOCATION;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| DNo   | varchar(30) | NO   | PRI | NULL    |       |
+| DLoc  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc PROJECT;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| PNo       | varchar(30) | NO   | PRI | NULL    |       |
+| PName     | varchar(30) | YES  |     | NULL    |       |
+| PLocation | varchar(30) | YES  |     | NULL    |       |
+| DNo       | varchar(30) | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc WORKS_ON;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| SSN   | varchar(30) | NO   | PRI | NULL    |       |
+| PNo   | varchar(30) | YES  | MUL | NULL    |       |
+| Hours | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table EMPLOYEE add Age integer;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | varchar(30) | NO   | PRI | NULL    |       |
+| Name     | varchar(30) | YES  |     | NULL    |       |
+| Address  | varchar(30) | YES  |     | NULL    |       |
+| Sex      | varchar(30) | YES  |     | NULL    |       |
+| Salary   | int(11)     | YES  |     | NULL    |       |
+| SuperSSN | varchar(30) | YES  |     | NULL    |       |
+| DNo      | varchar(30) | YES  | MUL | NULL    |       |
+| Age      | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> drop table PROJECT;
+ERROR 1217 (23000): Cannot delete or update a parent row: a foreign key constraint fails
+mysql> truncate table WORKS_ON;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc WORKS_ON;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| SSN   | varchar(30) | NO   | PRI | NULL    |       |
+| PNo   | varchar(30) | YES  | MUL | NULL    |       |
+| Hours | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc DEPARTMENT;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| DNo          | varchar(30) | NO   | PRI | NULL    |       |
+| DName        | varchar(30) | YES  |     | NULL    |       |
+| MgrSSN       | varchar(30) | YES  | MUL | NULL    |       |
+| MgrStartDate | date        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
 mysql> 
