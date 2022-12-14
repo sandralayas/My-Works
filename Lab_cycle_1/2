@@ -1,0 +1,72 @@
+mysql> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| DEPARTMENT        |
+| DLOCATION         |
+| EMPLOYEE          |
+| PROJECT           |
+| WORKS_ON          |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into EMPLOYEE values('e1001','Rahul Malhothra','Gandhi Nagar','Male',20000,'ee1001',(select DNo from DEPARTMENT where DNo='D001'),35);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into EMPLOYEE values('e1002','Susmitha Mohan','Skyline Apartments','Female',30000,'ee1002',(select DNo from DEPARTMENT where DNo='D002'),34);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into EMPLOYEE values('e1003','Mohammad Riyaz','Nehru Villa','Male',40000,'ee1003',(select DNo from DEPARTMENT where DNo='D003'),33);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into EMPLOYEE values('e1004','Benitta Dominic','Church Road','Female',50000,'ee1004',(select DNo from DEPARTMENT where DNo='D004'),32);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into EMPLOYEE values('e1005','John Antony','Mugal Street','Male',60000,'ee1005',(select DNo from DEPARTMENT where DNo='D005'),31);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into DEPARTMENT values('D001','Physics',(select SSN from EMPLOYEE where SSN='e1001'),'2018-06-15');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into DEPARTMENT values('D002','Chemistry',(select SSN from EMPLOYEE where SSN='e1002'),'2019-06-15');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into DEPARTMENT values('D003','Biology',(select SSN from EMPLOYEE where SSN='e1003'),'2020-06-15');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into DEPARTMENT values('D004','Mathematics',(select SSN from EMPLOYEE where SSN='e1004'),'2021-06-15');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into DEPARTMENT values('D005','Economics',(select SSN from EMPLOYEE where SSN='e1005'),'2022-06-15');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into DLOCATION values( (select DNo from DEPARTMENT where DNo='D001'),'Chennai') ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into DLOCATION values( (select DNo from DEPARTMENT where DNo='D002'),'Chennai') ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into DLOCATION values( (select DNo from DEPARTMENT where DNo='D003'),'Mumbai') ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into DLOCATION values( (select DNo from DEPARTMENT where DNo='D004'),'Mumbai') ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into DLOCATION values( (select DNo from DEPARTMENT where DNo='D005'),'Kolkata') ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into PROJECT values('P001','Diffraction','Chennai', (select DNo from DEPARTMENT where DNo='D001')) ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into PROJECT values('P002','pH values','Chennai', (select DNo from DEPARTMENT where DNo='D002')) ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into PROJECT values('P003','Photosynthesis','Mumbai', (select DNo from DEPARTMENT where DNo='D003')) ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into PROJECT values('P004','Probabitity','Mumbai', (select DNo from DEPARTMENT where DNo='D004')) ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into PROJECT values('P005','Statistics','Kolkata', (select DNo from DEPARTMENT where DNo='D005')) ;
+Query OK, 1 row affected (0.01 sec)
+
