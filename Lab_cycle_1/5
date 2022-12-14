@@ -1,3 +1,33 @@
-JOINS
+mysql> update EMPLOYEE inner join WORKS_ON on EMPLOYEE.SSN=WORKS_ON.SSN inner join PROJECT on WORKS_ON.PNo=PROJECT.PNo set Salary=Salary*0.25 where PLocation='Chennai';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> update EMPLOYEE set Salary=Salary*0.25 where WORKS_ON.SSN=EMPLOYEE.SSN and WORKS_ON.PNo=PROJECT.PNo and PLocation='Chennai';
+mysql> select * from EMPLOYEE;
++-------+-----------------+--------------+--------+--------+----------+------+------+
+| SSN   | Name            | Address      | Sex    | Salary | SuperSSN | DNo  | Age  |
++-------+-----------------+--------------+--------+--------+----------+------+------+
+| e1001 | Rahul Malhothra | Gandhi Nagar | Male   |   6250 | ee1001   | NULL |   35 |
+| e1003 | Mohammad Riyaz  | Nehru Villa  | Male   |  40000 | ee1003   | NULL |   33 |
+| e1004 | Benitta Dominic | Church Road  | Female |  50000 | ee1004   | NULL |   32 |
+| e1005 | John Antony     | Mugal Street | Male   |  60000 | ee1005   | NULL |   31 |
++-------+-----------------+--------------+--------+--------+----------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> select PName,Plocation from PROJECT inner join WORKS_ON on PROJECT.PNo=WORKS_ON.PNo where Hours>5;
++-------------+-----------+
+| PName       | Plocation |
++-------------+-----------+
+| Probabitity | Mumbai    |
+| Statistics  | Kolkata   |
++-------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select PName,Plocation from PROJECT left outer join WORKS_ON on PROJECT.PNo=WORKS_ON.PNo where Hours!=NULL;
+Empty set (0.00 sec)
+
+mysql> select PName,Plocation from PROJECT right outer join WORKS_ON on PROJECT.PNo=WORKS_ON.PNo where PLocation!=NULL;
+Empty set (0.00 sec)
+
+mysql> select a.PNo,a.PName,a.PLocation,b.Hours,b.SSN,c.DNo from (select PNo,PName,PLocation from PROJECT)a full outer join (select Hours,SSN from WORKS_ON)b on b.PNo=a.PNo full outer join (select DNo from EMPLOYEE)c on isnull(b.PNo,a.PNo) = c.SSN;
+
+mysql>
