@@ -1,0 +1,3 @@
+JOINS
+
+mysql> update EMPLOYEE set Salary=Salary*0.25 where WORKS_ON.SSN=EMPLOYEE.SSN and WORKS_ON.PNo=PROJECT.PNo and PLocation='Chennai';
