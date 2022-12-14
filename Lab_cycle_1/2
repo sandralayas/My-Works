@@ -70,4 +70,92 @@ Query OK, 1 row affected (0.00 sec)
 mysql> insert into PROJECT values('P005','Statistics','Kolkata', (select DNo from DEPARTMENT where DNo='D005')) ;
 Query OK, 1 row affected (0.01 sec)
 
+mysql> insert into WORKS_ON values((select SSN from EMPLOYEE where SSN='e1001'),(select PNo from PROJECT where PNo='P001'),3) ;
+Query OK, 1 row affected (0.01 sec)
 
+mysql> insert into WORKS_ON values((select SSN from EMPLOYEE where SSN='e1002'),(select PNo from PROJECT where PNo='P002'),4) ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into WORKS_ON values((select SSN from EMPLOYEE where SSN='e1003'),(select PNo from PROJECT where PNo='P003'),5) ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into WORKS_ON values((select SSN from EMPLOYEE where SSN='e1004'),(select PNo from PROJECT where PNo='P004'),6) ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into WORKS_ON values((select SSN from EMPLOYEE where SSN='e1005'),(select PNo from PROJECT where PNo='P005'),7) ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from EMPLOYEE;
++-------+-----------------+--------------------+--------+--------+----------+------+------+
+| SSN   | Name            | Address            | Sex    | Salary | SuperSSN | DNo  | Age  |
++-------+-----------------+--------------------+--------+--------+----------+------+------+
+| e1001 | Rahul Malhothra | Gandhi Nagar       | Male   |  20000 | ee1001   | NULL |   35 |
+| e1002 | Susmitha Mohan  | Skyline Apartments | Female |  30000 | ee1002   | NULL |   34 |
+| e1003 | Mohammad Riyaz  | Nehru Villa        | Male   |  40000 | ee1003   | NULL |   33 |
+| e1004 | Benitta Dominic | Church Road        | Female |  50000 | ee1004   | NULL |   32 |
+| e1005 | John Antony     | Mugal Street       | Male   |  60000 | ee1005   | NULL |   31 |
++-------+-----------------+--------------------+--------+--------+----------+------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from DEPARTMENT;
++------+-------------+--------+--------------+
+| DNo  | DName       | MgrSSN | MgrStartDate |
++------+-------------+--------+--------------+
+| D001 | Physics     | e1001  | 2018-06-15   |
+| D002 | Chemistry   | e1002  | 2019-06-15   |
+| D003 | Biology     | e1003  | 2020-06-15   |
+| D004 | Mathematics | e1004  | 2021-06-15   |
+| D005 | Economics   | e1005  | 2022-06-15   |
++------+-------------+--------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from DLOCATION;
++------+---------+
+| DNo  | DLoc    |
++------+---------+
+| D001 | Chennai |
+| D002 | Chennai |
+| D003 | Mumbai  |
+| D004 | Mumbai  |
+| D005 | Kolkata |
++------+---------+
+5 rows in set (0.01 sec)
+
+mysql> select * from PROJECT;
++------+----------------+-----------+------+
+| PNo  | PName          | PLocation | DNo  |
++------+----------------+-----------+------+
+| P001 | Diffraction    | Chennai   | D001 |
+| P002 | pH values      | Chennai   | D002 |
+| P003 | Photosynthesis | Mumbai    | D003 |
+| P004 | Probabitity    | Mumbai    | D004 |
+| P005 | Statistics     | Kolkata   | D005 |
++------+----------------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from WORKS_ON;
++-------+------+-------+
+| SSN   | PNo  | Hours |
++-------+------+-------+
+| e1001 | P001 |     3 |
+| e1002 | P002 |     4 |
+| e1003 | P003 |     5 |
+| e1004 | P004 |     6 |
+| e1005 | P005 |     7 |
++-------+------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update EMPLOYEE set Salary=25000 where SSN='e1001';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> set foreign_key_checks=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from EMPLOYEE where SSN='e1002';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> set foreign_key_checks=1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
