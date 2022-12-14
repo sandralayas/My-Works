@@ -70,3 +70,4 @@ Query OK, 1 row affected (0.00 sec)
 mysql> insert into PROJECT values('P005','Statistics','Kolkata', (select DNo from DEPARTMENT where DNo='D005')) ;
 Query OK, 1 row affected (0.01 sec)
 
+
