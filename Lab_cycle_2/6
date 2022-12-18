@@ -1,0 +1,38 @@
+a)
+
+mysql> savepoint A;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from EMPLOYEE;
++-------+-----------------+------------+--------+--------+----------+------+------+
+| SSN   | Name            | Address    | Sex    | Salary | SuperSSN | DNo  | Age  |
++-------+-----------------+------------+--------+--------+----------+------+------+
+| e1006 | Fathima Rizwana | Kings Road | Female |  30000 | ee1006   | D001 |   32 |
++-------+-----------------+------------+--------+--------+----------+------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into EMPLOYEE values('e1007','Fathima Rizwana','Kings Road','Female',30000,'ee1006','D001',32);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from EMPLOYEE;
++-------+-----------------+------------+--------+--------+----------+------+------+
+| SSN   | Name            | Address    | Sex    | Salary | SuperSSN | DNo  | Age  |
++-------+-----------------+------------+--------+--------+----------+------+------+
+| e1006 | Fathima Rizwana | Kings Road | Female |  30000 | ee1006   | D001 |   32 |
+| e1007 | Fathima Rizwana | Kings Road | Female |  30000 | ee1006   | D001 |   32 |
++-------+-----------------+------------+--------+--------+----------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> rollback to A;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from EMPLOYEE;
++-------+-----------------+------------+--------+--------+----------+------+------+
+| SSN   | Name            | Address    | Sex    | Salary | SuperSSN | DNo  | Age  |
++-------+-----------------+------------+--------+--------+----------+------+------+
+| e1006 | Fathima Rizwana | Kings Road | Female |  30000 | ee1006   | D001 |   32 |
++-------+-----------------+------------+--------+--------+----------+------+------+
+1 row in set (0.00 sec)
