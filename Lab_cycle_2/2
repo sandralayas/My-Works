@@ -1,1 +1,37 @@
-PLSQL
+create or replace function get_factorial(no int)
+return varchar
+is
+fact int := 1
+begin
+for i in 1..no loop
+fact := fact * i
+end loop
+return '\n Factorial is : '||fact
+end
+/
+select get_factorial(5) from dual
+
+Copyright (c) 1982, 2021, Oracle. All rights reserved.
+Enter user-name: system
+Enter password:
+Last successful login time: Fri Dec 16 2022 14:29:33 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on
+SQL> @fact.sql
+
+Funtion created.
+
+GET_FACTORIAL(5)
+-----------------------------------------------------------------------------------------------------
+
+Factorial is : 120
+
+SQL>
