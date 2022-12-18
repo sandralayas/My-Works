@@ -1,3 +1,5 @@
+a)
+
 // declare Update_Cursor cursor for select * from EMPLOYEE
 // open Update_Cursor
 // fetch next from  Update_Cursor
@@ -22,6 +24,8 @@ END;
 1 employees selected  
 
 PL/SQL procedure successfully completed. 
+
+b)
 
 // declare Retrive_Cursor cursor for select * from DEPARTMENT
 // open Retrive_Cursor
