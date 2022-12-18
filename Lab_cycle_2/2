@@ -1,10 +1,12 @@
+a)
+
 create or replace function get_factorial(no int)
 return varchar
 is
-fact int := 1
+fact int := 1;
 begin
 for i in 1..no loop
-fact := fact * i
+fact := fact * i;
 end loop
 return '\n Factorial is : '||fact
 end
@@ -34,4 +36,125 @@ GET_FACTORIAL(5)
 
 Factorial is : 120
 
+SQL>
+------------------------------------------------------------------------------------------------------
+b)
+
+create or replace function get_max(x int,y int)
+return varchar
+is
+max int := 0;
+begin
+if x>y then
+max := x;
+else
+max := y;
+return '\n Maximum is : '||Max
+end
+/
+select get_max(5,4) from dual
+
+Copyright (c) 1982, 2021, Oracle. All rights reserved.
+Enter user-name: system
+Enter password:
+Last successful login time: Fri Dec 16 2022 14:29:33 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on
+SQL> @max.sql
+
+Funtion created.
+
+GET_MAX(5,4)
+-----------------------------------------------------------------------------------------------------
+
+Maximum is : 5
+
+SQL>
+-----------------------------------------------------------------------------------------------------
+c)
+
+declare
+check boolean := true;
+div number := 2;
+n number := &n;
+begin
+while (n/2)>div loop
+if n/div==0 then
+check := false;
+end loop
+else
+div := div+1;
+dbms_output.put_line(check)
+end
+/
+
+Copyright (c) 1982, 2021, Oracle. All rights reserved.
+Enter user-name: system
+Enter password:
+Last successful login time: Fri Dec 16 2022 14:29:33 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on
+SQL> @prime.sql
+Enter value for 1: 4
+old   3: n number := &1;
+new   3: n number := 4;
+false
+
+PL/SQL procedure successfully completed.
+SQL>
+--------------------------------------------------------------------------------------------------------
+d)
+
+declare
+n number := 0;
+begin
+while 10>n loop
+dbms_output.put_line(n+1)
+end loop
+end
+/
+
+Copyright (c) 1982, 2021, Oracle. All rights reserved.
+Enter user-name: system
+Enter password:
+Last successful login time: Fri Dec 16 2022 14:29:33 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on
+SQL> @count.sql
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+PL/SQL procedure successfully completed.
 SQL>
