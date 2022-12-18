@@ -23,8 +23,12 @@ mysql> select * from EMPLOYEE;
 +-------+-----------------+------------+--------+--------+----------+------+------+
 2 rows in set (0.00 sec)
 
+b)
+
 mysql> rollback to A;
 Query OK, 0 rows affected (0.00 sec)
+
+c)
 
 mysql> commit;
 Query OK, 0 rows affected (0.00 sec)
