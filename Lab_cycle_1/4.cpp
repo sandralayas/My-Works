@@ -4,7 +4,7 @@ Question 4
 
 #include <limits.h>
 #include <stdio.h>
-#define V 5
+//#define V 5
 
 int minDistance(int dist[], bool check[])
 {
