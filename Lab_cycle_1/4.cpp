@@ -47,11 +47,23 @@ void dijkstra(int graph[V][V], int src)
 }
 int main()
 {
-	int graph[V][V] = {{0, 10, 5, 0, 0},
-					   {0, 0, 2, 1, 0},
-					   {0, 3, 0, 9, 2},
-					   {0, 0, 0, 0, 4},
-					   {7, 0, 0, 6, 0}};
+	int V,input;
+	
+	cout<<"\n Enter the size of the matrix : ";cin>>V;
+	int graph[V][V];
+	cout<<"\n Enter the  matrix : \n\n";
+	for(int i=0;i<V;i++){
+		for(int j=0;j<V;j++){
+			cin>>input;
+			graph[i][j]=input;
+		}
+	}
+	
+					// {{0, 10, 5, 0, 0},
+					// {0, 0, 2, 1, 0},
+					// {0, 3, 0, 9, 2},
+					// {0, 0, 0, 0, 4},
+					// {7, 0, 0, 6, 0}};
 
 	dijkstra(graph, 0);
 
