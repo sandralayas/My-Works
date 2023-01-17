@@ -1,3 +1,5 @@
+a
+
 test> use emp
 switched to db emp
 emp> db
@@ -6,14 +8,23 @@ emp> show dbs
 admin   40.00 KiB
 config  72.00 KiB
 local   40.00 KiB
+
+b
+
 emp> db.createCollection("Department")
 { ok: 1 }
+
+c
+
 emp> db.getCollectionNames()
 [ 'Department' ]
 emp> db.Department.drop()
 true
 emp> db.getCollectionNames()
 []
+
+d
+
 emp> db.createCollection("Employee")
 { ok: 1 }
 emp> db.Employee.insertOne({"Empno" : "E1001" , "Empname" : "Archana" , "Salary" :
@@ -22,8 +33,6 @@ emp> db.Employee.insertOne({"Empno" : "E1001" , "Empname" : "Archana" , "Salary"
   acknowledged: true,
   insertedId: ObjectId("63a34256c705f24e51580dbc")
 }
-
-
 emp> try{
 ... db.Employee.insertMany([{"Empno" : "E1002" , "Empname" : "Rahul" , "Salary" : 120000},{"Empno" : "E1003" , "Empname" : "Sara" , "Salary" : 170000}]);
 ... }
@@ -37,6 +46,8 @@ emp> try{
     '1': ObjectId("63a3a54dc705f24e51580dbe")
   }
 }
+
+e
 
 emp> db.Employee.find()
 [
@@ -59,6 +70,8 @@ emp> db.Employee.find()
     Salary: 170000
   }
 ]
+
+f
 
 emp> db.Employee.updateOne({"Empno" : "E1001"},
 ... {
@@ -96,8 +109,14 @@ emp> db.Employee.find()
     Salary: 170000
   }
 ]
+
+h
+
 emp> db.Employee.deleteOne({"Empname" : "Sara"});
 { acknowledged: true, deletedCount: 1 }
+
+i
+
 emp> db.Employee.find()
 [
   {
@@ -115,5 +134,8 @@ emp> db.Employee.find()
   }
 ]
 ]
+
+j
+
 emp> db.dropDatabase()
 { ok: 1, dropped: 'emp' }
