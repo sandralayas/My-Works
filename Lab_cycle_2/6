@@ -1,4 +1,4 @@
-a
+1
 
 test> use emp
 switched to db emp
@@ -9,12 +9,12 @@ admin   40.00 KiB
 config  72.00 KiB
 local   40.00 KiB
 
-b
+2
 
 emp> db.createCollection("Department")
 { ok: 1 }
 
-c
+3
 
 emp> db.getCollectionNames()
 [ 'Department' ]
@@ -23,7 +23,7 @@ true
 emp> db.getCollectionNames()
 []
 
-d
+4
 
 emp> db.createCollection("Employee")
 { ok: 1 }
@@ -47,7 +47,7 @@ emp> try{
   }
 }
 
-e
+5
 
 emp> db.Employee.find()
 [
@@ -71,7 +71,7 @@ emp> db.Employee.find()
   }
 ]
 
-f
+6
 
 emp> db.Employee.updateOne({"Empno" : "E1001"},
 ... {
@@ -110,12 +110,12 @@ emp> db.Employee.find()
   }
 ]
 
-h
+7
 
 emp> db.Employee.deleteOne({"Empname" : "Sara"});
 { acknowledged: true, deletedCount: 1 }
 
-i
+8
 
 emp> db.Employee.find()
 [
@@ -135,7 +135,7 @@ emp> db.Employee.find()
 ]
 ]
 
-j
+9
 
 emp> db.dropDatabase()
 { ok: 1, dropped: 'emp' }
