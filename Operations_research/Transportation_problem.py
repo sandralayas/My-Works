@@ -1,17 +1,20 @@
-grid = []
-row = []
-supply = []
-demand = []
 
-rownum = int(  ("Enter the number of rows") )
+rownum = int( input ("Enter the number of rows : ") )
 
-colnum = int(  ("Enter the number of columns") )
+colnum = int( input ("Enter the number of columns : ") )
+
+grid = list()
+row = list()
+supply = list()
+demand = list()
+
 
 for i in range (rownum):
     print("Enter row "+str(i+1))
     for j in range(colnum):
-        row[j] = int(input ("\n"))
-    grid[i] = row
+        row.append( int(input ("\n")))
+    grid.append( row )
+    row = []
 
 print("Enter the supply row")   
 for i in range(rownum):
@@ -64,8 +67,7 @@ while max(supply) != 0 or max(demand) != 0:
                         
                         mini2 = min(supply[ind], demand[ind2])
                         ans += mini2 * mini1
-
-                 supply[ind] -= mini2
+                        supply[ind] -= mini2
                         demand[ind2] -= mini2
 
                         if(demand[ind2] == 0):
@@ -100,7 +102,7 @@ while max(supply) != 0 or max(demand) != 0:
                                 grid[r][ind] = INF
 
                             else:
-                            grid[ind2] = [INF for i in range(m)]
+                                grid[ind2] = [INF for i in range(m)]
                         break
                 break
  
