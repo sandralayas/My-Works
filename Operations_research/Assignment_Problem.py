@@ -186,5 +186,5 @@ if __name__ == "__main__":
     #     [80, 72, 60, 120, 72],
     #     [76, 64, 56, 112, 68]
     # ])
-    hungarian_assignment(cost)
+    hungarian_assignment(np.array(cost))
     print("Done!")
