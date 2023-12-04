@@ -4,14 +4,15 @@
 # Customize the plot to show trendlines and seasonal patterns. Discuss the insights gained from the visualization.
 
 
-covid <- read.csv('C:/Users/cusat/Documents/Bigdata/dataset/covid.csv')
-print(covid)
+covid <- read.csv('covid.csv')
 
-x <- covid$Confirmed
+x <- covid$Recovered 
 y <- covid$Deaths
+z <- covid$Confirmed
 
 a <- covid$Date
+k <- 10000
 
-plot(x,y,xlim = c(0,15000),ylim = c(0,1500),xlab = 'date',ylab = 'confirmed')
+timeplot <- ts(data = covid,start = 1,end = 125,frequency = 52)
 
-timeplot <- ts(data = covid,start = 1,end = 125,frequency = 1)
+plot(timeplot,xlab = 'Weekly data')
