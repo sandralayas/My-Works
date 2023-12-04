@@ -1,3 +1,8 @@
+# Q7: EDA on "Iris Dataset"
+# a)For the Iris dataset, which contains measurements of various iris flowers, conduct  an EDA.
+# b) Determine if there are statistically significant differences in sepal lengths between different species using a suitable statistical test.
+# c)Create a pair plot to visualize the relationships between all variables.
+
 data <- read.csv('iris.csv')
 
 print(data)
