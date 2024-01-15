@@ -1,0 +1,6 @@
+# Load the mtcars dataset
+data(mtcars)
+
+# Perform Pearson correlation test
+cor.test(mtcars$hp, mtcars$mpg, method = "pearson")
+
