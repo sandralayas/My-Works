@@ -1,27 +1,21 @@
-#include <iostream>
-#include <cstdlib>
+#include <stdio.h>
 #include <pthread.h>
-using namespace std;
-#define NUM_THREADS 5
-void *PrintHello(void *threadid) {
-   long tid;
-   tid = (long)threadid;
-   printf("Hello World! Thread ID, %d
-", tid);
-   pthread_exit(NULL);
+
+void *Thread();
+
+int main() {
+    pthread_t t1;
+    pthread_create(&t1,NULL,Thread,NULL);
+    pthread_join(t1,NULL);
+    return 0;
 }
-int main () {
-   pthread_t threads[NUM_THREADS];
-   int rc;
-   int i;
-   for( i = 0; i < NUM_THREADS; i++ ) {
-      cout << "main() : creating thread, " << i << endl;
-      rc = pthread_create(&threads[i], NULL, PrintHello, (void *)i);
-      if (rc) {
-         printf("Error:unable to create thread, %d
-", rc);
-         exit(-1);
-      }
-   }
-   pthread_exit(NULL);
+
+void *Thread(){
+    printf("Enter the size of the array : ");
+    int number;
+    scanf("%d", &number);
+    int i;
+    for (i = 0; i < number; i++) {
+        printf("%d ", i);
+    }
 }
