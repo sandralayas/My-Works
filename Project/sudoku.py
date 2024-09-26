@@ -4,7 +4,13 @@ from sys import exit
 import pygame
 import time
 import random
+from button_main import menu
+import csv
 pygame.init()
+
+BLACK=(0,0,0)
+WHITE=(255,255,255)
+
 def generate():
     '''Randomly generates a Sudoku grid/board'''
     while True:  #return will interrupt the loop
@@ -32,23 +38,24 @@ class Board:
         solve(self.solvedBoard)
         self.tiles = [[Tile(self.board[i][j], window, i*60, j*60) for j in range(9)] for i in range(9)]
         self.window = window
+        self.victory_sound=pygame.mixer.Sound('./audio/win.mp3')
 
     def draw_board(self):
         '''Fills the board with Tiles and renders their values'''
         for i in range(9):
             for j in range(9):
                 if j%3 == 0 and j != 0: #vertical lines
-                    pygame.draw.line(self.window, (0, 0, 0), ((j//3)*180, 0), ((j//3)*180, 540), 4)
+                    pygame.draw.line(self.window, BLACK, ((j//3)*180, 0), ((j//3)*180, 540), 4)
 
                 if i%3 == 0 and i != 0: #horizontal lines
-                    pygame.draw.line(self.window, (0, 0, 0), (0, (i//3)*180), (540, (i//3)*180), 4)
+                    pygame.draw.line(self.window, BLACK, (0, (i//3)*180), (540, (i//3)*180), 4)
 
                 self.tiles[i][j].draw((0,0,0), 1)
 
                 if self.tiles[i][j].value != 0: #don't draw 0s on the grid
-                    self.tiles[i][j].display(self.tiles[i][j].value, (21+(j*60), (16+(i*60))), (0, 0, 0)) #20,5 are the coordinates of the first tile
+                    self.tiles[i][j].display(self.tiles[i][j].value, (21+(j*60), (16+(i*60))), BLACK) #20,5 are the coordinates of the first tile
         #bottom-most line
-        pygame.draw.line(self.window, (0, 0, 0), (0, ((i+1) // 3) * 180), (540, ((i+1) // 3) * 180), 4)
+        pygame.draw.line(self.window, BLACK, (0, ((i+1) // 3) * 180), (540, ((i+1) // 3) * 180), 4)
 
     def deselect(self, tile):
         '''Deselects every tile except the one currently clicked'''
@@ -82,15 +89,15 @@ class Board:
             self.window.blit(text, (10, 554))
 
             font = pygame.font.SysFont('Bahnschrift', 40) #Number of Incorrect Inputs
-            text = font.render(str(wrong), True, (0, 0, 0))
+            text = font.render(str(wrong), True, BLACK)
             self.window.blit(text, (32, 542))
 
         font = pygame.font.SysFont('Bahnschrift', 40) #Time Display
-        text = font.render(str(time), True, (0, 0, 0))
+        text = font.render(str(time), True, BLACK)
         self.window.blit(text, (388, 542))
         pygame.display.flip()
 
-    def visualSolve(self, wrong, time):
+    def visualSolve(self, wrong, Time):
         '''Showcases how the board is solved via backtracking'''
         for event in pygame.event.get(): #so that touching anything doesn't freeze the screen
             if event.type == pygame.QUIT:
@@ -98,25 +105,27 @@ class Board:
 
         empty = find_empty(self.board)
         if not empty:
+            pygame.mixer.Sound.play(self.victory_sound)
             return True
-
+        delay=60
         for nums in range(9):
             if valid(self.board, (empty[0],empty[1]), nums+1):
                 self.board[empty[0]][empty[1]] = nums+1
                 self.tiles[empty[0]][empty[1]].value = nums+1
                 self.tiles[empty[0]][empty[1]].correct = True
-                pygame.time.delay(63) #show tiles at a slower rate
-                self.redraw({}, wrong, time)
+                pygame.time.delay(delay) #show tiles at a slower rate
+                self.redraw({}, wrong, Time)
 
-                if self.visualSolve(wrong, time):
+                if self.visualSolve(wrong, Time):
                     return True
 
                 self.board[empty[0]][empty[1]] = 0
                 self.tiles[empty[0]][empty[1]].value = 0
                 self.tiles[empty[0]][empty[1]].incorrect = True
                 self.tiles[empty[0]][empty[1]].correct = False
-                pygame.time.delay(63)
-                self.redraw({}, wrong, time)
+                pygame.time.delay(delay)
+                self.redraw({}, wrong, Time)
+                delay=delay//2
 
     def hint(self, keys):
         '''Shows a random empty tile's solved value as a hint'''
@@ -132,6 +141,27 @@ class Board:
 
             elif self.board == self.solvedBoard:
                 return False
+
+    def save_game(self):
+        file=open('game_stats.csv','w')
+        writer = csv.writer(file)
+        for i in self.board:
+            writer.writerow(i)
+        file.close()
+    
+    def load_game(self):
+        temp_board=[]
+        with open('game_stats.csv') as file:
+            reader=csv.reader(file)
+            for i in (reader):
+                if i!=[]:
+                    temp_board.append(i)
+        for q in range(9):
+            for w in range(9):   
+                self.tiles[q][w].value=int(temp_board[q][w])
+                # +self.board[q][w]=int(temp_board[q][w])
+
+        
 class Tile:
     '''Represents each white tile/box on the grid'''
     def __init__(self, value, window, x1, y1):
@@ -141,6 +171,7 @@ class Tile:
         self.selected = False
         self.correct = False
         self.incorrect = False
+        self.click_sound=pygame.mixer.Sound('./audio/press1.mp3')
 
     def draw(self, color, thickness):
         '''Draws a tile on the board'''
@@ -155,24 +186,28 @@ class Tile:
     def clicked(self, mousePos):
         '''Checks if a tile has been clicked'''
         if self.rect.collidepoint(mousePos): #checks if a point is inside a rect
+            pygame.mixer.Sound.play(self.click_sound)
             self.selected = True
+
         return self.selected
+
+
 
 def main():
     '''Runs the main Sudoku GUI/Game'''
     screen = pygame.display.set_mode((540, 590))
-    screen.fill((255, 255, 255))
+    screen.fill(WHITE)
     pygame.display.set_caption("Sudoku")
     icon = pygame.image.load("icon.png")
     pygame.display.set_icon(icon)
 
     #loading screen when generating grid
     font = pygame.font.SysFont('Bahnschrift', 40)
-    text = font.render("Generating", True, (0, 0, 0))
+    text = font.render("Generating", True, BLACK)
     screen.blit(text, (175, 245))
 
     font = pygame.font.SysFont('Bahnschrift', 40)
-    text = font.render("Grid", True, (0, 0, 0))
+    text = font.render("Grid", True, BLACK)
     screen.blit(text, (230, 290))
     pygame.display.flip()
 
@@ -196,6 +231,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit() #so that it doesnt go to the outer run loop
+             
 
             elif event.type == pygame.MOUSEBUTTONUP: #allow clicks only while the board hasn't been solved
                 mousePos = pygame.mouse.get_pos()
@@ -250,6 +286,21 @@ def main():
                             board.tiles[selected[1]][selected[0]].value = keyDict[selected] #assigns current grid value
                             board.board[selected[1]][selected[0]] = keyDict[selected] #assigns to actual board so that the correct value can't be modified
                             del keyDict[selected]
+
+
+                if event.key == pygame.K_ESCAPE:
+                    print("esc")
+                    menu_choice=menu(screen)   
+                    if(menu_choice=='save'):
+                        board.save_game()
+                    if (menu_choice=='load'):
+                        board.load_game()
+                    if (menu_choice=='new'):
+                        board=Board(screen)
+                    if (menu_choice=='quit'):
+                        return
+
+
 
                 if event.key == pygame.K_h:
                     board.hint(keyDict)
