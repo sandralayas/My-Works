@@ -1,0 +1,46 @@
+%Decompose Matrix using Gauss Elimination in the LDU form
+clc
+close all
+clear all
+A=input("Enter the elements in Matrix form")
+N=length(A);
+for i=1:N
+for j=i+1:N
+Etta = A(j,i)/A(i,i);
+A(j,:) = A(j,:)-Etta*A(i,:);
+EttaMatrix((j-1)+1,i) = Etta;
+end
+end
+L=EttaMatrix;
+L(:,N)=zeros(N,1);
+for i = 1:N
+L(i,i)=1;
+end
+Lower_Triangular_Matrix=L
+Temp=diag(A);
+D(:,N)=zeros(N,1);
+for i = 1:N
+D(i,i)=Temp(i);
+end
+Diagonal_Matrix=D
+I =
+Aug
+N =
+for
+eye(length(D));
+= [D I];
+length(D);
+i=1:N
+Aug(i,:) = Aug(i,:)/Aug(i,i);
+for j=1:N
+if j~=i
+Key = Aug(j,i);
+Aug(j,:) = Aug(j,:)-Key*Aug(i,:);
+end
+end
+end
+r=(length(Aug)/2+1);
+DM = Aug(:,r:end);
+U = DM*A;
+Upper_Triangular_Matrix = U
+Product_of_LDU_decomposition = L*D*U
