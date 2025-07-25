@@ -1,0 +1,165 @@
+mysql> use SANDRA
+Database changed
+mysql> \! clear
+
+mysql> create table Product_master(
+    -> Product_no varchar(10),
+    -> Description varchar(50),
+    -> Profit_percent varchar(5),
+    -> Unit_measure integer,
+    -> Quantity_on_hand integer,
+    -> Reorder_LVL integer,
+    -> Sell_price integer,
+    -> Cost_price integer);
+Query OK, 0 rows affected (0.23 sec)
+
+mysql> desc Product_master;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| Product_no       | varchar(10) | YES  |     | NULL    |       |
+| Description      | varchar(50) | YES  |     | NULL    |       |
+| Profit_percent   | varchar(5)  | YES  |     | NULL    |       |
+| Unit_measure     | int(11)     | YES  |     | NULL    |       |
+| Quantity_on_hand | int(11)     | YES  |     | NULL    |       |
+| Reorder_LVL      | int(11)     | YES  |     | NULL    |       |
+| Sell_price       | int(11)     | YES  |     | NULL    |       |
+| Cost_price       | int(11)     | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> create table Client_master(
+    -> Salesman_no varchar(10) primary key check(Salesman_no like "S0%"),
+    -> Salesman_name varchar(20) not null,
+    -> Address1 varchar(50) not null,
+    -> Address2 varchar(50),
+    -> City varchar(20),
+    -> Pincode integer,
+    -> State varchar(20));
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> desc Client_master;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Salesman_no   | varchar(10) | NO   | PRI | NULL    |       |
+| Salesman_name | varchar(20) | NO   |     | NULL    |       |
+| Address1      | varchar(50) | NO   |     | NULL    |       |
+| Address2      | varchar(50) | YES  |     | NULL    |       |
+| City          | varchar(20) | YES  |     | NULL    |       |
+| Pincode       | int(11)     | YES  |     | NULL    |       |
+| State         | varchar(20) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> insert into Product_master values("P01","Paint","50%",1,1200,15,3000,1500);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Product_master values("P02","Paper","75%",10,5000,5,200,150);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into Product_master values("P03","Ink","75%",1,500,3,20,15);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from Product_master;
++------------+-------------+----------------+--------------+------------------+-------------+------------+------------+
+| Product_no | Description | Profit_percent | Unit_measure | Quantity_on_hand | Reorder_LVL | Sell_price | Cost_price |
++------------+-------------+----------------+--------------+------------------+-------------+------------+------------+
+| P01        | Paint       | 50%            |            1 |             1200 |          15 |       3000 |       1500 |
+| P02        | Paper       | 75%            |           10 |             5000 |           5 |        200 |        150 |
+| P03        | Ink         | 75%            |            1 |              500 |           3 |         20 |         15 |
++------------+-------------+----------------+--------------+------------------+-------------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Client_master values("S03","Fabric Castle","607 MG Street","327 NH 54","Mumbai",235032,"Maharashtra");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from Client_master;
++-------------+---------------+------------------+--------------+--------+---------+-------------+
+| Salesman_no | Salesman_name | Address1         | Address2     | City   | Pincode | State       |
++-------------+---------------+------------------+--------------+--------+---------+-------------+
+| S01         | Paper weight  | 123 Gandhi Nagar | 407 JLN Road | Delhi  |  110001 | New Delhi   |
+| S02         | Camlin        | 607 Nehru Street | 327 NH 67    | Mumbai |  235032 | Maharashtra |
+| S03         | Fabric Castle | 607 MG Street    | 327 NH 54    | Mumbai |  235032 | Maharashtra |
++-------------+---------------+------------------+--------------+--------+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select count(City) from Client_master group by City;
++-------------+
+| count(City) |
++-------------+
+|           1 |
+|           2 |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> select City,count(City) from Client_master group by City;
++--------+-------------+
+| City   | count(City) |
++--------+-------------+
+| Delhi  |           1 |
+| Mumbai |           2 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select City,count(City) from Client_master group by City order by City desc;
++--------+-------------+
+| City   | count(City) |
++--------+-------------+
+| Mumbai |           2 |
+| Delhi  |           1 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+    -> retrive the list of name city and state of all the clients
+    -> find the names of all the clients 
+    -> list the various products available from the table product master
+    -> change the city of a salesman to banglore
+    -> delete from Client master where state is maharashtra
+
+mysql> select City,State from Client_master;
++--------+-------------+
+| City   | State       |
++--------+-------------+
+| Delhi  | New Delhi   |
+| Mumbai | Maharashtra |
+| Mumbai | Maharashtra |
++--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select Salesman_name from Client_master;
++---------------+
+| Salesman_name |
++---------------+
+| Paper weight  |
+| Camlin        |
+| Fabric Castle |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> select Description from Product_master;
++-------------+
+| Description |
++-------------+
+| Paint       |
+| Paper       |
+| Ink         |
++-------------+
+3 rows in set (0.00 sec)
+
+mysql> update Client_master set City="Bangalore",Pincode=530068,State="Karnataka" where Salesman_no="S03";
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Client_master;
++-------------+---------------+------------------+--------------+-----------+---------+-------------+
+| Salesman_no | Salesman_name | Address1         | Address2     | City      | Pincode | State       |
++-------------+---------------+------------------+--------------+-----------+---------+-------------+
+| S01         | Paper weight  | 123 Gandhi Nagar | 407 JLN Road | Delhi     |  110001 | New Delhi   |
+| S02         | Camlin        | 607 Nehru Street | 327 NH 67    | Mumbai    |  235032 | Maharashtra |
+| S03         | Fabric Castle | 607 MG Street    | 327 NH 54    | Bangalore |  530068 | Karnataka   |
++-------------+---------------+------------------+--------------+-----------+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> 
+ 

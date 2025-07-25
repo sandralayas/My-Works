@@ -1,0 +1,20 @@
+mysql> create VW_emp as select * from EMPLOYEE;
+
+a)
+mysql> create view VW_emp as select * from EMPLOYEE;
+Query OK, 0 rows affected (0.00 sec)
+
+b)
+mysql> create view VW_SSN as select SuperSSN,DNo from EMPLOYEE where Sex='Female';
+Query OK, 0 rows affected (0.00 sec)
+
+c)
+mysql> update VW_emp set Address='Chennai' where SSN='e1001';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+d)
+mysql> delete from VW_emp;
+Query OK, 4 rows affected (0.01 sec)
+
+mysql> 

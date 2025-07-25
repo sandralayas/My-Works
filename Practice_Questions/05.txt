@@ -1,0 +1,155 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db2                |
+| information_schema |
+| mysql              |
+| netb               |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.07 sec)
+
+mysql> use db2;
+Database changed
+
+mysql> create table EMPLOYEE(SSN varchar(10),Name varchar(20),Sex varchar(10),Salary int,SuperSSN varchar(10) ,DNo varchar(10));
+Query OK, 0 rows affected (0.27 sec)
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | varchar(10) | YES  |     | NULL    |       |
+| Name     | varchar(20) | YES  |     | NULL    |       |
+| Sex      | varchar(10) | YES  |     | NULL    |       |
+| Salary   | int         | YES  |     | NULL    |       |
+| SuperSSN | varchar(10) | YES  |     | NULL    |       |
+| DNo      | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.04 sec)
+
+mysql> insert into EMPLOYEE values('S01','Rahul','Male',10000,'SS01','D001');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into EMPLOYEE values('S02','Abdul','Male',20000,'SS02','D002');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into EMPLOYEE values('S03','Mary','Female',15000,'SS02','D002');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from EMPLOYEE;
++------+-------+--------+--------+----------+------+
+| SSN  | Name  | Sex    | Salary | SuperSSN | DNo  |
++------+-------+--------+--------+----------+------+
+| S01  | Rahul | Male   |  10000 | SS01     | D001 |
+| S02  | Abdul | Male   |  20000 | SS02     | D002 |
+| S03  | Mary  | Female |  15000 | SS02     | D002 |
++------+-------+--------+--------+----------+------+
+3 rows in set (0.01 sec)
+
+mysql> create view VW_EMP as select * from EMPLOYEE;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from VW_EMP;
++------+-------+--------+--------+----------+------+
+| SSN  | Name  | Sex    | Salary | SuperSSN | DNo  |
++------+-------+--------+--------+----------+------+
+| S01  | Rahul | Male   |  10000 | SS01     | D001 |
+| S02  | Abdul | Male   |  20000 | SS02     | D002 |
+| S03  | Mary  | Female |  15000 | SS02     | D002 |
++------+-------+--------+--------+----------+------+
+3 rows in set (0.02 sec)
+
+mysql> create view VW_SSN as select SuperSSN,DNo from EMPLOYEE where Sex='Female';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from VW_SSN;
++----------+------+
+| SuperSSN | DNo  |
++----------+------+
+| SS02     | D002 |
++----------+------+
+1 row in set (0.01 sec)
+
+mysql> update VW_EMP set salary=20000 where SSN='SS01';
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from EMPLOYEE;
++------+-------+--------+--------+----------+------+
+| SSN  | Name  | Sex    | Salary | SuperSSN | DNo  |
++------+-------+--------+--------+----------+------+
+| S01  | Rahul | Male   |  10000 | SS01     | D001 |
+| S02  | Abdul | Male   |  20000 | SS02     | D002 |
+| S03  | Mary  | Female |  15000 | SS02     | D002 |
++------+-------+--------+--------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from VW_EMP;
++------+-------+--------+--------+----------+------+
+| SSN  | Name  | Sex    | Salary | SuperSSN | DNo  |
++------+-------+--------+--------+----------+------+
+| S01  | Rahul | Male   |  10000 | SS01     | D001 |
+| S02  | Abdul | Male   |  20000 | SS02     | D002 |
+| S03  | Mary  | Female |  15000 | SS02     | D002 |
++------+-------+--------+--------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> update VW_EMP set salary=20000 where SSN='S01';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from VW_EMP;
++------+-------+--------+--------+----------+------+
+| SSN  | Name  | Sex    | Salary | SuperSSN | DNo  |
++------+-------+--------+--------+----------+------+
+| S01  | Rahul | Male   |  20000 | SS01     | D001 |
+| S02  | Abdul | Male   |  20000 | SS02     | D002 |
+| S03  | Mary  | Female |  15000 | SS02     | D002 |
++------+-------+--------+--------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from EMPLOYEE;
++------+-------+--------+--------+----------+------+
+| SSN  | Name  | Sex    | Salary | SuperSSN | DNo  |
++------+-------+--------+--------+----------+------+
+| S01  | Rahul | Male   |  20000 | SS01     | D001 |
+| S02  | Abdul | Male   |  20000 | SS02     | D002 |
+| S03  | Mary  | Female |  15000 | SS02     | D002 |
++------+-------+--------+--------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> drop view VW_EMP;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from VW_EMP;
+ERROR 1146 (42S02): Table 'db2.vw_emp' doesn't exist
+
+mysql> select * from EMPLOYEE;
++------+-------+--------+--------+----------+------+
+| SSN  | Name  | Sex    | Salary | SuperSSN | DNo  |
++------+-------+--------+--------+----------+------+
+| S01  | Rahul | Male   |  20000 | SS01     | D001 |
+| S02  | Abdul | Male   |  20000 | SS02     | D002 |
+| S03  | Mary  | Female |  15000 | SS02     | D002 |
++------+-------+--------+--------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql>

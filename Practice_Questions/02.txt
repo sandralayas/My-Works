@@ -1,0 +1,83 @@
+mysql> create table PRODUCT_MASTER(Product_No varchar(6),Description varchar(15),Profit_Per varchar(6),Unit_Measure varchar(10),Qty_On_Hand integer,Re_OrderLVL integer,Sell_Price integer,Cost_Price integer);
+Query OK, 0 rows affected (0.92 sec)
+
+mysql> create table CLIENT_MASTER(Clinet_no varchar(6),Client_Name varchar(20),Address varchar(30),Address_2 varchar(30),City varchar(15), Pincode integer(8),State varchar(15),Bal_Due integer(8));
+Query OK, 0 rows affected, 2 warnings (1.17 sec)
+
+mysql> create table SALESMAN_MASTER(Salesman_no varchar(6),Salesman_Name varchar(20),Address varchar(30),Address_2 varchar(30),City varchar(15
+), Pincode integer(8),State varchar(15),Bal_Due integer(8));
+Query OK, 0 rows affected, 2 warnings (0.68 sec)
+
+mysql> create table STUDENT(S_no varchar(5),S_Name varchar(20),Age integer(15),S_DOB date,S_mark_1 integer,S_mark_2 integer,S_mark_3 integer);
+
+Query OK, 0 rows affected, 1 warning (1.08 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_EMP   |
++-----------------+
+| CLIENT_MASTER   |
+| EMPLOYEE_LIST   |
+| PRODUCT_MASTER  |
+| SALESMAN_MASTER |
+| STUDENT         |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table CLIENT_MASTER add(Telephone_No integer);
+Query OK, 0 rows affected (0.51 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc CLIENT_MASTER;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Clinet_no    | varchar(6)  | YES  |     | NULL    |       |
+| Client_Name  | varchar(20) | YES  |     | NULL    |       |
+| Address      | varchar(30) | YES  |     | NULL    |       |
+| Address_2    | varchar(30) | YES  |     | NULL    |       |
+| City         | varchar(15) | YES  |     | NULL    |       |
+| Pincode      | int         | YES  |     | NULL    |       |
+| State        | varchar(15) | YES  |     | NULL    |       |
+| Bal_Due      | int         | YES  |     | NULL    |       |
+| Telephone_No | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> alter table PRODUCT_MASTER modify Sell_Price int(10);
+Query OK, 0 rows affected, 1 warning (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> desc PRODUCT_MASTER;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Product_No   | varchar(6)  | YES  |     | NULL    |       |
+| Description  | varchar(15) | YES  |     | NULL    |       |
+| Profit_Per   | varchar(6)  | YES  |     | NULL    |       |
+| Unit_Measure | varchar(10) | YES  |     | NULL    |       |
+| Qty_On_Hand  | int         | YES  |     | NULL    |       |
+| Re_OrderLVL  | int         | YES  |     | NULL    |       |
+| Sell_Price   | int         | YES  |     | NULL    |       |
+| Cost_Price   | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> drop table CLIENT_MASTER;
+Query OK, 0 rows affected (0.50 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_EMP   |
++-----------------+
+| EMPLOYEE_LIST   |
+| PRODUCT_MASTER  |
+| SALESMAN_MASTER |
+| STUDENT         |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> rename table SALESMAN_MASTER to SMAN_MASTER;
+Query OK, 0 rows affected (0.55 sec)
+
+mysql> 

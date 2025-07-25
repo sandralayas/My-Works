@@ -1,0 +1,51 @@
+a)
+
+// declare Update_Cursor cursor for select * from EMPLOYEE
+// open Update_Cursor
+// fetch next from  Update_Cursor
+// close Update_Cursor
+// deallocate Update_Cursor
+
+DECLARE  
+   total_rows number(4); 
+BEGIN 
+   UPDATE EMPLOYEE 
+   SET Salary = Salary + 500;
+   WHERE DNo = 'D001'
+   IF sql%notfound THEN 
+      dbms_output.put_line('no employees selected'); 
+   ELSIF sql%found THEN 
+      total_rows := sql%rowcount;
+      dbms_output.put_line( total_rows || ' employees selected '); 
+   END IF;  
+END; 
+/    
+
+1 employees selected  
+
+PL/SQL procedure successfully completed. 
+
+b)
+
+// declare Retrive_Cursor cursor for select * from DEPARTMENT
+// open Retrive_Cursor
+// fetch next from  Retrivee_Cursor
+// close Retrive_Cursor
+// deallocate Retrive_Cursor
+
+DECLARE 
+   A DEPARTMENT.DNo%type; 
+   B DEPARTMENT.DName%type; 
+    
+   CURSOR Retrive_Cursor is 
+      SELECT DNo,DName FROM DEPARTMENT; 
+BEGIN 
+   OPEN Retrive_Cursor; 
+   LOOP 
+   FETCH Retrive_Cursor into A,B; 
+      EXIT WHEN Retrive_Cursor%notfound; 
+      dbms_output.put_line(A || ' ' || B); 
+   END LOOP; 
+   CLOSE Retrive_Cursor; 
+END; 
+/

@@ -1,0 +1,13 @@
+a)
+
+create trigger Salary_Trigger after
+update on EMPLOYEE
+for each row when
+EMPLOYEE.Diffrence = EMPLOYEE.Salary - EMPLOYEE.Salary
+
+b)
+
+create trigger Hours_Trigger after
+update on WORKS_ON
+for each row when
+WORKS_ON.Diffrence = WORKS_ON.Hours - WORKS_ON.Hours
