@@ -1,0 +1,19 @@
+GRANT AND REVOKE
+
+mysql> create user 'user1'@'localhost' identified by 'password' ;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql>  grant select on Company.Employee to 'user1'@'localhost';
+Query OK, 0 rows affected (0.09 sec)
+
+mysql>  show grants for 'user'@'localhost';
++--------------------------------------------------------+
+| Grants for user@localhost                              |
++--------------------------------------------------------+
+| GRANT USAGE ON *.* TO `user`@`localhost`               |
+| GRANT SELECT ON `dcl`.`employee` TO `user`@`localhost` |
++--------------------------------------------------------+
+2 rows in set (0.01 sec)
+
+mysql> revoke select on employee from 'user1'@'localhost';
+Query OK, 0 rows affected (0.04 sec)

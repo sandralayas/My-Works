@@ -1,0 +1,54 @@
+mysql> select Name from EMPLOYEE where Name like '&a_';
+Empty set (0.00 sec)
+
+mysql> select Sex,count(*) from EMPLOYEE group by Sex;
++--------+----------+
+| Sex    | count(*) |
++--------+----------+
+| Female |        1 |
+| Male   |        3 |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select avg(Salary) from EMPLOYEE where Sex='Female';
++-------------+
+| avg(Salary) |
++-------------+
+|  50000.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(Salary) from EMPLOYEE where Sex='Male';
++-------------+
+| sum(Salary) |
++-------------+
+|      125000 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select max(Salary),min(Salary) from EMPLOYEE where Sex='Male';
++-------------+-------------+
+| max(Salary) | min(Salary) |
++-------------+-------------+
+|       60000 |       25000 |
++-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from EMPLOYEE where Salary>25000 and Salary<50000;
++-------+----------------+-------------+------+--------+----------+------+------+
+| SSN   | Name           | Address     | Sex  | Salary | SuperSSN | DNo  | Age  |
++-------+----------------+-------------+------+--------+----------+------+------+
+| e1003 | Mohammad Riyaz | Nehru Villa | Male |  40000 | ee1003   | NULL |   33 |
++-------+----------------+-------------+------+--------+----------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select Name from EMPLOYEE where Salary in (30000,40000,50000);
++-----------------+
+| Name            |
++-----------------+
+| Mohammad Riyaz  |
+| Benitta Dominic |
++-----------------+
+2 rows in set (0.00 sec)
+
+mysql> 
