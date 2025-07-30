@@ -1,0 +1,38 @@
+> rm(list=ls())
+> 'hell world'
+[1] "hell world"
+> paste("hi","bye")
+[1] "hi bye"
+> a=4
+> b<-2L
+> .c<-'c'
+> d<-1i+1
+> class(a)
+[1] "numeric"
+> class(b)
+[1] "integer"
+> class(.c)
+[1] "character"
+> class(d)
+[1] "complex"
+> paste(a+b,a-b,a*b,a/b,a%%b)
+[1] "6 2 8 2 0"
+> rm(list=ls())
+> 'hell world'
+[1] "hell world"
+> paste("hi","bye")
+[1] "hi bye"
+> a=4
+> b<-2L
+> .c<-'c'
+> d<-1i+1
+> class(a)
+[1] "numeric"
+> class(b)
+[1] "integer"
+> class(.c)
+[1] "character"
+> class(d)
+[1] "complex"
+> paste(a+b,a-b,a*b,a/b,a%%b,a%/%b)
+[1] "6 2 8 2 0 2"
