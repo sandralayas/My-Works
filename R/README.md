@@ -12,3 +12,19 @@ How to Use
  * Analyze: It will immediately perform the analysis and display the word count, average word length, and the longest word.
  * Replace: You'll then be prompted to enter a word to find and a new word to replace it with.
  * View Output: The program will print the modified paragraph, showing the result of your replacement.
+
+
+Program 1 Overview
+Caesar Cipher
+This script is a simple tool that encrypts text using a Caesar cipher. It's a classic method where you shift each letter of a message a certain number of places down the alphabet.
+How It Works
+ * Encrypts text: Give it a sentence and a number (the "key"), and it'll shift every letter.
+ * Works both ways: You can use the same key to decrypt the message and get your original text back.
+ * Keeps it simple: It handles both uppercase and lowercase letters and leaves all other characters (like spaces and punctuation) alone.
+How to Use
+ * Run the script.
+ * Enter the sentence you want to encrypt.
+ * Enter a number for the shift key.
+That's it! It will show you the encrypted message and then decrypt it to prove it works.
+Example:
+If you encrypt "Hello World" with a key of 3, you get "Khoor Zruog".
