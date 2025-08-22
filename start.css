@@ -1,0 +1,10 @@
+*{margin: 0;padding: 0;}
+.main{width: 100%;background-image: url(background.jpg);background-position: bottom;background-size: cover;height: 100%;}
+.navigationbar{width: 1200px;height: 70px;margin-left: 0%;}
+.icon{width: 100px;height: 100px;float: left;}
+.logo{color: bisque;font-size: 100px;font-family: Georgia, 'Times New Roman', Times, serif;padding-left: 20px;float: left;padding-top: 10px;}
+.menu{width: 1000px;height: 100px;float: left;}
+ul{float: right;display: flex;justify-content: right;align-items: right;}
+ul li{list-style: none;margin-left: 100px;font-size: large;margin-top: 70px;}
+ul li a{text-decoration: none;color: bisque;font-family: Georgia, 'Times New Roman', Times, serif;font-weight: bold;transition: ease-in-out;}
+ul li a:hover{color: darkcyan;}
