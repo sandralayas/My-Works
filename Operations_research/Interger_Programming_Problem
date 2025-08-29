@@ -1,0 +1,52 @@
+ Enter the number of constraints : 3
+
+ Enter the number of coefficients : 3
+
+ Enter the constraint number 1
+
+ Enter the numbers : 
+ 9
+ 7
+ 6
+
+ Enter the constraint number 2
+
+ Enter the numbers : 
+ 9
+ 4
+ 3
+
+ Enter the constraint number 3
+
+ Enter the numbers : 
+ 8
+ 4
+ 3
+
+ Enter the resources available
+
+ Enter the numbers : 
+ 55
+ 77
+ 66
+
+ Enter the objective function
+
+ Enter the numbers : 
+ 14
+ 7
+ 3
+Integer Programming Problem:
+Objective function:
+x 1 ( 14 )  +  x 2 ( 7 )  +  x 3 ( 3 ) 
+Constraints:
+constraint  1 : x 1 ( 9 )  +  x 2 ( 7 )  +  x 3 ( 6 ) 
+
+constraint  2 : x 1 ( 9 )  +  x 2 ( 4 )  +  x 3 ( 3 ) 
+
+constraint  3 : x 1 ( 8 )  +  x 2 ( 4 )  +  x 3 ( 3 ) 
+
+Constraint bounds: [ 55 ,  77 ,  66  ]
+
+Optimal Solution: (1, 1, 1)
+Optimal Value: 24

@@ -1,0 +1,99 @@
+				 Simplex Algorithm
+
+
+
+ Enter the number of constraints : 2
+
+ Enter the number of coefficients : 4
+
+ Enter the constraint number 1
+
+ Enter the numbers : 
+ 1
+ 1
+ 0
+ 1
+
+ Enter the constraint number 2
+
+ Enter the numbers : 
+ 2
+ 1
+ 1
+ 0
+
+ Enter the resources available
+
+ Enter the numbers : 
+ 8
+ 10
+
+ Enter the objective function
+
+ Enter the numbers : 
+ 1
+ 1
+ 0
+ 0
+
+ Table at iteration = 0
+ B 	CB 	XB 	y1 	y2 	y3 	y4
+ 3	 0	 8	 1	 1	 0	 1	
+ 2	 0	 10	 2	 1	 1	 0	
+
+
+ Iteration :  1
+ B 	CB 	XB 	y1 	y2 	y3 	y4
+ 3	 0	 8	 1	 1	 0	 1	
+ 2	 0	 10	 2	 1	 1	 0	
+
+ Relative profit:   1,  1,  0,  0, 
+
+
+ Pivot element index:  [1 3]
+
+ Pivot element:   2
+
+
+
+ Iteration :  2
+ B 	CB 	XB 	y1 	y2 	y3 	y4
+ 3	 0	 3	 0	 1/2	 -1/2	 1	
+ 0	 1	 5	 1	 1/2	 1/2	 0	
+
+ Relative profit:   0,  1/2,  -1/2,  0, 
+
+
+ Pivot element index:  [0 4]
+
+ Pivot element:   1/2
+
+
+
+ Iteration :  3
+ B 	CB 	XB 	y1 	y2 	y3 	y4
+ 1	 1	 6	 0	 1	 -1	 2	
+ 0	 1	 2	 1	 0	 1	 -1	
+
+ Relative profit:   0,  0,  0,  -1, 
+
+ Case of Alternate found
+
+
+ All profits are <= 0, optimality reached
+
+***************************************************************
+
+ ALTERNATE Solution
+
+ Optimal table:
+ B 	CB 	XB 	y1 	y2 	y3 	y4
+ 1	 1	 6	 0	 1	 -1	 2	
+ 0	 1	 2	 1	 0	 1	 -1	
+
+
+ Value of Z at optimality:   8
+
+ Final Basis:   ['x2', 'x1']
+
+ Simplex Finished
