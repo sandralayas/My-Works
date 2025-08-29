@@ -1,0 +1,19 @@
+Enter the number of jobs : 4
+
+ Enter the numbers : 
+ 6
+ 1
+
+ Enter the numbers : 
+ 9
+ 2
+
+ Enter the numbers : 
+ 1
+ 9
+
+ Enter the numbers : 
+ 8
+ 7
+Optimal sequence: [2, 1, 0, 3]
+Minimum total processing time: 31

@@ -1,0 +1,89 @@
+ Enter the number of constraints : 3
+
+ Enter the number of coefficients : 4
+
+ Enter the constraint number 1
+
+ Enter the numbers : 
+ -6
+ -5
+ 1
+ 0
+
+ Enter the constraint number 2
+
+ Enter the numbers : 
+ -7
+ -8
+ 0
+ 1
+
+ Enter the constraint number 3
+
+ Enter the numbers : 
+ -2
+ -1
+ 0
+ 0
+
+ Enter the resources available
+
+ Enter the numbers : 
+ -9
+ -4
+ -3
+
+ Enter the objective function
+
+ Enter the numbers : 
+ 15
+ 8
+ 2
+ 0
+initial tableau: 
+x1	x2	x3	x4	c 
+
+-6	-5	1	0	-9	
+
+-7	-8	0	1	-4	
+
+-2	-1	0	0	-3	
+
+15	8	2	0	0	
+
+
+
+Iteration:  0
+x1	x2	x3	x4	c 
+
+-6	-5	1	0	-9	
+
+-7	-8	0	1	-4	
+
+-2	-1	0	0	-3	
+
+15	8	2	0	0	
+
+x1 : 0
+x2 : 9/5
+x3 : 0
+z : -72/5
+
+
+Iteration:  1
+x1	x2	x3	x4	c 
+
+6/5	1	-1/5	0	9/5	
+
+13/5	0	-8/5	1	52/5	
+
+-4/5	0	-1/5	0	-6/5	
+
+27/5	0	18/5	0	-72/5	
+
+x1 : 3/2
+x2 : 0
+x3 : 0
+z : -45/2
+[1.4999999999999998, 4.440892098500626e-16, 0, 6.500000000000002]
+Optimal solution is:  22.5
